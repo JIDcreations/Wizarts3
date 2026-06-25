@@ -1,0 +1,8 @@
+# Wizarts — Netlify configuration
+# The site is a static, no-build single page. Its files live in /site,
+# so we point Netlify's publish directory there (the repo root only holds
+# /site and /Content, with no index.html — which is why Netlify served a 404).
+
+[build]
+  publish = "site"
+  command = ""
