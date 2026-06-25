@@ -1,0 +1,353 @@
+<html class="notranslate" translate="no" lang="nl" data-headlessui-focus-visible=""><head>
+<meta charset="UTF-8">
+<title>Wizarts – Design System &amp; Content</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;color:#000033;background:#fff;font-size:13px;line-height:1.6;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{max-width:820px;margin:0 auto;padding:48px 40px}
+
+.cover{background:#6C4CDF;color:white;padding:56px 48px;margin-bottom:48px;border-radius:20px}
+.cover-tag{display:inline-block;background:rgba(255,255,255,0.2);border-radius:99px;padding:5px 16px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:18px}
+.cover h1{font-size:48px;font-weight:700;line-height:1.05;margin-bottom:10px}
+.cover p{font-size:15px;opacity:0.8;line-height:1.5}
+
+h2.sec{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#6C4CDF;margin:44px 0 18px;padding-bottom:8px;border-bottom:2px solid #6C4CDF;page-break-after:avoid}
+
+/* SWATCHES */
+.swatches{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:8px}
+.sw{border-radius:12px;overflow:hidden;border:1px solid rgba(0,0,0,0.07)}
+.sw-color{height:56px}
+.sw-info{padding:8px 10px;background:#f8f8f8}
+.sw-name{font-weight:700;font-size:12px;color:#000033}
+.sw-hex{font-size:11px;color:#666;font-family:monospace;margin:1px 0}
+.sw-use{font-size:10px;color:#999}
+
+/* TYPO */
+.typo-table{width:100%;border-collapse:collapse;margin-bottom:8px}
+.typo-table tr{border-bottom:1px solid #f0f0f0}
+.typo-table td{padding:10px 8px;vertical-align:middle}
+.tlabel{font-size:10px;color:#999;width:80px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.tspec{font-size:10px;color:#bbb;font-family:monospace;width:200px}
+.t-h1{font-size:34px;font-weight:500;line-height:1.05;color:#000033}
+.t-h2{font-size:26px;font-weight:600;line-height:1.1;color:#000033}
+.t-h3{font-size:20px;font-weight:500;line-height:1.1;color:#000033}
+.t-body{font-size:16px;font-weight:400;color:#000033}
+.t-link{font-size:16px;font-weight:500;color:#6C4CDF}
+.t-eyebrow{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#6C4CDF}
+.t-small{font-size:12px;color:#777}
+
+/* BUTTONS */
+.btn-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:14px 0 8px}
+.bp{background:#6C4CDF;color:#fff;border:2px solid #6C4CDF;border-radius:99px;padding:11px 22px;font-size:14px;font-weight:500;font-family:inherit;cursor:default}
+.bo{background:transparent;color:#000033;border:2px solid #000033;border-radius:99px;padding:11px 22px;font-size:14px;font-weight:500;font-family:inherit;cursor:default}
+.bl{background:none;border:none;border-bottom:2px solid #6C4CDF;padding:0 0 2px;font-size:14px;font-weight:500;color:#000033;font-family:inherit;cursor:default}
+.btn-note{font-size:10.5px;color:#999;line-height:1.6}
+
+/* COPY BLOCKS */
+.cb{margin-bottom:20px}
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#6C4CDF;margin-bottom:5px}
+.hl{font-size:17px;font-weight:700;color:#000033;line-height:1.25;margin-bottom:8px}
+.bd{font-size:13px;color:#333;line-height:1.65;margin-bottom:6px}
+.li{font-size:13px;color:#333;padding:3px 0 3px 16px;position:relative}
+.li::before{content:'›';position:absolute;left:0;color:#6C4CDF;font-weight:700}
+.cta{font-size:13px;font-weight:600;color:#6C4CDF;margin-top:7px}
+.quote{font-size:13px;font-style:italic;color:#302165;border-left:3px solid #6C4CDF;padding:6px 12px;margin:8px 0;line-height:1.6;background:#f6f4ff;border-radius:0 6px 6px 0}
+.attr{font-size:11.5px;color:#888;margin-top:3px}
+
+/* PAIN TABLE */
+.pt{width:100%;border-collapse:collapse;font-size:12px;margin:10px 0}
+.pt th{background:#6C4CDF;color:#fff;padding:8px 12px;text-align:left;font-weight:600}
+.pt td{padding:8px 12px;border-bottom:1px solid #eee;vertical-align:top;line-height:1.45}
+.pt tr:nth-child(even) td{background:#fafafa}
+.bad{color:#c0392b}
+.good{color:#0a7055;font-weight:500}
+
+/* STEPS */
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.step{background:#71FFD0;border-radius:10px;padding:14px}
+.snum{font-size:22px;font-weight:700;color:#6C4CDF;line-height:1}
+.stitle{font-size:13px;font-weight:700;color:#000033;margin:4px 0}
+.sbody{font-size:11.5px;color:#333;line-height:1.55}
+
+/* TEAM */
+.tt{width:100%;border-collapse:collapse;font-size:12px}
+.tt th{background:#DFD0F3;color:#000033;padding:7px 10px;text-align:left;font-weight:700}
+.tt td{padding:7px 10px;border-bottom:1px solid #eee}
+
+/* INFO GRID */
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+.ic{background:#f5f5f5;border-radius:8px;padding:12px}
+.ic strong{display:block;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#6C4CDF;margin-bottom:5px}
+.ic p{font-size:12px;color:#333;line-height:1.7}
+
+/* NAV PILLS */
+.nav-pills{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.np{background:#eee;border-radius:99px;padding:4px 12px;font-size:12px;color:#333}
+.np.on{background:#6C4CDF;color:#fff}
+
+/* EXPERTISE BOX */
+.exp-box{background:#6C4CDF;color:#fff;border-radius:10px;padding:16px 20px;margin-bottom:10px}
+.exp-box .hl{color:#fff;font-size:16px}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px 16px;margin:8px 0}
+.exp-li{font-size:12px;color:rgba(255,255,255,0.9);padding:3px 0 3px 14px;position:relative}
+.exp-li::before{content:'✓';position:absolute;left:0;color:#71FFD0;font-weight:700}
+.exp-box .cta{color:#71FFD0}
+
+/* TESTIMONIAL BOX */
+.testi{background:#DFD0F3;border-radius:10px;padding:18px 20px;margin-bottom:6px}
+
+/* JOBS BOX */
+.jobs{background:#FDAC6C;border-radius:10px;padding:18px 20px;margin-bottom:6px}
+.jobs .hl{color:#000033}
+.jobs .bd{color:#000033}
+.jobs .cta{color:#302165}
+
+/* PRO BOX */
+.pro{border:2px solid #6C4CDF;border-radius:10px;padding:18px 20px;margin-bottom:6px}
+
+@media print{
+  body{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .page{padding:20px 24px}
+  .cover{break-after:page}
+  h2.sec{break-before:auto;break-after:avoid}
+  .steps{break-inside:avoid}
+  .pt{break-inside:avoid}
+}
+</style>
+<style id="claude-agent-animation-styles">
+      @keyframes claude-pulse {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+      }
+      #claude-agent-glow-border-inner {
+        animation: claude-pulse 2s ease-in-out infinite;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #claude-agent-glow-border-inner {
+          animation: none;
+        }
+      }
+    </style></head>
+<body>
+<div class="page">
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-tag">Design System &amp; Content Reference</div>
+  <h1>Wizarts</h1>
+  <p>Gedreven door AI, gemaakt door mensen.<br>
+  Creatief bureau · AI &amp; Vakmanschap — Lochristi, België<br>
+  info@wizarts.be · +32 476 70 79 43</p>
+</div>
+
+<!-- COLORS -->
+<h2 class="sec">Brand Colors</h2>
+<div class="swatches">
+  <div class="sw"><div class="sw-color" style="background:#6C4CDF"></div><div class="sw-info"><div class="sw-name">Paars</div><div class="sw-hex">--paars · #6C4CDF</div><div class="sw-use">Primary · CTAs · Footer bg</div></div></div>
+  <div class="sw"><div class="sw-color" style="background:#000033"></div><div class="sw-info"><div class="sw-name">Zwart</div><div class="sw-hex">--zwart · #000033</div><div class="sw-use">Body text · All headings</div></div></div>
+  <div class="sw"><div class="sw-color" style="background:#71FFD0"></div><div class="sw-info"><div class="sw-name">Groen</div><div class="sw-hex">--groen · #71FFD0</div><div class="sw-use">Process section bg</div></div></div>
+  <div class="sw"><div class="sw-color" style="background:#DFD0F3"></div><div class="sw-info"><div class="sw-name">Roze</div><div class="sw-hex">--roze · #DFD0F3</div><div class="sw-use">Testimonial · Team section bg</div></div></div>
+  <div class="sw"><div class="sw-color" style="background:#FDAC6C"></div><div class="sw-info"><div class="sw-name">Oranje</div><div class="sw-hex">--oranje · #FDAC6C</div><div class="sw-use">Jobs section · Print label</div></div></div>
+  <div class="sw"><div class="sw-color" style="background:#AAA7F4"></div><div class="sw-info"><div class="sw-name">Licht Paars</div><div class="sw-hex">--licht-paars · #AAA7F4</div><div class="sw-use">Scrolling banner · Accents</div></div></div>
+  <div class="sw"><div class="sw-color" style="background:#302165"></div><div class="sw-info"><div class="sw-name">Donker Paars</div><div class="sw-hex">--donker-paars · #302165</div><div class="sw-use">Dark purple variant</div></div></div>
+  <div class="sw"><div class="sw-color" style="background:#FFFCF8;border:1px solid #ddd"></div><div class="sw-info"><div class="sw-name">Beige</div><div class="sw-hex">--beige · #FFFCF8</div><div class="sw-use">Page background</div></div></div>
+  <div class="sw"><div class="sw-color" style="background:#FFFEFD;border:1px solid #ddd"></div><div class="sw-info"><div class="sw-name">Wit</div><div class="sw-hex">--wit · #FFFEFD</div><div class="sw-use">Cards · White sections</div></div></div>
+</div>
+
+<!-- TYPOGRAPHY -->
+<h2 class="sec">Typography</h2>
+<p style="font-size:11.5px;color:#888;margin-bottom:14px">Font: <strong style="color:#000033">Degular</strong> — Adobe Typekit kit ID <code style="background:#f4f4f4;padding:1px 6px;border-radius:4px">ygi5aww</code> &nbsp;·&nbsp; Fallback: <code style="background:#f4f4f4;padding:1px 6px;border-radius:4px">DM Sans, Outfit, sans-serif</code></p>
+<table class="typo-table">
+  <tbody><tr><td class="tlabel">H1</td><td class="tspec">clamp(32,44,44)px · w500 · lh1.1</td><td><span class="t-h1">Gedreven door AI</span></td></tr>
+  <tr><td class="tlabel">H1 Large</td><td class="tspec">70px · w500 · lh1.0</td><td><span style="font-size:28px;font-weight:500;color:#000033">Gedreven door AI</span></td></tr>
+  <tr><td class="tlabel">H2</td><td class="tspec">clamp(24,32,32)px · w600 · lh1.1</td><td><span class="t-h2">Twee werelden.</span></td></tr>
+  <tr><td class="tlabel">H2 Large</td><td class="tspec">60px · w600 · lh1.0</td><td><span style="font-size:24px;font-weight:600;color:#000033">Twee werelden.</span></td></tr>
+  <tr><td class="tlabel">H3</td><td class="tspec">clamp(18,26,26)px · w500 · lh1.1</td><td><span class="t-h3">AI Digital Experts</span></td></tr>
+  <tr><td class="tlabel">Body / p</td><td class="tspec">18px · w400 · lh1.45</td><td><span class="t-body">Wij bundelen het beste van beide werelden.</span></td></tr>
+  <tr><td class="tlabel">Link / a</td><td class="tspec">20px · w500 · lh1.2</td><td><span class="t-link">Ontdek digitaal →</span></td></tr>
+  <tr><td class="tlabel">Eyebrow</td><td class="tspec">11–14px · w600 · UPPERCASE · ls1px</td><td><span class="t-eyebrow">CREATIEF BUREAU · AI &amp; VAKMANSCHAP</span></td></tr>
+  <tr><td class="tlabel">Small</td><td class="tspec">13px · w400</td><td><span class="t-small">Marketing Manager Certis Benelux</span></td></tr>
+</tbody></table>
+
+<!-- BUTTONS -->
+<h2 class="sec">Buttons</h2>
+<div class="btn-row">
+  <button class="bp">Start je project →</button>
+  <button class="bo">Bekijk ons werk</button>
+  <button class="bl">Ontdek digitaal →</button>
+</div>
+<p class="btn-note">
+  <strong>Primary:</strong> bg #6C4CDF · border 2px solid #6C4CDF · radius 9999px · padding 18×24px · 20px w500 · white text · hover: transparent bg + purple text &nbsp;|&nbsp;
+  <strong>Outline:</strong> transparent bg · border 2px solid #000033 · same radius/padding · hover: purple border + text &nbsp;|&nbsp;
+  <strong>Text link:</strong> border-bottom 2px solid #6C4CDF · no bg · no radius
+</p>
+
+<!-- HERO -->
+<h2 class="sec">Copy — Hero</h2>
+<div class="cb">
+  <div class="eyebrow">CREATIEF BUREAU · AI &amp; VAKMANSCHAP</div>
+  <div class="hl" style="font-size:22px">Gedreven door AI,<br>gemaakt door <span style="color:#6C4CDF">mensen.</span></div>
+  <div class="bd">Wat nu als je de snelheid kreeg van AI, maar de passie van mensen? Bij Wizarts bundelen we het beste van beide werelden om jouw zaak te laten groeien.</div>
+  <div class="cta">→ Start je project &nbsp;&nbsp;&nbsp; → Bekijk ons werk</div>
+</div>
+
+<!-- EXPERTISE -->
+<h2 class="sec">Copy — Expertise</h2>
+<div class="cb">
+  <div class="eyebrow">EXPERTISE</div>
+  <div class="hl">Twee werelden. Eén naadloze merkervaring.</div>
+  <p style="font-size:12px;font-weight:700;color:#6C4CDF;margin:10px 0 4px">● DIGITAAL — AI Digital Experts</p>
+  <div class="bd">Razendsnelle, AI-gedreven websites op een fundament van ijzersterke techniek. De tijd die AI wint, investeren wij in conversie, UX en gemoedsrust.</div>
+  <div class="li">AI-driven webdesign &amp; e-commerce</div>
+  <div class="li">Hosting &amp; digitale zekerheid</div>
+  <div class="li">SEO, advertising &amp; digitale groei</div>
+  <div class="cta">Ontdek digitaal →</div>
+  <p style="font-size:12px;font-weight:700;color:#FDAC6C;margin:12px 0 4px">● PRINT — Premium Print Experts</p>
+  <div class="bd">In een scherm-vermoeide wereld is tastbaarheid het ultieme luxeproduct. Wij vertalen je merk naar drukwerk dat je voelt — van naamkaartje tot gevel.</div>
+  <div class="li">Tactiele branding &amp; drukwerk</div>
+  <div class="li">Premium verpakkingen</div>
+  <div class="li">Grootformaat &amp; buitenreclame</div>
+  <div class="cta" style="color:#FDAC6C">Ontdek print →</div>
+</div>
+
+<!-- PROBLEEM MAGIE -->
+<h2 class="sec">Copy — Probleem → Magie</h2>
+<div class="cb">
+  <div class="eyebrow">PROBLEEM → MAGIE</div>
+  <div class="hl">Herkenbaar? Wij toveren je struikelblokken om tot groei.</div>
+  <div class="quote">"Negen op de tien ondernemers lopen vast op net dezelfde dingen. Onze job? Ze stuk voor stuk omdraaien."</div>
+  <div class="attr">— Stijn, Wizarts</div>
+</div>
+<table class="pt">
+  <tbody><tr><th style="width:50%">✕ Probleem</th><th>✓ Oplossing</th></tr>
+  <tr><td class="bad">De technische kennis in je bedrijf ontbreekt</td><td class="good">Een website die je moeiteloos zelf beheert</td></tr>
+  <tr><td class="bad">Je mist een professionele en creatieve blik</td><td class="good">Branding die professioneel oogt én blijft hangen</td></tr>
+  <tr><td class="bad">Je website blijft liggen door tijdsgebrek</td><td class="good">Vlotte opvolging — wij nemen het stuur over</td></tr>
+  <tr><td class="bad">Je weet niet wat je website eigenlijk oplevert</td><td class="good">Slimme meting en glasheldere rapporten</td></tr>
+  <tr><td class="bad">Er is geen helder plan of doel voor je marketing</td><td class="good">Een heldere strategie, concrete doelen én logische structuur</td></tr>
+</tbody></table>
+<div style="font-size:12px;color:#333;margin-top:10px">Klaar om je struikelblokken om te toveren? <strong>Eva &amp; het team toveren mee.</strong> <span style="color:#6C4CDF">→ Onze expertise</span></div>
+
+<!-- BRANDING PROCESS -->
+<h2 class="sec">Copy — Branding Proces</h2>
+<div class="cb">
+  <div class="eyebrow">BRANDING</div>
+  <div class="hl">Hoe gaan we te werk?</div>
+  <div class="cta">Lees meer over branding →</div>
+</div>
+<div class="steps">
+  <div class="step"><div class="snum">01</div><div class="stitle">Grondige analyse</div><div class="sbody">We starten met een grondige analyse van je merk, je doelgroep en de uitdagingen die je ervaart. Zo krijgen we helder wat écht nodig is om te groeien.</div></div>
+  <div class="step"><div class="snum">02</div><div class="stitle">Merkstrategie</div><div class="sbody">Op basis van die inzichten bepalen we een duidelijke merkstrategie, afgestemd op jouw doelen. Zo bouwen we richting én herkenbaarheid in je communicatie.</div></div>
+  <div class="step"><div class="snum">03</div><div class="stitle">Ontwerp &amp; creatie</div><div class="sbody">We vertalen de strategie naar een sterke visuele identiteit, branding en tools die je merk laten spreken — online én offline.</div></div>
+  <div class="step"><div class="snum">04</div><div class="stitle">Evaluatie &amp; optimalisatie</div><div class="sbody">Na de lancering volgen we op, meten we de impact en sturen we bij waar nodig. Zo blijf je relevant en effectief communiceren.</div></div>
+</div>
+
+<!-- CASES CTA -->
+<h2 class="sec">Copy — Cases CTA</h2>
+<div class="cb">
+  <div class="hl">Sta jij hier binnenkort ook tussen?</div>
+  <div class="bd">Krijg je het helemaal warm bij het zien van onze cases? En kan je niet wachten om kennis te maken met onze magische krachten? Boek dan snel een afspraak met Stijn.</div>
+  <div class="cta">→ Show me the magic</div>
+</div>
+
+<!-- EXPERTISE LIST -->
+<h2 class="sec">Copy — Expertise List</h2>
+<div class="exp-box">
+  <div class="hl">Onze expertise</div>
+  <div class="exp-grid">
+    <div class="exp-li">Print en grootformaat</div>
+    <div class="exp-li">Webdesign en development</div>
+    <div class="exp-li">Marketing</div>
+    <div class="exp-li">Fotografie</div>
+    <div class="exp-li">Branding</div>
+    <div class="exp-li">Copywriting &amp; social media</div>
+  </div>
+  <div class="cta">→ Bekijk hier onze toverkrachten</div>
+</div>
+
+<!-- TESTIMONIAL -->
+<h2 class="sec">Copy — Testimonial</h2>
+<div class="testi">
+  <div class="eyebrow" style="margin-bottom:8px">ONZE KLANTEN</div>
+  <div class="hl">Een greep uit onze klanten</div>
+  <div class="quote" style="margin-top:10px">"Zéér professioneel agentschap met oog voor detail. Hebben kennis van zaken, geven eigen input zonder de wensen van de klant uit het oog te verliezen. Zéér vlotte samenwerking en een fantastisch eindresultaat!"</div>
+  <div class="attr" style="margin-top:8px"><strong>Koen F.</strong> — Marketing Manager Certis Benelux</div>
+</div>
+
+<!-- BUSINESS BOOSTEN -->
+<h2 class="sec">Copy — Business Boosten CTA</h2>
+<div class="cb">
+  <div class="hl">Samen jouw business boosten?</div>
+  <div class="bd"><strong>Geïnspireerd door onze cases?</strong> Klaar om zelf de kracht van onze aanpak te ervaren? Plan een gesprek met Stijn en ontdek wat we voor jou kunnen betekenen!</div>
+  <div class="cta">→ Show me the magic</div>
+</div>
+
+<!-- TEAM -->
+<h2 class="sec">Copy — Team</h2>
+<div class="bd" style="margin-bottom:12px">We helpen kmo's hun marketing doelen snel te bereiken, met een persoonlijke aanpak en oog voor design.</div>
+<table class="tt">
+  <tbody><tr><th>Naam</th><th>Rol / Nickname</th><th>Hobby</th></tr>
+  <tr><td>Nathalie</td><td>opmaakvlinder</td><td>wandelen, reizen en genieten</td></tr>
+  <tr><td>Stijn De Pauw</td><td>magische manus</td><td>surfen &amp; windsurfen</td></tr>
+  <tr><td>Aline</td><td>pixelpoëet</td><td>reizen &amp; genieten</td></tr>
+  <tr><td>Florian</td><td>webalchemist</td><td>toogfilosoof &amp; -bioloog</td></tr>
+  <tr><td>Amber</td><td>woordenfluisteraar</td><td>nieuwsgierig &amp; genieter</td></tr>
+  <tr><td>Eva</td><td>teamtoverstaff</td><td>sportieve levensgenieter</td></tr>
+  <tr><td>Stijn De Mulder</td><td>code Gandalf</td><td>loper &amp; foodie</td></tr>
+</tbody></table>
+
+<!-- JOBS -->
+<h2 class="sec">Copy — Jobs CTA</h2>
+<div class="jobs">
+  <div class="hl">Ben jij een echte Wizart?</div>
+  <div class="bd">Krijg je het helemaal warm bij het zien van onze cases? En kan je niet wachten om kennis te maken met onze magische krachten? Boek dan snel een afspraak met Stijn.</div>
+  <div class="cta">→ Leer ons kennen &nbsp;&nbsp;&nbsp; → Kom in ons team</div>
+</div>
+
+<!-- WIZARTS PRO -->
+<h2 class="sec">Copy — Wizarts Pro</h2>
+<div class="pro">
+  <div class="eyebrow">TECHNISCHE ONDERSTEUNING BIJ WEB &amp; PRINT</div>
+  <div class="hl" style="margin-top:6px">Wizarts Pro voor agencies</div>
+  <div class="bd">Je hebt de strategie, de klanten en ijzersterke designs, maar komt soms de technische handen of kennis tekort voor de perfecte uitvoering. Met Wizarts Pro worden we een verlengstuk voor jouw agency of studio. We schuiven mee aan tafel als jouw technische partner en zorgen ervoor dat jouw visie exact wordt gebouwd zoals jij het bedacht hebt.</div>
+  <div class="cta">→ Ontdek Wizarts Pro</div>
+</div>
+
+<!-- FOOTER FORM -->
+<h2 class="sec">Copy — Footer Contactformulier</h2>
+<div class="cb">
+  <div class="hl">Klaar om jouw omzet te verhogen?</div>
+  <div class="bd">Wij contacteren je zo snel mogelijk en luisteren vrijblijvend hoe we jou kunnen helpen. Boek dan snel je gesprek met Stijn via onderstaand formulier.</div>
+  <div style="font-size:12px;color:#666;margin-top:6px;line-height:1.8">
+    Velden: <strong>Voornaam</strong> · <strong>Achternaam</strong> · <strong>Telefoonnummer</strong> · <strong>Email</strong> · <strong>Bericht</strong><br>
+    Submit label: <strong>"Ik wil een gesprek inplannen"</strong>
+  </div>
+</div>
+
+<!-- NAV -->
+<h2 class="sec">Navigatie</h2>
+<div class="nav-pills">
+  <span class="np on">Home</span><span class="np">Expertise ▾</span><span class="np">Onze visie</span><span class="np">Cases</span><span class="np">Over ons</span><span class="np on">Contact →</span>
+</div>
+<p style="font-size:11px;color:#999;margin-top:6px;line-height:1.8">
+  <strong>Footer sub-nav:</strong> Webdesign · E-commerce · Print · Grootformaat · Belettering &amp; wrapping · Branding · Grafische vormgeving · Animatie &amp; video · Fotografie · Copywriting · Illustraties · Marketing · Mailing campagnes · Strategie · Social media · SEO marketing · Advertising · Over ons · Boek je gesprek · Jobs
+</p>
+
+<!-- CONTACT -->
+<h2 class="sec">Contact Info</h2>
+<div class="ig">
+  <div class="ic"><strong>Adres</strong><p>Antwerpse Stwg 144 bus 101<br>9080 Lochristi, België</p></div>
+  <div class="ic"><strong>Contact</strong><p>+32 476 70 79 43<br>info@wizarts.be</p></div>
+  <div class="ic"><strong>Social Media</strong><p>facebook.com/wizarts.be<br>instagram.com/wizarts.be<br>linkedin.com/company/wizarts-communicatie</p></div>
+  <div class="ic"><strong>Partnerships</strong><p>Voka · Unizo · Flanders DC · Feweb</p></div>
+</div>
+
+</div>
+
+<div id="claude-agent-glow-border" style="position: fixed; inset: 0px; pointer-events: none; z-index: 2147483646; opacity: 1; transition: opacity 0.3s ease-in-out; display: none;"><div id="claude-agent-glow-border-inner" style="position: absolute; inset: 0px; will-change: opacity; box-shadow: rgba(217, 119, 87, 0.7) 0px 0px 15px inset, rgba(217, 119, 87, 0.5) 0px 0px 25px inset, rgba(217, 119, 87, 0.2) 0px 0px 35px inset;"></div></div><div id="claude-agent-stop-container" style="position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); justify-content: center; align-items: center; pointer-events: none; z-index: 2147483647; display: none;"><button id="claude-agent-stop-button" style="position: relative; transform: translateY(0px); padding: 12px 16px; background: rgb(250, 249, 245); color: rgb(20, 20, 19); border: 0.5px solid rgba(31, 30, 29, 0.4); border-radius: 12px; font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; box-shadow: rgba(217, 119, 87, 0.24) 0px 40px 80px, rgba(217, 119, 87, 0.24) 0px 4px 14px; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); opacity: 1; user-select: none; pointer-events: auto; white-space: nowrap; margin: 0px auto;">
+      <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor" style="margin-right: 12px; vertical-align: middle;">
+        <path d="M128,20A108,108,0,1,0,236,128,108.12,108.12,0,0,0,128,20Zm0,192a84,84,0,1,1,84-84A84.09,84.09,0,0,1,128,212Zm40-112v56a12,12,0,0,1-12,12H100a12,12,0,0,1-12-12V100a12,12,0,0,1,12-12h56A12,12,0,0,1,168,100Z"></path>
+      </svg>
+      <span style="vertical-align: middle;">Stop Claude</span>
+    </button></div><div id="claude-phantom-cursor" aria-hidden="true" style="position: fixed; top: 0px; left: 0px; pointer-events: none; z-index: 2147483646; transform: translate3d(756px, 400px, 0px); transition: transform 180ms cubic-bezier(0.2, 0, 0, 1); will-change: transform;"><svg id="claude-phantom-cursor-plain" width="20" height="26" viewBox="0 0 20 26" style="position: absolute; top: 0px; left: 0px; overflow: visible;"><path d="M0 0 L0 18 L4.5 14 L7.5 21.5 L11 20 L8 13 L14 13 Z" stroke="white" stroke-width="3" stroke-linejoin="round" fill="white"></path><path d="M0 0 L0 18 L4.5 14 L7.5 21.5 L11 20 L8 13 L14 13 Z" fill="#111"></path></svg><svg id="claude-phantom-cursor-styled" width="20" height="26" viewBox="0 0 20 26" style="position: absolute; top: 0px; left: 0px; overflow: visible; filter: drop-shadow(rgba(217, 119, 87, 0.9) 0px 0px 4px) drop-shadow(rgba(217, 119, 87, 0.45) 0px 0px 10px); display: none;"><path d="M0 0 L0 18 L4.5 14 L7.5 21.5 L11 20 L8 13 L14 13 Z" stroke="#D97757" stroke-width="3" stroke-linejoin="round" fill="#D97757"></path><path d="M0 0 L0 18 L4.5 14 L7.5 21.5 L11 20 L8 13 L14 13 Z" fill="#FAF9F5"></path></svg></div></body></html>
