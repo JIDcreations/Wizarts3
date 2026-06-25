@@ -14,31 +14,6 @@
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  /* ── Preloader ── */
-  const preloader = document.getElementById('preloader');
-  const countEl = document.getElementById('preloaderCount');
-  function runPreloader(done) {
-    if (!preloader) { done(); return; }
-    if (reduceMotion) {
-      if (countEl) countEl.textContent = '100';
-      preloader.classList.add('is-done');
-      setTimeout(() => { preloader.remove(); done(); }, 200);
-      return;
-    }
-    let n = 0;
-    const tick = setInterval(() => {
-      n += Math.floor(Math.random() * 9) + 3;
-      if (n >= 100) { n = 100; clearInterval(tick); }
-      if (countEl) countEl.textContent = n;
-      if (n === 100) {
-        setTimeout(() => {
-          preloader.classList.add('is-done');
-          setTimeout(() => { preloader.remove(); done(); }, 900);
-        }, 250);
-      }
-    }, 90);
-  }
-
   /* ── Lenis smooth scroll ── */
   let lenis = null;
   function initLenis() {
@@ -262,11 +237,8 @@
   }
 
   let booted = false;
-  function start() { if (booted) return; booted = true; runPreloader(boot); }
-  // Boot on full load, but never wait more than 2.2s (heavy images / slow CDNs)
-  if (document.readyState === 'complete') start();
-  else {
-    window.addEventListener('load', start);
-    setTimeout(start, 2200);
-  }
+  function start() { if (booted) return; booted = true; boot(); }
+  // main.js sits at the end of <body>, so the DOM is already parsed here.
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+  else start();
 })();
