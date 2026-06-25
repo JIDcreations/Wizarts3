@@ -54,8 +54,12 @@
       requestAnimationFrame(raf);
     }
   }
+  function navClear() {
+    const v = getComputedStyle(document.documentElement).getPropertyValue('--nav-clear');
+    return parseInt(v, 10) || 120;
+  }
   function scrollTo(target) {
-    if (lenis) lenis.scrollTo(target, { offset: -10 });
+    if (lenis) lenis.scrollTo(target, { offset: -navClear() });
     else target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
   }
 
@@ -145,14 +149,6 @@
       entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
     }, { threshold: 0.1, rootMargin: '0px 0px -7% 0px' });
     els.forEach((el) => io.observe(el));
-  }
-
-  /* ── Hero word reveal ── */
-  function initHeroWords() {
-    const words = document.querySelectorAll('.hero__title .word');
-    if (!words.length) return;
-    if (reduceMotion || !hasGSAP) { words.forEach((w) => { w.style.transform = 'none'; }); return; }
-    gsap.to(words, { yPercent: 0, duration: 1.1, ease: 'power4.out', stagger: 0.07, delay: 0.15 });
   }
 
   /* ── Parallax (hero shapes, mesh, case images) ── */
@@ -249,13 +245,17 @@
 
   /* ── Boot ── */
   function boot() {
-    initLenis();
+    // Trigger the CSS hero-title rise. Title is visible by default, so even
+    // if anything below throws, the headline is never left hidden.
+    document.body.classList.add('is-ready');
+    try { initLenis(); } catch (e) { /* smooth scroll is non-essential */ }
     initReveals();
-    initHeroWords();
     if (hasGSAP) {
-      initParallax();
-      initMarquee();
-      if (window.ScrollTrigger) ScrollTrigger.refresh();
+      try {
+        initParallax();
+        initMarquee();
+        if (window.ScrollTrigger) ScrollTrigger.refresh();
+      } catch (e) { /* parallax is non-essential */ }
     }
     initMouseParallax();
     onScrollHeader();

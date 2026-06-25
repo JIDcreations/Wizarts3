@@ -23,13 +23,16 @@
   --font-display:"degular-display","degular","DM Sans",sans-serif;
 
   --header-h:96px;
+  --nav-clear:120px; /* vertical space the floating nav occupies */
 }
 
 /* ═══════════════════════════════════════════════════════════
    Reset & base
    ═══════════════════════════════════════════════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-padding-top:var(--nav-clear)}
+/* Keep section titles clear of the fixed floating nav on anchor jumps */
+#hero,#expertise,#visie,#cases,#team,#contact{scroll-margin-top:var(--nav-clear)}
 html.has-lenis{height:auto}
 body{
   font-family:var(--font);
@@ -69,14 +72,18 @@ ul,ol{list-style:none}
   font-family:var(--font-display);
   font-weight:500;
   font-size:clamp(34px,5.4vw,72px);
-  line-height:1.02;
+  line-height:1.04;
   letter-spacing:-.015em;
   text-wrap:balance;
+  /* ch resolves at the title's own (large) font-size → a real reading measure
+     so the headline flows over a few balanced lines instead of one word each */
+  max-width:16ch;
 }
 .section-title--invert{color:var(--wit)}
 
-.section-head{margin-bottom:clamp(48px,7vw,88px);max-width:18ch}
-.section-head--center{margin-inline:auto;text-align:center;max-width:24ch}
+.section-head{margin-bottom:clamp(48px,7vw,88px)}
+.section-head--center{margin-inline:auto;text-align:center}
+.section-head--center .section-title{margin-inline:auto}
 .section-head--split{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;max-width:none;flex-wrap:wrap}
 .section-lead{margin-top:1.4em;font-size:clamp(16px,1.3vw,20px);color:#3a3a5c;max-width:52ch;margin-inline:auto}
 
@@ -199,9 +206,18 @@ ul,ol{list-style:none}
   font-size:clamp(44px,9vw,128px);line-height:.98;letter-spacing:-.03em;
   margin-bottom:.5em;
 }
-.hero__title .line{display:block;overflow:hidden;padding-bottom:.04em}
-.hero__title .word{display:inline-block}
-.js .hero__title .word{transform:translateY(110%);will-change:transform}
+.hero__title .line{display:block;overflow:hidden;padding:.08em 0 .16em}
+/* Base state is VISIBLE — the masked rise is a pure-CSS enhancement that
+   can never leave the title hidden (independent of JS / GSAP / Lenis). */
+.hero__title .word{display:inline-block;will-change:transform}
+@keyframes wordRise{from{transform:translateY(115%)}to{transform:translateY(0)}}
+body.is-ready .hero__title .word{animation:wordRise 1s var(--ease) backwards}
+body.is-ready .hero__title .line:nth-child(1) .word:nth-child(1){animation-delay:.04s}
+body.is-ready .hero__title .line:nth-child(1) .word:nth-child(2){animation-delay:.11s}
+body.is-ready .hero__title .line:nth-child(1) .word:nth-child(3){animation-delay:.18s}
+body.is-ready .hero__title .line:nth-child(2) .word:nth-child(1){animation-delay:.25s}
+body.is-ready .hero__title .line:nth-child(2) .word:nth-child(2){animation-delay:.32s}
+body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay:.39s}
 .word--accent{position:relative;color:var(--paars)}
 .word--accent::after{content:"";position:absolute;left:0;right:0;bottom:.12em;height:.09em;background:var(--oranje);border-radius:999px;transform:scaleX(0);transform-origin:left;animation:underline 1s var(--ease) 1.5s forwards}
 @keyframes underline{to{transform:scaleX(1)}}
