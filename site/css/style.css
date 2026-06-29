@@ -430,45 +430,65 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
    PROBLEEM → MAGIE
    ═══════════════════════════════════════════════════════════ */
 .magie{padding:clamp(70px,9vw,130px) 0}
-/* Slightly relax the shared 16ch measure (and bump the size a notch) so this
-   short, punchy title sits on two clean, balanced lines without feeling cramped. */
-.magie .section-head .section-title{max-width:18ch;font-size:clamp(38px,5.8vw,78px)}
-.magie__quote{margin-top:2em;border-left:3px solid var(--paars);padding:6px 0 6px 22px;max-width:56ch}
-.magie__quote p{font-size:clamp(18px,1.7vw,24px);font-style:italic;color:var(--donker-paars);line-height:1.4}
-.magie__quote cite{display:block;margin-top:.6em;font-style:normal;font-weight:600;font-size:15px;opacity:.7}
-/* Two-worlds contrast: a quiet "probleem" block beside a vibrant "magie" block.
-   The visual difference between the two panels carries the struggle → magie narrative. */
-.magie__contrast{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2.4vw,32px);margin-top:clamp(42px,5.5vw,76px);align-items:stretch}
-.magie__col{display:flex;flex-direction:column;padding:clamp(28px,3.4vw,52px) clamp(24px,3vw,46px);border-radius:var(--radius)}
-.magie__col-eyebrow{font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:13px;margin-bottom:.7em}
-.magie__col-title{font-family:var(--font-display);font-weight:600;font-size:clamp(22px,2.5vw,34px);line-height:1.1;letter-spacing:-.01em}
-/* flex:1 stretches each list to the panel height; space-between spreads the
-   shorter problem panel's rows evenly so it has no dead gap at the bottom while
-   staying level with the taller magic panel. */
-.magie__items{list-style:none;margin:clamp(20px,2.4vw,32px) 0 0;display:flex;flex-direction:column;flex:1;justify-content:space-between}
-.magie__items li{display:flex;align-items:flex-start;gap:.85em;padding:clamp(14px,1.5vw,20px) 0;font-size:clamp(17px,1.6vw,22px);line-height:1.3}
-.magie__items li::before{flex:none;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;font-size:12px;font-style:normal;margin-top:.05em}
+/* Two-column narrative: LEFT carries the human voice (heading + Eva's quote + CTA),
+   RIGHT turns each struggle into its magie outcome on a vertical timeline. */
+.magie__grid{display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(40px,5.5vw,90px);align-items:start}
 
-/* PROBLEM side — calm "before": dark, fully legible text on a plain beige canvas (AAA) */
-.magie__col--problem{background:var(--beige);border:1px solid rgba(0,0,51,.14)}
-.magie__col--problem .magie__col-eyebrow{color:var(--donker-paars)}
-.magie__col--problem .magie__col-title{color:var(--zwart)}
-.magie__col--problem .magie__items li{color:var(--zwart);border-top:1px solid rgba(0,0,51,.12)}
-.magie__col--problem .magie__items li:first-child{border-top:none}
-.magie__col--problem .magie__items li::before{content:"✕";background:rgba(0,0,51,.08);color:var(--donker-paars)}
+/* LEFT column */
+.magie__title{font-family:var(--font-display);font-weight:500;font-size:clamp(36px,4.9vw,66px);line-height:1.04;letter-spacing:-.015em;max-width:14ch;margin:0}
 
-/* MAGIC side — the "win": canonical brand panel — solid --paars, white text, --groen accents
-   (same combo as the expertise box / CTAs). White list text is set LARGE (Degular, ≥19px / 500)
-   so white-on-#6C4CDF stays comfortably legible. */
-.magie__col--magic{background:var(--paars);color:var(--wit)}
-.magie__col--magic .magie__col-eyebrow{color:var(--groen);font-size:14px;font-weight:700}
-.magie__col--magic .magie__col-title{color:var(--wit)}
-.magie__col--magic .magie__items li{color:var(--wit);font-family:var(--font-display);font-weight:500;font-size:clamp(19px,1.9vw,26px);line-height:1.2;border-top:1px solid rgba(255,255,255,.24)}
-.magie__col--magic .magie__items li:first-child{border-top:none}
-.magie__col--magic .magie__items li::before{content:"✦";background:var(--groen);color:var(--donker-paars);font-weight:700}
+/* Eva cutout beside the quote — a row: image on the left, quote + attribution at right.
+   Stacks on small screens (see media query). */
+.magie__quote{display:flex;flex-direction:row;align-items:center;gap:clamp(20px,2.4vw,32px);margin:clamp(28px,3.4vw,44px) 0 0;padding:0;border:0;max-width:100%}
+/* Raw team-eva.png cutout in its natural shape: NO circle crop, no border-radius/mask,
+   no disc/background, no ring, no box. Width drives, height auto. */
+.magie__portrait{flex:none;display:block;width:clamp(200px,22vw,250px);max-width:100%;height:auto;border-radius:0;background:none;border:0;box-shadow:none}
+.magie__quote-body{min-width:0}
+.magie__quote blockquote{margin:0;font-style:italic;font-size:clamp(17px,1.55vw,21px);line-height:1.42;color:var(--donker-paars)}
+.magie__quote figcaption{margin-top:.6em;font-style:normal;font-weight:600;font-size:14px;opacity:.7}
+.magie__cta-link{display:inline-flex;margin-top:clamp(26px,3.2vw,44px)}
 
-.magie__cta{margin-top:clamp(44px,5vw,66px);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
-.magie__cta p{font-size:clamp(17px,1.5vw,22px);max-width:40ch}
+/* RIGHT column — vertical timeline */
+.magie__timeline{list-style:none;margin:0;padding:0;position:relative}
+/* the spine runs from the first node centre to the last, fading problem→magie hues */
+.magie__timeline::before{content:"";position:absolute;left:19px;top:19px;bottom:19px;width:2px;background:linear-gradient(var(--paars),var(--oranje));opacity:.45}
+.magie__step{position:relative;padding:0 0 clamp(26px,3vw,40px) clamp(54px,4vw,68px)}
+.magie__step:last-child{padding-bottom:0}
+.magie__node{position:absolute;left:0;top:0;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--paars);color:var(--groen);box-shadow:0 0 0 6px var(--beige)}
+.magie__node svg{width:22px;height:22px}
+/* per-node effect: as the wand passes a point, JS adds .is-hit → a quick pop + an
+   expanding orange ring (tasteful; matches the bottom burst's accent). */
+.magie__node::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:2px solid var(--oranje);opacity:0;pointer-events:none}
+.magie__node.is-hit{animation:nodePop .5s var(--ease)}
+.magie__node.is-hit::after{animation:nodeRing .6s var(--ease) forwards}
+@keyframes nodePop{0%{transform:scale(1)}38%{transform:scale(1.16)}100%{transform:scale(1)}}
+@keyframes nodeRing{0%{opacity:.85;transform:scale(.95)}100%{opacity:0;transform:scale(1.9)}}
+/* problem: struck through but kept at full --donker-paars on --beige (≈12:1, AAA) so the
+   "before" stays legible even with the line-through. */
+.magie__problem{margin:0 0 .2em;font-size:clamp(15px,1.4vw,18px);line-height:1.35;color:var(--donker-paars)}
+.magie__problem s{text-decoration-color:rgba(48,33,101,.6);text-decoration-thickness:1.5px}
+.magie__magic{margin:0;font-family:var(--font-display);font-weight:600;font-size:clamp(19px,1.95vw,27px);line-height:1.18;letter-spacing:-.01em;color:var(--zwart)}
+
+/* TOVERSTAF — a white puck riding the spine; JS sets translateY from scroll progress.
+   Sits centred on the 2px spine (left:19px) so it glides over each node as it passes. */
+.magie__wand{position:absolute;left:0;top:0;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--wit);color:var(--paars);box-shadow:0 6px 18px rgba(48,33,101,.28);z-index:3;pointer-events:none;will-change:transform;transition:transform .15s linear}
+.magie__wand svg{width:26px;height:26px;transform:rotate(-8deg)}
+/* bottom effect: a tasteful orange sparkle-burst when the wand reaches the last point */
+.magie__wand::after{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid var(--oranje);opacity:0}
+.magie__wand::before{content:"✦";position:absolute;top:-7px;right:-7px;font-size:13px;line-height:1;color:var(--oranje);opacity:0}
+.magie__timeline.is-wand-done .magie__wand{box-shadow:0 0 0 3px rgba(253,172,108,.55),0 6px 18px rgba(48,33,101,.28)}
+.magie__timeline.is-wand-done .magie__wand::after{animation:wandBurst .7s var(--ease) forwards}
+.magie__timeline.is-wand-done .magie__wand::before{animation:wandSpark .7s var(--ease) forwards}
+@keyframes wandBurst{0%{opacity:.9;transform:scale(.6)}100%{opacity:0;transform:scale(2.5)}}
+@keyframes wandSpark{0%{opacity:0;transform:scale(.4) translate(0,0)}40%{opacity:1}100%{opacity:0;transform:scale(1.3) translate(7px,-9px)}}
+@media(prefers-reduced-motion:reduce){
+  /* no auto-motion: wand rests at the bottom with a static glow, points stay visible */
+  .magie__wand{transition:none}
+  .magie__timeline.is-wand-done .magie__wand::after,
+  .magie__timeline.is-wand-done .magie__wand::before{animation:none;opacity:0}
+  .magie__node.is-hit,
+  .magie__node.is-hit::after{animation:none;opacity:0}
+}
 
 /* ═══════════════════════════════════════════════════════════
    PROCES (groen)
@@ -760,6 +780,7 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
   .steps .step__num{margin-top:0}
   .cases__grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:clamp(240px,38vw,360px)}
   .magie__contrast{grid-template-columns:1fr}
+  .magie__grid{grid-template-columns:1fr;gap:clamp(40px,7vw,60px)}
   .boost{min-height:clamp(600px,94vh,760px);align-items:flex-end}
   .boost__card{max-width:none}
   .boost__scrim{background:
@@ -772,6 +793,7 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
 }
 @media(max-width:560px){
   .team .member{flex:0 1 calc((100% - var(--tg-col)) / 2)}
+  .magie__quote{flex-direction:column;align-items:flex-start}
   .steps{grid-template-columns:1fr;row-gap:clamp(30px,7vw,40px)}
   .cases__grid{grid-template-columns:1fr;grid-auto-rows:clamp(300px,72vw,420px)}
   .case:nth-child(4n+1),.case:nth-child(4n){grid-column:span 1}
