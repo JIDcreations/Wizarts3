@@ -72,6 +72,49 @@
   }
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
 
+  /* ── Expertise mega-dropdown (desktop) ── */
+  const dropdown = document.querySelector('[data-dropdown]');
+  if (dropdown) {
+    const trigger = dropdown.querySelector('.nav-dropdown__trigger');
+    const rows = dropdown.querySelectorAll('.mega-row');
+    let hoverTimer = null;
+    const isOpen = () => dropdown.classList.contains('is-open');
+    function openDD() {
+      clearTimeout(hoverTimer);
+      dropdown.classList.add('is-open');
+      trigger.setAttribute('aria-expanded', 'true');
+    }
+    function closeDD() {
+      dropdown.classList.remove('is-open');
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+
+    // Hover (desktop)
+    dropdown.addEventListener('mouseenter', openDD);
+    dropdown.addEventListener('mouseleave', () => { hoverTimer = setTimeout(closeDD, 120); });
+
+    // Click toggles
+    trigger.addEventListener('click', (e) => { e.preventDefault(); isOpen() ? closeDD() : openDD(); });
+
+    // Keyboard: focus opens, ArrowDown moves into the menu, Esc closes + returns focus
+    dropdown.addEventListener('focusin', openDD);
+    dropdown.addEventListener('focusout', (e) => {
+      if (!dropdown.contains(e.relatedTarget)) closeDD();
+    });
+    trigger.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') { e.preventDefault(); openDD(); rows[0] && rows[0].focus(); }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen()) { closeDD(); trigger.focus(); }
+    });
+
+    // Outside click closes
+    document.addEventListener('click', (e) => { if (!dropdown.contains(e.target)) closeDD(); });
+
+    // Selecting a row closes (smooth-scroll is handled by the anchor handler above)
+    rows.forEach((a) => a.addEventListener('click', closeDD));
+  }
+
   /* ── Header hide/show + scrolled state ── */
   const header = document.getElementById('siteHeader');
   let lastY = 0;
