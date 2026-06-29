@@ -347,71 +347,39 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
 .hero__sub{margin:0 0 2em;max-width:50ch;font-size:clamp(16px,1.25vw,19px);line-height:1.6;color:#3a3a5c}
 .hero__actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-start}
 
-/* ░ RIGHT — browser-window mockup card ░ */
+/* ░ RIGHT — Wizarts brand video in an organic, right-bleeding frame ░ */
 .hero__visual{position:relative;z-index:2;min-width:0}
-.hero__mock{
-  background:var(--wit);
-  border:1px solid rgba(0,0,51,.06);
-  border-radius:18px;
-  box-shadow:0 42px 80px -34px rgba(48,33,101,.4),0 14px 34px -20px rgba(0,0,51,.22);
-  overflow:hidden;
-}
-.hero__mock-bar{
-  display:flex;align-items:center;gap:8px;
-  padding:14px 16px;
-  background:var(--beige);
-  border-bottom:1px solid rgba(0,0,51,.06);
-}
-.hero__mock-dot{width:11px;height:11px;border-radius:50%;flex:0 0 auto}
-.hero__mock-dot:nth-child(1){background:var(--oranje)}
-.hero__mock-dot:nth-child(2){background:var(--groen)}
-.hero__mock-dot:nth-child(3){background:var(--licht-paars)}
-.hero__mock-url{flex:1;height:18px;margin-left:8px;max-width:64%;border-radius:999px;background:rgba(0,0,51,.07)}
-
-.hero__mock-body{padding:clamp(14px,1.6vw,22px);display:flex;flex-direction:column;gap:clamp(11px,1.4vw,16px)}
-.hero__mock-topbar{height:clamp(26px,3.2vw,40px);border-radius:10px;background:var(--donker-paars)}
-/* Main media block — replace with a real <video>/<img> later (see HTML comment) */
-.hero__mock-media{
+.hero__media{
   position:relative;
-  height:clamp(120px,16vw,190px);
-  border-radius:12px;
-  background:linear-gradient(135deg,var(--paars),var(--licht-paars));
+  /* Bleed past the container's right padding all the way to the viewport edge.
+     The hero clips horizontal overflow (overflow:hidden), so this can never
+     introduce a horizontal scrollbar — the excess is simply masked. */
+  margin-right:calc(-1 * (var(--gutter) + max(0px,(100vw - var(--maxw)) / 2)));
+  height:clamp(440px,76svh,780px);
+  /* Square on TL/TR/BR (BR sits flush to the right viewport edge); one big sweeping curve on the bottom-left */
+  border-radius:0 0 0 var(--radius-lg);
   overflow:hidden;
+  background:linear-gradient(135deg,var(--paars),var(--licht-paars));
+  box-shadow:0 42px 90px -38px rgba(48,33,101,.45),0 16px 40px -24px rgba(0,0,51,.25);
 }
-.hero__mock-media > video,
-.hero__mock-media > img{width:100%;height:100%;object-fit:cover;display:block}
-
-.hero__mock-row{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center}
-.hero__mock-card{width:clamp(64px,8vw,98px);height:clamp(44px,5vw,64px);border-radius:10px;background:var(--roze)}
-.hero__mock-lines{display:flex;flex-direction:column;gap:9px}
-.hero__mock-lines i{display:block;height:10px;border-radius:999px;background:rgba(0,0,51,.08)}
-.hero__mock-lines i:nth-child(1){width:82%}
-.hero__mock-lines i:nth-child(2){width:54%}
-
-.hero__mock-tiles{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.hero__mock-tile{height:clamp(48px,6vw,74px);border-radius:10px}
-.hero__mock-tile--lav{background:var(--licht-paars)}
-.hero__mock-tile--green{background:var(--groen)}
-.hero__mock-tile--orange{background:var(--oranje)}
-.hero__mock-pill{
-  position:absolute;right:8px;bottom:8px;
-  display:inline-flex;align-items:center;gap:.4em;
-  background:var(--zwart);color:var(--wit);
-  font-size:clamp(10px,.85vw,12px);font-weight:600;line-height:1;
-  padding:8px 13px;border-radius:999px;white-space:nowrap;
-  box-shadow:0 10px 22px -10px rgba(0,0,51,.6);
+.hero__media video{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;display:block;
 }
 
-.hero__caption{display:flex;align-items:center;gap:14px;margin-top:clamp(16px,2vw,22px)}
-.hero__caption-label{font-size:clamp(12px,1vw,14px);font-weight:600;color:var(--donker-paars);white-space:nowrap}
-.hero__progress{flex:1;height:6px;border-radius:999px;background:rgba(0,0,51,.08);overflow:hidden;position:relative}
-.hero__progress::after{content:"";position:absolute;inset:0;width:72%;border-radius:999px;background:linear-gradient(90deg,var(--paars),var(--groen))}
-
-/* Stack to one column (text first, visual below) */
+/* Stack to one column (text first, video below) — contained, no bleed */
 @media(max-width:860px){
   .hero__inner{grid-template-columns:1fr;gap:clamp(28px,7vw,44px)}
   .hero__text{order:0}
-  .hero__visual{order:1;max-width:560px}
+  .hero__visual{order:1;max-width:560px;width:100%}
+  .hero__media{
+    margin-right:0;
+    height:auto;
+    aspect-ratio:4/5;
+    /* Contained on mobile: gentle uniform corners plus the signature bottom-left sweep */
+    border-radius:var(--radius) var(--radius) var(--radius) var(--radius-lg);
+  }
 }
 @keyframes spin{to{transform:rotate(360deg)}}
 
