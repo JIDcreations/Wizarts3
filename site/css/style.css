@@ -393,7 +393,7 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
    PROCES (groen)
    ═══════════════════════════════════════════════════════════ */
 .proces{background:var(--groen);padding:clamp(90px,12vw,160px) 0;position:relative;margin-top:clamp(40px,6vw,90px)}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(18px,1.8vw,28px);align-items:stretch}
+.steps{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(22px,2.2vw,34px);align-items:stretch}
 .step{display:flex;flex-direction:column;background:var(--beige);border-radius:var(--radius);padding:clamp(30px,2.6vw,44px) clamp(26px,2vw,34px) clamp(32px,2.8vw,46px);transition:box-shadow .5s var(--ease),transform .5s var(--ease)}
 .step:hover{transform:translateY(-6px);box-shadow:0 22px 46px -28px rgba(0,0,51,.4)}
 .step__num{display:block;font-family:var(--font-display);font-weight:600;font-size:clamp(38px,3.2vw,50px);line-height:1;color:var(--paars);padding-bottom:clamp(16px,1.4vw,24px);margin-bottom:clamp(18px,1.6vw,26px);border-bottom:1px solid rgba(0,0,51,.1)}
