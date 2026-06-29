@@ -498,14 +498,17 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
 .cases__grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:clamp(260px,27vw,420px);gap:clamp(18px,2.4vw,32px)}
 .case{--accent:var(--licht-paars);min-width:0}
 .case:nth-child(4n+1),.case:nth-child(4n){grid-column:span 2} /* featured / wide */
-.case__link{display:block;position:relative;height:100%;border-radius:var(--radius);overflow:hidden;isolation:isolate;transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
-.case__link:hover{transform:translateY(-6px);box-shadow:0 44px 80px -42px rgba(48,33,101,.6)}
+.case__link{display:block;position:relative;height:100%;border-radius:var(--radius);overflow:hidden;isolation:isolate;box-shadow:0 0 0 0 transparent;transition:transform .55s var(--ease),box-shadow .55s var(--ease)}
+.case__link:hover,.case__link:focus-visible{transform:translateY(-10px) scale(1.015);box-shadow:0 46px 90px -40px rgba(48,33,101,.72),0 0 0 3px var(--accent)}
 .case__media{position:relative;height:100%;overflow:hidden;background:var(--donker-paars)}
 .case__media img{width:100%;height:118%;object-fit:cover;transform:translateY(-8%);transition:transform 1s var(--ease)}
-.case__link:hover .case__media img{transform:translateY(-8%) scale(1.06)}
+.case__link:hover .case__media img,.case__link:focus-visible .case__media img{transform:translateY(-8%) scale(1.08)}
 /* permanent legibility scrim, deepens on hover */
 .case__media::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to top,rgba(0,0,51,.74) 0%,rgba(0,0,51,.18) 40%,rgba(0,0,51,0) 66%);transition:opacity .5s var(--ease);opacity:.92}
-.case__link:hover .case__media::after{opacity:1}
+.case__link:hover .case__media::after,.case__link:focus-visible .case__media::after{opacity:1}
+/* accent wash so the hovered card clearly lights up in its own colour */
+.case__media::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;mix-blend-mode:soft-light;background:var(--accent);opacity:0;transition:opacity .5s var(--ease)}
+.case__link:hover .case__media::before,.case__link:focus-visible .case__media::before{opacity:.5}
 .case__index{position:absolute;top:clamp(16px,1.6vw,22px);left:clamp(18px,1.8vw,26px);z-index:2;display:inline-flex;align-items:center;gap:.55em;font-family:var(--font-display);font-weight:600;font-size:clamp(19px,1.8vw,28px);color:var(--wit);letter-spacing:.02em;text-shadow:0 2px 14px rgba(0,0,51,.5)}
 .case__index::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--accent)}
 .case__meta{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;flex-direction:column;gap:.35em;padding:clamp(20px,2.4vw,32px)}
@@ -516,6 +519,32 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
 .case__badge i{font-style:normal;transition:transform .35s var(--ease)}
 .case__link:hover .case__badge i{transform:translateX(4px)}
 .cases__foot{display:flex;justify-content:center;margin-top:clamp(48px,6vw,80px)}
+
+/* ── Homepage cases montage — fast-paced full-bleed brand reel ── */
+.cases{padding:0} /* montage is edge-to-edge; band carries its own spacing */
+.cases-montage{position:relative;width:100%;min-height:clamp(460px,64vh,720px);display:flex;align-items:flex-end;overflow:hidden;background:var(--donker-paars);isolation:isolate}
+.cases-montage__stack{position:absolute;inset:0;z-index:0}
+.cases-montage__media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;will-change:opacity,transform;animation:cases-montage-cut 4.8s var(--ease-soft) infinite}
+.cases-montage__media:nth-child(1){animation-delay:0s}
+.cases-montage__media:nth-child(2){animation-delay:1.2s}
+.cases-montage__media:nth-child(3){animation-delay:2.4s}
+.cases-montage__media:nth-child(4){animation-delay:3.6s}
+@keyframes cases-montage-cut{
+  0%   {opacity:0;transform:scale(1.1)}
+  5%   {opacity:1}
+  25%  {opacity:1;transform:scale(1)}
+  33%  {opacity:0}
+  100% {opacity:0;transform:scale(1)}
+}
+.cases-montage__scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to top,rgba(0,0,51,.86) 0%,rgba(0,0,51,.5) 46%,rgba(0,0,51,.42) 100%)}
+.cases-montage__inner{position:relative;z-index:2;width:100%;padding-top:clamp(120px,16vw,200px);padding-bottom:clamp(40px,6vw,76px)}
+.cases-montage__inner .eyebrow{margin-bottom:1.1em}
+.cases-montage__sub{margin-top:1em;margin-bottom:1.9em;font-size:clamp(16px,1.3vw,20px);line-height:1.5;color:rgba(255,254,253,.85);max-width:48ch}
+/* reduced motion → static 2×2 collage instead of rapid cycling */
+@media(prefers-reduced-motion:reduce){
+  .cases-montage__stack{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}
+  .cases-montage__media{position:relative;inset:auto;opacity:1;transform:none;animation:none}
+}
 
 /* ═══════════════════════════════════════════════════════════
    CLIENT LOGOS
@@ -695,3 +724,18 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
   .hero__title{font-size:clamp(2.5rem,11.5vw,3.4rem);letter-spacing:-.03em}
   .hero__actions{width:100%}
 }
+
+/* ═══════════════════════════════════════════════════════════
+   CASES PAGE (cases.html) — reuses .cases__grid + .case
+   ═══════════════════════════════════════════════════════════ */
+.cases-page{padding-top:calc(var(--nav-clear) + clamp(20px,4vw,60px));padding-bottom:clamp(70px,10vw,140px)}
+.cases-page__head{margin-bottom:clamp(36px,5vw,64px);max-width:34ch}
+.cases-page__head .section-title{margin-top:.1em}
+.cases-page__sub{margin-top:1em;font-size:clamp(16px,1.3vw,20px);line-height:1.5;color:#3a3a5c;max-width:52ch}
+.cases-page .cases__grid{margin-top:0}
+/* closing CTA card */
+.cases-page__cta{margin-top:clamp(56px,7vw,96px);background:var(--paars);color:var(--wit);border-radius:var(--radius);padding:clamp(44px,6vw,84px) clamp(28px,5vw,72px);text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.1em}
+.cases-page__cta p{font-size:clamp(16px,1.3vw,20px);line-height:1.55;color:rgba(255,254,253,.88);max-width:46ch;margin:0}
+.cases-page__cta .btn{margin-top:.5em}
+/* keep the mint CTA legible on the purple card: stay filled (dark text on mint) on hover */
+.cases-page__cta .btn--mint:hover{background:var(--groen);color:var(--zwart);box-shadow:0 16px 36px -14px rgba(0,0,51,.5)}
