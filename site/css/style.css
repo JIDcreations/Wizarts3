@@ -406,15 +406,16 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
 .world__item[open] .world__icon::after{transform:translate(-50%,-50%) rotate(0deg);opacity:0}
 .world__panel{overflow:hidden;padding:0 30px;color:#3a3a5c;font-weight:400;font-size:.96em;line-height:1.55}
 .world__panel p{margin-bottom:14px;max-width:46ch}
-/* per-service sub-links — repeatable <li><a> rows; add/remove items freely, repoint each href later. Accent follows column. */
-.world__links{display:flex;flex-direction:column;gap:0;margin-bottom:16px;list-style:none;padding:0}
-.world__links a{display:inline-flex;align-items:center;gap:.35em;padding:2px 0;font-size:.9em;font-weight:600;color:var(--paars);text-decoration:none;transition:color .25s var(--ease)}
-.world--print .world__links a{color:var(--oranje)}
-/* arrow tucks back + fades when idle, then springs forward on hover for a livelier feel */
-.world__links a span{display:inline-block;opacity:.45;transform:translateX(-4px);transition:transform .35s var(--ease),opacity .35s var(--ease)}
-.world__links a:hover span,.world__links a:focus-visible span{opacity:1;transform:translateX(6px)}
-.world__links a:hover{text-decoration:underline;text-underline-offset:3px}
-.world__links a:focus-visible{outline:2px solid var(--paars);outline-offset:3px;border-radius:4px}
+/* per-service sub-links — repeatable <li><a> rows rendered as tappable accent chips; add/remove items freely, repoint each href later. Accent follows column. */
+.world__links{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:16px;list-style:none;padding:0}
+.world__links a{display:inline-flex;align-items:center;gap:.4em;padding:8px 15px;border-radius:999px;font-size:.84em;font-weight:600;line-height:1;color:var(--paars);background:color-mix(in srgb,var(--paars) 9%,transparent);border:1px solid color-mix(in srgb,var(--paars) 30%,transparent);text-decoration:none;transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease),transform .25s var(--ease),box-shadow .25s var(--ease)}
+.world--print .world__links a{color:var(--oranje);background:color-mix(in srgb,var(--oranje) 13%,transparent);border-color:color-mix(in srgb,var(--oranje) 38%,transparent)}
+.world__links a span{display:inline-block;transition:transform .3s var(--ease)}
+/* hover/focus: fill with the accent, lift slightly, nudge the arrow forward — clearly a button */
+.world__links a:hover,.world__links a:focus-visible{background:var(--paars);border-color:var(--paars);color:var(--wit);transform:translateY(-2px);box-shadow:0 6px 16px -8px color-mix(in srgb,var(--paars) 60%,transparent)}
+.world--print .world__links a:hover,.world--print .world__links a:focus-visible{background:var(--oranje);border-color:var(--oranje);color:var(--zwart);box-shadow:0 6px 16px -8px color-mix(in srgb,var(--oranje) 60%,transparent)}
+.world__links a:hover span,.world__links a:focus-visible span{transform:translateX(3px)}
+.world__links a:focus-visible{outline:2px solid var(--paars);outline-offset:3px}
 .world--print .world__links a:focus-visible{outline-color:var(--oranje)}
 @media (prefers-reduced-motion:no-preference){
   .world__item[open] .world__panel{animation:worldReveal .32s var(--ease)}
@@ -532,33 +533,6 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
   .clients__track{animation:none}
 }
 
-/* ═══════════════════════════════════════════════════════════
-   EXPERTISE LIST (paars)
-   ═══════════════════════════════════════════════════════════ */
-.exp-list{background:var(--paars);color:var(--wit);padding:clamp(90px,12vw,160px) 0}
-.exp-list__head{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;flex-wrap:wrap;margin-bottom:clamp(36px,4vw,56px)}
-.exp-list__head .section-title{color:var(--wit)}
-
-/* full-width "menu of powers" — one bold row per service */
-.exp-list__grid{display:block;border-top:1px solid rgba(255,255,255,.2)}
-.exp-list__grid li{--accent:var(--groen);position:relative;isolation:isolate;display:flex;align-items:center;gap:clamp(14px,2.2vw,38px);padding:clamp(18px,2.3vw,34px) clamp(16px,2.4vw,40px);border-bottom:1px solid rgba(255,255,255,.2);font-family:var(--font-display);font-weight:500;font-size:clamp(30px,5.4vw,74px);line-height:1.02;color:var(--wit);transition:color .45s var(--ease)}
-.exp-list__grid li:nth-child(6n+2){--accent:var(--oranje)}
-.exp-list__grid li:nth-child(6n+3){--accent:var(--roze)}
-.exp-list__grid li:nth-child(6n+4){--accent:var(--groen)}
-.exp-list__grid li:nth-child(6n+5){--accent:var(--oranje)}
-.exp-list__grid li:nth-child(6n+6){--accent:var(--roze)}
-/* accent sweep grows out of the index number to flood the row */
-.exp-list__grid li::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--accent);transform:scaleX(0);transform-origin:left center;transition:transform .55s var(--ease)}
-.exp-list__grid li:hover,.exp-list__grid li:focus-within{color:var(--zwart)}
-.exp-list__grid li:hover::before,.exp-list__grid li:focus-within::before{transform:scaleX(1)}
-.exp-list__idx{flex:none;font-family:var(--font);font-weight:600;font-size:.36em;letter-spacing:.04em;color:var(--accent);transition:color .45s var(--ease)}
-.exp-list__grid li:hover .exp-list__idx,.exp-list__grid li:focus-within .exp-list__idx{color:var(--zwart)}
-.exp-list__text{display:flex;flex-direction:column;gap:.16em;min-width:0;transition:transform .55s var(--ease)}
-.exp-list__grid li:hover .exp-list__text,.exp-list__grid li:focus-within .exp-list__text{transform:translateX(clamp(6px,1vw,18px))}
-.exp-list__label{display:block}
-.exp-list__desc{font-family:var(--font);font-weight:400;font-size:clamp(13px,1.05vw,17px);line-height:1.35;letter-spacing:0;opacity:.72}
-.exp-list__arrow{flex:none;margin-left:auto;font-family:var(--font);font-size:.5em;opacity:0;transform:translateX(-14px);transition:opacity .4s var(--ease),transform .55s var(--ease)}
-.exp-list__grid li:hover .exp-list__arrow,.exp-list__grid li:focus-within .exp-list__arrow{opacity:1;transform:translateX(0)}
 
 /* ═══════════════════════════════════════════════════════════
    TESTIMONIAL (roze)
@@ -699,7 +673,6 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
   .steps{grid-template-columns:1fr}
   .cases__grid{grid-template-columns:1fr;grid-auto-rows:clamp(300px,72vw,420px)}
   .case:nth-child(4n+1),.case:nth-child(4n){grid-column:span 1}
-  .exp-list__grid{grid-template-columns:1fr}
   .field-row{grid-template-columns:1fr}
   .footer__inner{grid-template-columns:1fr}
   .hero__actions .btn{flex:1 1 auto;justify-content:center}
