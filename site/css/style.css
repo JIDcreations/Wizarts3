@@ -364,7 +364,10 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
 .magie__col{display:flex;flex-direction:column;padding:clamp(28px,3.4vw,52px) clamp(24px,3vw,46px);border-radius:var(--radius)}
 .magie__col-eyebrow{font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:13px;margin-bottom:.7em}
 .magie__col-title{font-family:var(--font-display);font-weight:600;font-size:clamp(22px,2.5vw,34px);line-height:1.1;letter-spacing:-.01em}
-.magie__items{list-style:none;margin:clamp(20px,2.4vw,32px) 0 0;display:flex;flex-direction:column;flex:1}
+/* flex:1 stretches each list to the panel height; space-between spreads the
+   shorter problem panel's rows evenly so it has no dead gap at the bottom while
+   staying level with the taller magic panel. */
+.magie__items{list-style:none;margin:clamp(20px,2.4vw,32px) 0 0;display:flex;flex-direction:column;flex:1;justify-content:space-between}
 .magie__items li{display:flex;align-items:flex-start;gap:.85em;padding:clamp(14px,1.5vw,20px) 0;font-size:clamp(17px,1.6vw,22px);line-height:1.3}
 .magie__items li::before{flex:none;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;font-size:12px;font-style:normal;margin-top:.05em}
 
