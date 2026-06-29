@@ -282,7 +282,7 @@ ul,ol{list-style:none}
 .hero__inner{
   position:relative;z-index:2;
   display:grid;
-  grid-template-columns:minmax(0,38fr) minmax(0,62fr);
+  grid-template-columns:minmax(0,45fr) minmax(0,55fr);
   align-items:center;
   gap:clamp(32px,5vw,72px);
   width:100%;
