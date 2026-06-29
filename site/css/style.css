@@ -499,16 +499,64 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
 /* ═══════════════════════════════════════════════════════════
    PROCES (groen)
    ═══════════════════════════════════════════════════════════ */
-.proces{background:var(--groen);padding:clamp(90px,12vw,160px) 0;position:relative;margin-top:clamp(40px,6vw,90px)}
-.steps{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(22px,2.2vw,34px);align-items:stretch}
-.step{display:flex;flex-direction:column;background:var(--beige);border-radius:var(--radius);padding:clamp(30px,2.6vw,44px) clamp(26px,2vw,34px) clamp(32px,2.8vw,46px);transition:box-shadow .5s var(--ease),transform .5s var(--ease)}
-.step:hover{transform:translateY(-6px);box-shadow:0 22px 46px -28px rgba(0,0,51,.4)}
-.step__num{display:block;font-family:var(--font-display);font-weight:600;font-size:clamp(38px,3.2vw,50px);line-height:1;color:var(--paars);padding-bottom:clamp(16px,1.4vw,24px);margin-bottom:clamp(18px,1.6vw,26px);border-bottom:1px solid rgba(0,0,51,.1)}
-.step__title{font-family:var(--font-display);font-weight:500;font-size:clamp(19px,1.5vw,24px);line-height:1.15;color:var(--zwart);margin-bottom:.55em;min-height:2.3em}
-.step p{font-size:clamp(15px,1vw,16px);line-height:1.55;color:rgba(0,0,51,.66);font-weight:400}
-.proces__foot{display:flex;justify-content:center;margin-top:clamp(40px,4.5vw,68px)}
-@media(max-width:560px){
-  .step__title{min-height:0}
+.proces{background:var(--groen);padding:clamp(90px,12vw,160px) 0;position:relative;margin-top:clamp(40px,6vw,90px);overflow:hidden}
+/* mint section curves out into the beige page at the bottom-left */
+.proces{border-radius:0 var(--radius-lg) 0 var(--radius-lg)}
+
+/* Header: heading top-left, "lees meer" link top-right (on the mint) */
+.proces__head{display:flex;justify-content:space-between;align-items:flex-end;gap:clamp(20px,3vw,48px);flex-wrap:wrap;margin-bottom:clamp(40px,5vw,72px)}
+.proces__head-text{flex:1 1 auto}
+.proces__head .section-title{margin-bottom:0}
+.proces__head-aside{display:flex;align-items:center;gap:clamp(16px,2vw,30px);flex:0 0 auto}
+
+/* Purple band carrying the 4 steps. Bleeds flush to the LEFT viewport edge
+   (squared left), keeps the big rounded pill on the RIGHT. Content is padded
+   back so the first column lines up with the container. */
+.steps{
+  --node:clamp(60px,7vw,100px);
+  list-style:none;position:relative;
+  background:var(--paars);
+  border-radius:0 var(--radius-lg) var(--radius-lg) 0;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:clamp(32px,4vw,72px);align-items:start;
+  padding:0 clamp(44px,6vw,120px) clamp(40px,4.6vw,68px) calc(50vw - 50% + clamp(24px,3vw,52px));
+  /* push down for the straddling nodes; left edge out to the viewport edge */
+  margin:calc(var(--node) / 2 + clamp(8px,1.6vw,22px)) 0 0 calc(50% - 50vw);
+  transition:transform .85s var(--ease);
+}
+/* entrance: band starts off-screen left, slides in when .band-in is set */
+.js .steps{transform:translateX(-101%)}
+.proces.band-in .steps{transform:translateX(0)}
+
+.step{display:flex;flex-direction:column;align-items:flex-start;text-align:left}
+/* big circular numbered node, half on the mint bg, half on the purple band */
+.step__num{
+  width:var(--node);height:var(--node);
+  display:grid;place-items:center;
+  margin:calc(-1 * var(--node) / 2) 0 clamp(16px,2vw,28px);
+  border-radius:50%;
+  background:var(--licht-paars);color:var(--wit);
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(26px,2.8vw,40px);line-height:1;
+  box-shadow:0 14px 34px -18px rgba(0,0,51,.55);
+}
+.step__title{font-family:var(--font-display);font-weight:600;font-size:clamp(18px,1.5vw,24px);line-height:1.15;color:var(--wit);margin-bottom:.6em;min-height:2.3em}
+.step p{font-size:clamp(14px,1vw,16px);line-height:1.55;color:rgba(255,255,255,.82);font-weight:400}
+
+/* Steps stay hidden until the band has slid in, then reveal ONE BY ONE.
+   Higher specificity than main.js's [data-reveal].is-in, so the order
+   (band → 1 → 2 → 3 → 4) is guaranteed regardless of when .is-in lands. */
+.js .proces .step{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.proces.band-in .step{opacity:1;transform:none}
+.proces.band-in .step:nth-child(1){transition-delay:.85s}
+.proces.band-in .step:nth-child(2){transition-delay:1s}
+.proces.band-in .step:nth-child(3){transition-delay:1.15s}
+.proces.band-in .step:nth-child(4){transition-delay:1.3s}
+
+/* reduced motion: skip the entrance — show the band + all steps immediately */
+@media(prefers-reduced-motion:reduce){
+  .js .steps{transform:none!important;transition:none!important}
+  .proces .step{opacity:1!important;transform:none!important;transition:none!important}
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -710,7 +758,9 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
   .worlds{grid-template-columns:1fr}
   .worlds__divider{display:none}
   .world{border-top:1px solid rgba(0,0,51,.12);padding-top:36px}
-  .steps{grid-template-columns:repeat(2,1fr)}
+  /* 2x2: nodes no longer straddle a single top edge — seat them inside the band */
+  .steps{grid-template-columns:repeat(2,1fr);margin-top:clamp(26px,5vw,44px);padding-top:clamp(40px,6vw,56px);row-gap:clamp(36px,5vw,52px)}
+  .steps .step__num{margin-top:0}
   .cases__grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:clamp(240px,38vw,360px)}
   .magie__contrast{grid-template-columns:1fr}
   .boost__card{grid-template-columns:1fr}
@@ -723,7 +773,7 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
 }
 @media(max-width:560px){
   .team .member{flex:0 1 calc((100% - var(--tg-col)) / 2)}
-  .steps{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr;row-gap:clamp(30px,7vw,40px)}
   .cases__grid{grid-template-columns:1fr;grid-auto-rows:clamp(300px,72vw,420px)}
   .case:nth-child(4n+1),.case:nth-child(4n){grid-column:span 1}
   .exp-list__grid{grid-template-columns:1fr}
