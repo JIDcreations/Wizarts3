@@ -619,3 +619,92 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
   [data-reveal]{opacity:1!important;transform:none!important}
   .word--accent::after{transform:scaleX(1)}
 }
+
+/* ═══════════════════════════════════════════════════════════
+   HERO — VARIANT C · Giant typographic statement
+   Light canvas (beige + navy type, single paars accent).
+   The headline is the hero: clamp()-sized to command the
+   viewport while wrapping naturally so it never overflows.
+   All rules below are #hero-scoped only.
+   ═══════════════════════════════════════════════════════════ */
+#hero.hero{
+  background:linear-gradient(180deg,var(--wit) 0%,var(--beige) 100%);
+  align-items:center;
+}
+/* Restraint: the type carries the section — drop the floating clutter */
+#hero .hero__bg,
+#hero .hero__shapes{display:none}
+
+/* Layout: one consistent left-aligned editorial column, calm rhythm.
+   align-items:stretch keeps children at container width so the giant
+   headline wraps in-bounds; text-align:left handles the visual edge. */
+#hero .hero__inner{
+  text-align:left;
+  align-items:stretch;
+  width:100%;
+  padding-block:clamp(28px,6vh,72px);
+  gap:clamp(26px,4.2vh,46px);
+  display:flex;
+  flex-direction:column;
+}
+
+/* Eyebrow — quiet, on-brand chip */
+#hero .hero__eyebrow{
+  align-self:flex-start;
+  margin:0;
+  background:transparent;
+  padding:0;
+  backdrop-filter:none;
+  color:var(--donker-paars);
+}
+
+/* ░ THE STATEMENT ░ */
+#hero .hero__title{
+  margin:0;
+  font-weight:600;
+  /* Giant but contained: caps to a hard rem max, floors safely on phones */
+  font-size:clamp(2.85rem,11.2vw,8.6rem);
+  line-height:.9;
+  letter-spacing:-.035em;
+  color:var(--zwart);
+  text-wrap:balance;
+}
+/* Allow natural wrapping inside a logical line without clipping the rise */
+#hero .hero__title .line{
+  overflow:visible;
+  padding:0;
+}
+#hero .hero__title .word{
+  overflow-wrap:break-word;
+  will-change:transform,opacity;
+}
+/* Re-key the staggered reveal so it works with overflow:visible (no overlap) */
+body.is-ready #hero .hero__title .word{animation:cWordRise .85s var(--ease) backwards}
+@keyframes cWordRise{from{opacity:0;transform:translateY(.32em)}to{opacity:1;transform:translateY(0)}}
+/* Single paars accent — tighten the underline to the same hue (restraint) */
+#hero .word--accent{color:var(--paars)}
+#hero .word--accent::after{background:var(--paars);height:.07em;bottom:.02em}
+
+/* Calm, minimal bottom: drop the scroll cue so nothing competes with the
+   headline + CTAs (also avoids any overlap at short viewport heights). */
+#hero .hero__scroll{display:none}
+
+/* ░ ONE quiet supporting line — left-aligned, restrained ░ */
+#hero .hero__sub{
+  margin:0;
+  max-width:46ch;
+  font-size:clamp(15px,1.15vw,18px);
+  line-height:1.55;
+  color:var(--donker-paars);
+}
+/* CTAs: left-aligned, generous space above (extra to the column gap) */
+#hero .hero__actions{
+  justify-content:flex-start;
+  margin-top:clamp(4px,1vh,12px);
+}
+
+/* ░ Responsive: keep the giant readable + comfortably stacked on phones ░ */
+@media(max-width:560px){
+  #hero .hero__title{font-size:clamp(2.75rem,13.5vw,4.6rem);letter-spacing:-.03em}
+  #hero .hero__actions{width:100%}
+}
