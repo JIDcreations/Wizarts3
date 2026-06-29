@@ -444,11 +444,45 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
 .world__title{font-family:var(--font-display);font-size:clamp(26px,3vw,40px);font-weight:500;line-height:1.05;margin-bottom:.6em;letter-spacing:-.01em}
 .world__body{color:#3a3a5c;margin-bottom:1.8em;max-width:42ch}
 .world__list{width:100%;margin-bottom:2em}
-.world__list li{position:relative;padding:18px 0 18px 30px;border-top:1px solid rgba(0,0,51,.12);font-weight:500}
-.world__list li:last-child{border-bottom:1px solid rgba(0,0,51,.12)}
-.world__list li::before{content:"›";position:absolute;left:4px;color:var(--paars);font-weight:700;font-size:1.2em;transition:transform .3s var(--ease)}
-.world__list li:hover::before{transform:translateX(4px)}
-.world--print .world__list li::before{color:var(--oranje)}
+.world__item{border-top:1px solid rgba(0,0,51,.12)}
+.world__item:last-child{border-bottom:1px solid rgba(0,0,51,.12)}
+.world__summary{position:relative;display:flex;align-items:center;gap:16px;padding:18px 30px;font-weight:500;cursor:pointer;list-style:none;color:var(--zwart);transition:color .25s var(--ease)}
+.world__summary::-webkit-details-marker{display:none}
+/* leading chevron accent (was the original "›" bullet); rotates 90° when open */
+.world__summary::before{content:"›";position:absolute;left:4px;top:50%;transform:translateY(-50%);color:var(--paars);font-weight:700;font-size:1.2em;line-height:1;transition:transform .3s var(--ease)}
+.world--print .world__summary::before{color:var(--oranje)}
+.world__summary:hover{color:var(--paars)}
+.world--print .world__summary:hover{color:var(--oranje)}
+.world__summary:hover::before{transform:translateY(-50%) translateX(4px)}
+.world__item[open] .world__summary::before{transform:translateY(-50%) rotate(90deg)}
+.world__summary:focus-visible{outline:2px solid var(--paars);outline-offset:2px;border-radius:4px}
+.world--print .world__summary:focus-visible{outline-color:var(--oranje)}
+/* +/× indicator on the trailing edge: collapses the cross-bar when open */
+.world__icon{position:relative;flex:0 0 auto;width:16px;height:16px;margin-left:auto}
+.world__icon::before,.world__icon::after{content:"";position:absolute;top:50%;left:50%;width:13px;height:2px;background:var(--paars);border-radius:2px;transform:translate(-50%,-50%);transition:transform .3s var(--ease),opacity .3s var(--ease)}
+.world__icon::after{transform:translate(-50%,-50%) rotate(90deg)}
+.world--print .world__icon::before,.world--print .world__icon::after{background:var(--oranje)}
+.world__item[open] .world__icon::after{transform:translate(-50%,-50%) rotate(0deg);opacity:0}
+.world__panel{overflow:hidden;padding:0 30px;color:#3a3a5c;font-weight:400;font-size:.96em;line-height:1.55}
+.world__panel p{margin-bottom:14px;max-width:46ch}
+/* per-service sub-links — repeatable <li><a> rows; add/remove items freely, repoint each href later. Accent follows column. */
+.world__links{display:flex;flex-direction:column;gap:0;margin-bottom:16px;list-style:none;padding:0}
+.world__links a{display:inline-flex;align-items:center;gap:.35em;padding:2px 0;font-size:.9em;font-weight:600;color:var(--paars);text-decoration:none;transition:color .25s var(--ease)}
+.world--print .world__links a{color:var(--oranje)}
+/* arrow tucks back + fades when idle, then springs forward on hover for a livelier feel */
+.world__links a span{display:inline-block;opacity:.45;transform:translateX(-4px);transition:transform .35s var(--ease),opacity .35s var(--ease)}
+.world__links a:hover span,.world__links a:focus-visible span{opacity:1;transform:translateX(6px)}
+.world__links a:hover{text-decoration:underline;text-underline-offset:3px}
+.world__links a:focus-visible{outline:2px solid var(--paars);outline-offset:3px;border-radius:4px}
+.world--print .world__links a:focus-visible{outline-color:var(--oranje)}
+@media (prefers-reduced-motion:no-preference){
+  .world__item[open] .world__panel{animation:worldReveal .32s var(--ease)}
+}
+@media (prefers-reduced-motion:reduce){
+  .world__links a span{opacity:1;transform:none;transition:none}
+  .world__links a:hover span,.world__links a:focus-visible span{transform:none}
+}
+@keyframes worldReveal{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 
 /* ═══════════════════════════════════════════════════════════
    PROBLEEM → MAGIE
