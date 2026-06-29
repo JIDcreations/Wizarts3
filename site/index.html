@@ -272,44 +272,66 @@
 <!-- ░░ PROBLEEM → MAGIE ░░ -->
 <section class="magie" id="visie">
   <div class="container">
-    <header class="section-head" data-reveal>
-      <p class="eyebrow">Probleem → Magie</p>
-      <h2 class="section-title">Struikelblokken? Wij toveren ze om.</h2>
-      <blockquote class="magie__quote">
-        <p>"Negen op de tien ondernemers lopen vast op net dezelfde dingen. Onze job? Ze stuk voor stuk omdraaien."</p>
-        <cite>— Stijn, Wizarts</cite>
-      </blockquote>
-    </header>
+    <div class="magie__grid">
 
-    <div class="magie__contrast">
-      <section class="magie__col magie__col--problem" data-reveal>
-        <p class="magie__col-eyebrow">Probleem</p>
-        <h3 class="magie__col-title">Heb jij hier ook last van?</h3>
-        <ul class="magie__items">
-          <li>De technische kennis in je bedrijf ontbreekt</li>
-          <li>Je mist een professionele en creatieve blik</li>
-          <li>Je website blijft liggen door tijdsgebrek</li>
-          <li>Je weet niet wat je website eigenlijk oplevert</li>
-          <li>Er is geen helder plan of doel voor je marketing</li>
-        </ul>
-      </section>
-      <section class="magie__col magie__col--magic" data-reveal>
-        <p class="magie__col-eyebrow">Magie</p>
-        <h3 class="magie__col-title">Onze magische werkwijze</h3>
-        <ul class="magie__items">
-          <li>Een heldere strategie en concrete doelen</li>
-          <li>Branding die professioneel oogt en blijft hangen</li>
-          <li>Een logische structuur voor je bezoeker</li>
-          <li>Een website die je makkelijk zelf beheert</li>
-          <li>Slimme meting en heldere rapporten</li>
-          <li>Vlotte opvolging en communicatie</li>
-        </ul>
-      </section>
-    </div>
+      <!-- LEFT: intro + Eva quote + CTA -->
+      <div class="magie__intro" data-reveal>
+        <p class="eyebrow"><span class="dot" aria-hidden="true"></span>Probleem <span aria-hidden="true">→</span> Magie</p>
+        <h2 class="magie__title">Wij toveren je struikelblokken om.</h2>
 
-    <div class="magie__cta" data-reveal>
-      <p>Klaar om je struikelblokken om te toveren? <strong>Eva &amp; het team toveren mee.</strong></p>
-      <a href="#expertise" class="link-arrow link-arrow--purple">Onze expertise <span aria-hidden="true">→</span></a>
+        <figure class="magie__quote">
+          <img class="magie__portrait" src="assets/team-eva.png" alt="Eva van Wizarts" width="180" height="180" loading="lazy" decoding="async">
+          <div class="magie__quote-body">
+            <blockquote>"Negen op de tien ondernemers lopen vast op net dezelfde dingen. Onze job? Ze stuk voor stuk omdraaien."</blockquote>
+            <figcaption>— Eva, Wizarts</figcaption>
+            <a href="#expertise" class="link-arrow link-arrow--purple magie__cta-link">Onze expertise <span aria-hidden="true">→</span></a>
+          </div>
+        </figure>
+      </div>
+
+      <!-- RIGHT: probleem → magie timeline -->
+      <ol class="magie__timeline" data-reveal data-magie-timeline>
+        <!-- toverstaf: travels down the spine with scroll progress (JS: magie-wand.js) -->
+        <span class="magie__wand" aria-hidden="true" data-magie-wand>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3.5 20.5l11-11" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M17.5 3.2l.9 2.5 2.5.9-2.5.9-.9 2.5-.9-2.5-2.5-.9 2.5-.9.9-2.5zM7.6 4.2l.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6.6-1.7z" fill="currentColor"/></svg>
+        </span>
+        <li class="magie__step">
+          <span class="magie__node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2z" fill="currentColor"/></svg>
+          </span>
+          <p class="magie__problem"><s>De technische kennis in je bedrijf ontbreekt</s></p>
+          <p class="magie__magic">Een website die je moeiteloos zelf beheert</p>
+        </li>
+        <li class="magie__step">
+          <span class="magie__node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2z" fill="currentColor"/></svg>
+          </span>
+          <p class="magie__problem"><s>Je mist een professionele en creatieve blik</s></p>
+          <p class="magie__magic">Branding die professioneel oogt én blijft hangen</p>
+        </li>
+        <li class="magie__step">
+          <span class="magie__node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2z" fill="currentColor"/></svg>
+          </span>
+          <p class="magie__problem"><s>Er is geen helder plan of doel voor je marketing</s></p>
+          <p class="magie__magic">Een heldere strategie, concrete doelen én logische structuur</p>
+        </li>
+        <li class="magie__step">
+          <span class="magie__node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2z" fill="currentColor"/></svg>
+          </span>
+          <p class="magie__problem"><s>Je website blijft liggen door tijdsgebrek</s></p>
+          <p class="magie__magic">Vlotte opvolging en heldere communicatie</p>
+        </li>
+        <li class="magie__step">
+          <span class="magie__node" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2z" fill="currentColor"/></svg>
+          </span>
+          <p class="magie__problem"><s>Je weet niet wat je website eigenlijk oplevert</s></p>
+          <p class="magie__magic">Slimme meting en heldere rapporten</p>
+        </li>
+      </ol>
+
     </div>
   </div>
 </section>
@@ -745,5 +767,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 <script src="js/main.js"></script>
+<script src="js/magie-wand.js" defer></script>
 </body>
 </html>
