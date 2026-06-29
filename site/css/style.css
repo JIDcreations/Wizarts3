@@ -183,9 +183,6 @@ ul,ol{list-style:none}
 .mobile-menu__sub{display:flex;flex-direction:column;gap:2px;padding:14px 0 8px 2px}
 .mobile-menu__sub a{font-family:var(--font)!important;font-size:clamp(18px,5vw,26px)!important;font-weight:500;letter-spacing:0;color:var(--donker-paars)}
 .mobile-menu__sub a:hover{color:var(--paars)}
-.mobile-menu__sublabel{display:block;padding:0 0 8px 2px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--paars)}
-.mobile-menu__sub a.mm-featured{color:var(--paars);font-weight:600}
-.mobile-menu__sub a.mm-featured::before{content:"";display:inline-block;width:7px;height:7px;margin-right:12px;border-radius:50%;background:var(--paars);vertical-align:middle}
 .mobile-menu__subdiv{display:block;height:1px;margin:12px 0 4px;background:linear-gradient(90deg,rgba(108,76,223,.28),transparent)}
 
 /* ═══════════════════════════════════════════════════════════
@@ -250,30 +247,6 @@ ul,ol{list-style:none}
 .mega-row:hover .mega-row__title{color:var(--paars)}
 .mega-row__sub{font-size:13.5px;line-height:1.3;color:rgba(0,0,51,.6)}
 .mega-divider{height:1px;margin:8px 12px;background:linear-gradient(90deg,transparent,rgba(0,0,51,.14),transparent)}
-
-/* Featured pair — flagship offerings (Webstart + Wizarts Pro) */
-.mega-featured{
-  position:relative;padding:8px;margin-bottom:4px;
-  background:linear-gradient(135deg,rgba(223,208,243,.55),rgba(108,76,223,.08));
-  border:1px solid rgba(108,76,223,.16);border-radius:20px;
-}
-.mega-featured__label{
-  display:block;padding:3px 10px 7px;
-  font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--paars);
-}
-.nav-dropdown .mega-row--featured{
-  background:var(--wit);
-  box-shadow:0 8px 20px -14px rgba(48,33,101,.55);
-}
-.nav-dropdown .mega-row--featured + .mega-row--featured{margin-top:6px}
-.nav-dropdown .mega-row--featured:hover{
-  background:var(--wit);transform:translateX(3px);
-  box-shadow:0 12px 26px -14px rgba(48,33,101,.6);
-}
-.mega-row--featured .mega-row__icon{background:var(--paars);color:var(--wit)}
-.mega-row--featured:hover .mega-row__icon{background:var(--donker-paars);color:var(--wit)}
-.mega-row--featured .mega-row__title{color:var(--donker-paars)}
 
 /* ═══════════════════════════════════════════════════════════
    HERO
