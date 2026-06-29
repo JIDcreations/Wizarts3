@@ -326,7 +326,7 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
   position:relative;
   /* Wider video, but it stops a gutter short of the viewport edge (never touches the screen) */
   margin-right:calc(-1 * max(0px,(100vw - var(--maxw)) / 2));
-  height:clamp(440px,76svh,780px);
+  height:clamp(380px,60svh,640px);
   /* No corner radius */
   border-radius:0;
   overflow:hidden;
