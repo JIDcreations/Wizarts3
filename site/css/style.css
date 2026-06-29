@@ -532,16 +532,16 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
    ═══════════════════════════════════════════════════════════ */
 .team{background:var(--roze);padding:clamp(90px,12vw,160px) 0}
 .team__intro{font-size:clamp(26px,3.4vw,48px);max-width:20ch}
-.team__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(26px,3vw,48px);margin-top:clamp(30px,4vw,60px)}
-.member{text-align:center}
-.member__photo{position:relative;width:100%;aspect-ratio:1;border-radius:50%;overflow:hidden;margin-bottom:1em;background:var(--m,var(--licht-paars));display:grid;place-items:center;transition:transform .5s var(--ease)}
-.member:hover .member__photo{transform:translateY(-8px) rotate(-3deg)}
-.member__photo span{font-family:var(--font-display);font-size:clamp(40px,5vw,72px);font-weight:600;color:var(--wit)}
+.team__grid{--tg-col:clamp(24px,2.6vw,44px);display:flex;flex-wrap:wrap;justify-content:flex-start;column-gap:var(--tg-col);row-gap:clamp(40px,4.5vw,64px);margin-top:clamp(30px,4vw,60px)}
+.member{flex:0 1 calc((100% - 3*var(--tg-col)) / 4);max-width:240px;text-align:center}
+.member__photo{position:relative;width:100%;max-width:172px;aspect-ratio:1;margin:0 auto 1.1em;border-radius:50%;overflow:hidden;background:var(--m,var(--donker-paars));display:grid;place-items:center;border:4px solid var(--wit);box-shadow:0 16px 38px -18px rgba(0,0,51,.45);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.member:hover .member__photo{transform:translateY(-8px);box-shadow:0 26px 48px -18px rgba(0,0,51,.55)}
+.member__photo span{font-family:var(--font-display);font-size:clamp(34px,4vw,52px);font-weight:600;color:var(--wit)}
 .member__photo--img{background:var(--wit)}
 .member__photo--img img{width:100%;height:100%;object-fit:cover}
-.member__name{font-family:var(--font-display);font-size:clamp(18px,1.6vw,23px);font-weight:500;margin-bottom:.15em}
+.member__name{font-family:var(--font-display);font-size:clamp(18px,1.6vw,23px);font-weight:500;margin-bottom:.18em}
 .member__role{color:var(--paars);font-weight:600;font-size:15px}
-.member__hobby{color:#6a6a85;font-size:14px;margin-top:.2em}
+.member__hobby{color:var(--donker-paars);opacity:.6;font-size:14px;margin-top:.25em}
 
 /* ═══════════════════════════════════════════════════════════
    JOBS (oranje)
@@ -623,7 +623,7 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
   .nav-links{display:none}
   .nav-cta{display:none}
   .nav-burger{display:block}
-  .team__grid{grid-template-columns:repeat(3,1fr)}
+  .team .member{flex:0 1 calc((100% - 2*var(--tg-col)) / 3)}
 }
 @media(max-width:860px){
   :root{--header-h:84px}
@@ -642,7 +642,7 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
   .footer__brand{grid-column:1/-1}
 }
 @media(max-width:560px){
-  .team__grid{grid-template-columns:repeat(2,1fr)}
+  .team .member{flex:0 1 calc((100% - var(--tg-col)) / 2)}
   .steps{grid-template-columns:1fr}
   .cases__grid{grid-template-columns:1fr;grid-auto-rows:clamp(300px,72vw,420px)}
   .case:nth-child(4n+1),.case:nth-child(4n){grid-column:span 1}
