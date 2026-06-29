@@ -278,70 +278,141 @@ ul,ol{list-style:none}
 /* ═══════════════════════════════════════════════════════════
    HERO
    ═══════════════════════════════════════════════════════════ */
-.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;padding-top:var(--header-h)}
-.hero__bg{position:absolute;inset:0;z-index:0}
-.mesh{position:absolute;border-radius:50%;filter:blur(70px);opacity:.85;will-change:transform}
-.mesh--1{width:55vw;height:55vw;background:radial-gradient(circle,var(--roze),transparent 70%);top:-12vw;left:-8vw}
-.mesh--2{width:48vw;height:48vw;background:radial-gradient(circle,var(--groen),transparent 68%);bottom:-14vw;right:-6vw;opacity:.6}
-.mesh--3{width:38vw;height:38vw;background:radial-gradient(circle,var(--licht-paars),transparent 70%);top:30%;right:22%;opacity:.5}
-
-.hero__inner{position:relative;z-index:3;text-align:center;display:flex;flex-direction:column;align-items:center}
-.hero__eyebrow{background:rgba(255,254,253,.7);padding:9px 18px;border-radius:999px;backdrop-filter:blur(8px);margin-bottom:1.8em}
-.hero__title{
-  font-family:var(--font-display);font-weight:500;
-  font-size:clamp(44px,9vw,128px);line-height:.98;letter-spacing:-.03em;
-  margin-bottom:.5em;
+/* Two-column light hero: text left (~45%), browser-mockup card right (~55%).
+   All hero rules live in this single block (#hero-scoped where needed). */
+.hero{
+  position:relative;
+  min-height:100svh;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  padding-top:calc(var(--header-h) + clamp(16px,4vh,48px));
+  padding-bottom:clamp(48px,8vh,90px);
+  background:linear-gradient(180deg,var(--wit) 0%,var(--beige) 100%);
 }
-.hero__title .line{display:block;overflow:hidden;padding:.08em 0 .16em}
-/* Base state is VISIBLE — the masked rise is a pure-CSS enhancement that
-   can never leave the title hidden (independent of JS / GSAP / Lenis). */
+
+/* Backdrop — faint dotted texture + soft brand corner glows (subtle) */
+.hero__bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero__dots{
+  position:absolute;inset:0;
+  background-image:radial-gradient(rgba(108,76,223,.12) 1px,transparent 1.5px);
+  background-size:26px 26px;
+  -webkit-mask-image:radial-gradient(ellipse 85% 75% at 50% 42%,#000 38%,transparent 100%);
+  mask-image:radial-gradient(ellipse 85% 75% at 50% 42%,#000 38%,transparent 100%);
+  opacity:.45;
+}
+.hero__glow{position:absolute;border-radius:50%;filter:blur(90px)}
+.hero__glow--1{width:42vw;height:42vw;max-width:560px;max-height:560px;background:radial-gradient(circle,var(--roze),transparent 70%);top:-14vw;left:-10vw;opacity:.45}
+.hero__glow--2{width:40vw;height:40vw;max-width:520px;max-height:520px;background:radial-gradient(circle,var(--groen),transparent 70%);bottom:-16vw;right:-10vw;opacity:.28}
+
+/* Layout */
+.hero__inner{
+  position:relative;z-index:2;
+  display:grid;
+  grid-template-columns:minmax(0,45fr) minmax(0,55fr);
+  align-items:center;
+  gap:clamp(32px,5vw,72px);
+  width:100%;
+}
+
+/* ░ LEFT — text ░ */
+.hero__text{text-align:left;min-width:0}
+.hero__eyebrow{margin:0 0 1.4em;color:var(--paars)}
+.hero__eyebrow .dot{background:var(--groen)}
+
+.hero__title{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(2.55rem,5.3vw,4.4rem);
+  line-height:.98;letter-spacing:-.03em;
+  color:var(--zwart);
+  margin:0 0 .5em;
+  text-wrap:balance;
+}
+.hero__title .line{display:block;overflow:hidden;padding:.04em 0 .12em}
+/* Base state is VISIBLE — the masked word-rise is a pure-CSS enhancement
+   gated on body.is-ready, so the title can never end up hidden. */
 .hero__title .word{display:inline-block;will-change:transform}
 @keyframes wordRise{from{transform:translateY(115%)}to{transform:translateY(0)}}
-body.is-ready .hero__title .word{animation:wordRise 1s var(--ease) backwards}
-body.is-ready .hero__title .line:nth-child(1) .word:nth-child(1){animation-delay:.04s}
-body.is-ready .hero__title .line:nth-child(1) .word:nth-child(2){animation-delay:.11s}
-body.is-ready .hero__title .line:nth-child(1) .word:nth-child(3){animation-delay:.18s}
-body.is-ready .hero__title .line:nth-child(2) .word:nth-child(1){animation-delay:.25s}
-body.is-ready .hero__title .line:nth-child(2) .word:nth-child(2){animation-delay:.32s}
-body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay:.39s}
-.word--accent{position:relative;color:var(--paars)}
-.word--accent::after{content:"";position:absolute;left:0;right:0;bottom:.12em;height:.09em;background:var(--oranje);border-radius:999px;transform:scaleX(0);transform-origin:left;animation:underline 1s var(--ease) 1.5s forwards}
-@keyframes underline{to{transform:scaleX(1)}}
-.hero__sub{max-width:54ch;font-size:clamp(17px,1.5vw,22px);color:#3a3a5c;margin-bottom:2.2em}
-.hero__actions{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+body.is-ready .hero__title .word{animation:wordRise .9s var(--ease) backwards}
+body.is-ready .hero__title .line:nth-child(1) .word:nth-child(1){animation-delay:.05s}
+body.is-ready .hero__title .line:nth-child(1) .word:nth-child(2){animation-delay:.12s}
+body.is-ready .hero__title .line:nth-child(1) .word:nth-child(3){animation-delay:.19s}
+body.is-ready .hero__title .line:nth-child(2) .word:nth-child(1){animation-delay:.26s}
+body.is-ready .hero__title .line:nth-child(2) .word:nth-child(2){animation-delay:.33s}
+body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay:.40s}
+/* Single paars accent on "AI," — colour only, no underline here */
+.hero__title .word--accent{position:relative;color:var(--paars)}
+.hero__title .word--accent::after{display:none}
 
-.hero__scroll{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--paars)}
-.hero__scroll-line{width:1px;height:46px;background:linear-gradient(var(--paars),transparent);position:relative;overflow:hidden}
-.hero__scroll-line::after{content:"";position:absolute;top:0;left:0;width:100%;height:40%;background:var(--paars);animation:scrollDown 1.8s var(--ease-soft) infinite}
-@keyframes scrollDown{0%{transform:translateY(-100%)}60%,100%{transform:translateY(260%)}}
+.hero__sub{margin:0 0 2em;max-width:50ch;font-size:clamp(16px,1.25vw,19px);line-height:1.6;color:#3a3a5c}
+.hero__actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-start}
 
-/* Hero floating shapes */
-.hero__shapes{position:absolute;inset:0;z-index:2;pointer-events:none}
-.shape{position:absolute;will-change:transform}
-.shape--cube{top:18%;left:9%;width:clamp(60px,8vw,120px);aspect-ratio:1}
-.shape--sphere{top:24%;right:11%;width:clamp(70px,9vw,150px);aspect-ratio:1}
-.shape--x{bottom:24%;left:14%;width:clamp(48px,6vw,96px);color:var(--oranje)}
-.shape--ring{top:60%;right:16%;width:clamp(54px,7vw,110px);aspect-ratio:1}
-.shape--blob{top:12%;right:30%;width:clamp(50px,6vw,90px);aspect-ratio:1}
-.shape--star{bottom:18%;right:8%;width:clamp(40px,5vw,80px);color:var(--paars)}
-.shape svg{width:100%;height:100%}
+/* ░ RIGHT — browser-window mockup card ░ */
+.hero__visual{position:relative;z-index:2;min-width:0}
+.hero__mock{
+  background:var(--wit);
+  border:1px solid rgba(0,0,51,.06);
+  border-radius:18px;
+  box-shadow:0 42px 80px -34px rgba(48,33,101,.4),0 14px 34px -20px rgba(0,0,51,.22);
+  overflow:hidden;
+}
+.hero__mock-bar{
+  display:flex;align-items:center;gap:8px;
+  padding:14px 16px;
+  background:var(--beige);
+  border-bottom:1px solid rgba(0,0,51,.06);
+}
+.hero__mock-dot{width:11px;height:11px;border-radius:50%;flex:0 0 auto}
+.hero__mock-dot:nth-child(1){background:var(--oranje)}
+.hero__mock-dot:nth-child(2){background:var(--groen)}
+.hero__mock-dot:nth-child(3){background:var(--licht-paars)}
+.hero__mock-url{flex:1;height:18px;margin-left:8px;max-width:64%;border-radius:999px;background:rgba(0,0,51,.07)}
 
-/* 3D-ish cube */
-.cube{position:relative;width:100%;height:100%;transform-style:preserve-3d;animation:cubeSpin 14s linear infinite}
-.cube i{position:absolute;inset:0;background:linear-gradient(135deg,var(--paars),var(--licht-paars));border:2px solid rgba(255,255,255,.5);border-radius:10px;opacity:.92}
-.cube i:nth-child(1){transform:rotateY(0deg) translateZ(var(--cz,50px))}
-.cube i:nth-child(2){transform:rotateY(180deg) translateZ(var(--cz,50px))}
-.cube i:nth-child(3){transform:rotateY(90deg) translateZ(var(--cz,50px));background:linear-gradient(135deg,var(--licht-paars),var(--roze))}
-.cube i:nth-child(4){transform:rotateY(-90deg) translateZ(var(--cz,50px));background:linear-gradient(135deg,var(--licht-paars),var(--roze))}
-.cube i:nth-child(5){transform:rotateX(90deg) translateZ(var(--cz,50px));background:var(--donker-paars)}
-.cube i:nth-child(6){transform:rotateX(-90deg) translateZ(var(--cz,50px));background:var(--donker-paars)}
-@keyframes cubeSpin{to{transform:rotateX(360deg) rotateY(360deg)}}
+.hero__mock-body{padding:clamp(14px,1.6vw,22px);display:flex;flex-direction:column;gap:clamp(11px,1.4vw,16px)}
+.hero__mock-topbar{height:clamp(26px,3.2vw,40px);border-radius:10px;background:var(--donker-paars)}
+/* Main media block — replace with a real <video>/<img> later (see HTML comment) */
+.hero__mock-media{
+  position:relative;
+  height:clamp(120px,16vw,190px);
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--paars),var(--licht-paars));
+  overflow:hidden;
+}
+.hero__mock-media > video,
+.hero__mock-media > img{width:100%;height:100%;object-fit:cover;display:block}
 
-.sphere{width:100%;height:100%;border-radius:50%;background:radial-gradient(circle at 32% 28%,var(--groen),#19c79a 70%);box-shadow:inset -8px -10px 24px rgba(0,0,51,.22),0 18px 40px -18px rgba(25,199,154,.7);animation:float 7s var(--ease-soft) infinite}
-.ring{width:100%;height:100%;border-radius:50%;border:clamp(10px,1.6vw,20px) solid var(--oranje);animation:float 6s var(--ease-soft) infinite reverse}
-.blob{width:100%;height:100%;background:var(--roze);border-radius:42% 58% 63% 37%/45% 38% 62% 55%;animation:blobMorph 9s var(--ease-soft) infinite,float 8s ease-in-out infinite}
-@keyframes blobMorph{50%{border-radius:58% 42% 38% 62%/62% 55% 45% 38%}}
-@keyframes float{50%{transform:translateY(-16px)}}
+.hero__mock-row{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center}
+.hero__mock-card{width:clamp(64px,8vw,98px);height:clamp(44px,5vw,64px);border-radius:10px;background:var(--roze)}
+.hero__mock-lines{display:flex;flex-direction:column;gap:9px}
+.hero__mock-lines i{display:block;height:10px;border-radius:999px;background:rgba(0,0,51,.08)}
+.hero__mock-lines i:nth-child(1){width:82%}
+.hero__mock-lines i:nth-child(2){width:54%}
+
+.hero__mock-tiles{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.hero__mock-tile{height:clamp(48px,6vw,74px);border-radius:10px}
+.hero__mock-tile--lav{background:var(--licht-paars)}
+.hero__mock-tile--green{background:var(--groen)}
+.hero__mock-tile--orange{background:var(--oranje)}
+.hero__mock-pill{
+  position:absolute;right:8px;bottom:8px;
+  display:inline-flex;align-items:center;gap:.4em;
+  background:var(--zwart);color:var(--wit);
+  font-size:clamp(10px,.85vw,12px);font-weight:600;line-height:1;
+  padding:8px 13px;border-radius:999px;white-space:nowrap;
+  box-shadow:0 10px 22px -10px rgba(0,0,51,.6);
+}
+
+.hero__caption{display:flex;align-items:center;gap:14px;margin-top:clamp(16px,2vw,22px)}
+.hero__caption-label{font-size:clamp(12px,1vw,14px);font-weight:600;color:var(--donker-paars);white-space:nowrap}
+.hero__progress{flex:1;height:6px;border-radius:999px;background:rgba(0,0,51,.08);overflow:hidden;position:relative}
+.hero__progress::after{content:"";position:absolute;inset:0;width:72%;border-radius:999px;background:linear-gradient(90deg,var(--paars),var(--groen))}
+
+/* Stack to one column (text first, visual below) */
+@media(max-width:860px){
+  .hero__inner{grid-template-columns:1fr;gap:clamp(28px,7vw,44px)}
+  .hero__text{order:0}
+  .hero__visual{order:1;max-width:560px}
+}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* ═══════════════════════════════════════════════════════════
@@ -670,90 +741,9 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
 }
 
 /* ═══════════════════════════════════════════════════════════
-   HERO — VARIANT C · Giant typographic statement
-   Light canvas (beige + navy type, single paars accent).
-   The headline is the hero: clamp()-sized to command the
-   viewport while wrapping naturally so it never overflows.
-   All rules below are #hero-scoped only.
+   HERO — phone tweaks (the two-column hero lives in the HERO block above)
    ═══════════════════════════════════════════════════════════ */
-#hero.hero{
-  background:linear-gradient(180deg,var(--wit) 0%,var(--beige) 100%);
-  align-items:center;
-}
-/* Restraint: the type carries the section — drop the floating clutter */
-#hero .hero__bg,
-#hero .hero__shapes{display:none}
-
-/* Layout: one consistent left-aligned editorial column, calm rhythm.
-   align-items:stretch keeps children at container width so the giant
-   headline wraps in-bounds; text-align:left handles the visual edge. */
-#hero .hero__inner{
-  text-align:left;
-  align-items:stretch;
-  width:100%;
-  padding-block:clamp(28px,6vh,72px);
-  gap:clamp(26px,4.2vh,46px);
-  display:flex;
-  flex-direction:column;
-}
-
-/* Eyebrow — quiet, on-brand chip */
-#hero .hero__eyebrow{
-  align-self:flex-start;
-  margin:0;
-  background:transparent;
-  padding:0;
-  backdrop-filter:none;
-  color:var(--donker-paars);
-}
-
-/* ░ THE STATEMENT ░ */
-#hero .hero__title{
-  margin:0;
-  font-weight:600;
-  /* Giant but contained: caps to a hard rem max, floors safely on phones */
-  font-size:clamp(2.85rem,11.2vw,8.6rem);
-  line-height:.9;
-  letter-spacing:-.035em;
-  color:var(--zwart);
-  text-wrap:balance;
-}
-/* Allow natural wrapping inside a logical line without clipping the rise */
-#hero .hero__title .line{
-  overflow:visible;
-  padding:0;
-}
-#hero .hero__title .word{
-  overflow-wrap:break-word;
-  will-change:transform,opacity;
-}
-/* Re-key the staggered reveal so it works with overflow:visible (no overlap) */
-body.is-ready #hero .hero__title .word{animation:cWordRise .85s var(--ease) backwards}
-@keyframes cWordRise{from{opacity:0;transform:translateY(.32em)}to{opacity:1;transform:translateY(0)}}
-/* Single paars accent — tighten the underline to the same hue (restraint) */
-#hero .word--accent{color:var(--paars)}
-#hero .word--accent::after{background:var(--paars);height:.07em;bottom:.02em}
-
-/* Calm, minimal bottom: drop the scroll cue so nothing competes with the
-   headline + CTAs (also avoids any overlap at short viewport heights). */
-#hero .hero__scroll{display:none}
-
-/* ░ ONE quiet supporting line — left-aligned, restrained ░ */
-#hero .hero__sub{
-  margin:0;
-  max-width:46ch;
-  font-size:clamp(15px,1.15vw,18px);
-  line-height:1.55;
-  color:var(--donker-paars);
-}
-/* CTAs: left-aligned, generous space above (extra to the column gap) */
-#hero .hero__actions{
-  justify-content:flex-start;
-  margin-top:clamp(4px,1vh,12px);
-}
-
-/* ░ Responsive: keep the giant readable + comfortably stacked on phones ░ */
 @media(max-width:560px){
-  #hero .hero__title{font-size:clamp(2.75rem,13.5vw,4.6rem);letter-spacing:-.03em}
-  #hero .hero__actions{width:100%}
+  .hero__title{font-size:clamp(2.5rem,11.5vw,3.4rem);letter-spacing:-.03em}
+  .hero__actions{width:100%}
 }

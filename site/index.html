@@ -141,45 +141,62 @@
 
 <!-- ░░ HERO ░░ -->
 <section class="hero" id="hero">
+  <!-- Subtle decorative backdrop: dotted texture + faint corner glows -->
   <div class="hero__bg" aria-hidden="true">
-    <div class="mesh mesh--1"></div>
-    <div class="mesh mesh--2"></div>
-    <div class="mesh mesh--3"></div>
-  </div>
-
-  <!-- Floating brand shapes -->
-  <div class="hero__shapes" aria-hidden="true">
-    <div class="shape shape--cube" data-depth="0.20">
-      <div class="cube"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-    </div>
-    <div class="shape shape--sphere" data-depth="0.42"><div class="sphere"></div></div>
-    <div class="shape shape--x" data-depth="0.30">
-      <svg viewBox="0 0 100 100"><path d="M20 20 L80 80 M80 20 L20 80" stroke="currentColor" stroke-width="16" stroke-linecap="round"/></svg>
-    </div>
-    <div class="shape shape--ring" data-depth="0.55"><div class="ring"></div></div>
-    <div class="shape shape--blob" data-depth="0.16"><div class="blob"></div></div>
-    <div class="shape shape--star" data-depth="0.48">
-      <svg viewBox="0 0 100 100"><path d="M50 4 L58 42 L96 50 L58 58 L50 96 L42 58 L4 50 L42 42 Z" fill="currentColor"/></svg>
-    </div>
+    <div class="hero__dots"></div>
+    <div class="hero__glow hero__glow--1"></div>
+    <div class="hero__glow hero__glow--2"></div>
   </div>
 
   <div class="hero__inner container">
-    <p class="eyebrow hero__eyebrow"><span class="dot"></span>Creatief bureau · AI &amp; Vakmanschap</p>
-    <h1 class="hero__title">
-      <span class="line"><span class="word">Gedreven</span> <span class="word">door</span> <span class="word">AI,</span></span>
-      <span class="line"><span class="word">gemaakt</span> <span class="word">door</span> <span class="word word--accent">mensen.</span></span>
-    </h1>
-    <p class="hero__sub">Wij bundelen de snelheid van AI met de passie van mensen — om jouw zaak te laten groeien.</p>
-    <div class="hero__actions">
-      <a href="#contact" class="btn btn--primary">Start je project <span aria-hidden="true">→</span></a>
-      <a href="#cases" class="btn btn--ghost">Bekijk ons werk</a>
+    <!-- LEFT — text -->
+    <div class="hero__text">
+      <p class="eyebrow hero__eyebrow"><span class="dot"></span>De snelheid van AI · De ziel van vakmanschap</p>
+      <h1 class="hero__title">
+        <span class="line"><span class="word">Gedreven</span> <span class="word">door</span> <span class="word word--accent">AI,</span></span>
+        <span class="line"><span class="word">gemaakt</span> <span class="word">door</span> <span class="word">mensen.</span></span>
+      </h1>
+      <p class="hero__sub">Wat nu als je de snelheid kreeg van AI, maar de passie van mensen? Bij Wizarts bundelen we het beste van beide werelden om jouw zaak te laten groeien.</p>
+      <div class="hero__actions">
+        <a href="#contact" class="btn btn--primary">Start je project <span aria-hidden="true">→</span></a>
+        <a href="#cases" class="btn btn--ghost">Bekijk ons werk</a>
+      </div>
+    </div>
+
+    <!-- RIGHT — browser-window mockup (decorative placeholder) -->
+    <div class="hero__visual">
+      <div class="hero__mock" aria-hidden="true">
+        <div class="hero__mock-bar">
+          <span class="hero__mock-dot"></span>
+          <span class="hero__mock-dot"></span>
+          <span class="hero__mock-dot"></span>
+          <span class="hero__mock-url"></span>
+        </div>
+        <div class="hero__mock-body">
+          <span class="hero__mock-topbar"></span>
+          <!-- MAIN MEDIA AREA — drop the wizarts.be home video/image here later:
+               <video class="hero__mock-media" autoplay muted loop playsinline poster="…"><source src="…" type="video/mp4"></video>
+               or <img class="hero__mock-media" src="…" alt="…">. The gradient block below is the placeholder. -->
+          <div class="hero__mock-media"></div>
+          <div class="hero__mock-row">
+            <span class="hero__mock-card"></span>
+            <span class="hero__mock-lines"><i></i><i></i></span>
+          </div>
+          <div class="hero__mock-tiles">
+            <span class="hero__mock-tile hero__mock-tile--lav"></span>
+            <span class="hero__mock-tile hero__mock-tile--green"></span>
+            <span class="hero__mock-tile hero__mock-tile--orange"></span>
+            <span class="hero__mock-pill">✦ Afgewerkt met de hand</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__caption" aria-hidden="true">
+        <span class="hero__caption-label">✦ Verfijnd door onze makers</span>
+        <span class="hero__progress"></span>
+      </div>
     </div>
   </div>
-
-  <a href="#expertise" class="hero__scroll" aria-label="Scroll naar beneden">
-    <span>Scroll</span>
-    <span class="hero__scroll-line"></span>
-  </a>
 </section>
 
 <!-- ░░ MARQUEE ░░ -->
