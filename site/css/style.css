@@ -282,7 +282,7 @@ ul,ol{list-style:none}
 .hero__inner{
   position:relative;z-index:2;
   display:grid;
-  grid-template-columns:minmax(0,45fr) minmax(0,55fr);
+  grid-template-columns:minmax(0,38fr) minmax(0,62fr);
   align-items:center;
   gap:clamp(32px,5vw,72px);
   width:100%;
@@ -324,9 +324,10 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
 .hero__visual{position:relative;z-index:2;min-width:0}
 .hero__media{
   position:relative;
-  margin-right:0;
+  /* Wider video: break past the right margin out to the viewport edge */
+  margin-right:calc(-1 * (var(--gutter) + max(0px,(100vw - var(--maxw)) / 2)));
   height:clamp(440px,76svh,780px);
-  /* No corner radius; contained within the layout (not bleeding to the edge) */
+  /* No corner radius */
   border-radius:0;
   overflow:hidden;
   background:linear-gradient(135deg,var(--paars),var(--licht-paars));
