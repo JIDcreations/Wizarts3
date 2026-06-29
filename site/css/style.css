@@ -444,9 +444,9 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
 /* Sticky badge */
 .sticky-badge{position:fixed;right:clamp(18px,3vw,34px);bottom:clamp(18px,3vw,34px);z-index:900;width:clamp(82px,9vw,116px);height:clamp(82px,9vw,116px);display:grid;place-items:center;opacity:0;transform:scale(.4);transition:opacity .5s var(--ease),transform .5s var(--ease)}
 .sticky-badge.is-visible{opacity:1;transform:scale(1)}
-.sticky-badge img{width:100%;animation:spin 16s linear infinite}
-.sticky-badge__arrow{position:absolute;font-size:22px;color:var(--paars);font-weight:700;transition:transform .35s var(--ease)}
-.sticky-badge:hover .sticky-badge__arrow{transform:translate(3px,-3px) scale(1.15)}
+.sticky-badge__ring{width:100%;animation:spin 16s linear infinite}
+.sticky-badge__mark{position:absolute;width:34%;height:auto;transition:transform .35s var(--ease)}
+.sticky-badge:hover .sticky-badge__mark{transform:scale(1.12)}
 
 /* ═══════════════════════════════════════════════════════════
    Responsive
