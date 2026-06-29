@@ -324,13 +324,10 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
 .hero__visual{position:relative;z-index:2;min-width:0}
 .hero__media{
   position:relative;
-  /* Bleed past the container's right padding all the way to the viewport edge.
-     The hero clips horizontal overflow (overflow:hidden), so this can never
-     introduce a horizontal scrollbar — the excess is simply masked. */
-  margin-right:calc(-1 * (var(--gutter) + max(0px,(100vw - var(--maxw)) / 2)));
+  margin-right:0;
   height:clamp(440px,76svh,780px);
-  /* Square on TL/TR/BR (BR sits flush to the right viewport edge); one big sweeping curve on the bottom-left */
-  border-radius:0 0 0 var(--radius-lg);
+  /* No corner radius; contained within the layout (not bleeding to the edge) */
+  border-radius:0;
   overflow:hidden;
   background:linear-gradient(135deg,var(--paars),var(--licht-paars));
   box-shadow:0 42px 90px -38px rgba(48,33,101,.45),0 16px 40px -24px rgba(0,0,51,.25);
@@ -350,8 +347,7 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
     margin-right:0;
     height:auto;
     aspect-ratio:4/5;
-    /* Contained on mobile: gentle uniform corners plus the signature bottom-left sweep */
-    border-radius:var(--radius) var(--radius) var(--radius) var(--radius-lg);
+    border-radius:0;
   }
 }
 @keyframes spin{to{transform:rotate(360deg)}}
