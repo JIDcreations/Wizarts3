@@ -355,7 +355,10 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
    PROBLEEM → MAGIE
    ═══════════════════════════════════════════════════════════ */
 .magie{padding:clamp(70px,9vw,130px) 0}
-.magie__quote{margin-top:2em;border-left:3px solid var(--paars);padding:6px 0 6px 22px;max-width:48ch}
+/* Slightly relax the shared 16ch measure (and bump the size a notch) so this
+   short, punchy title sits on two clean, balanced lines without feeling cramped. */
+.magie .section-head .section-title{max-width:18ch;font-size:clamp(38px,5.8vw,78px)}
+.magie__quote{margin-top:2em;border-left:3px solid var(--paars);padding:6px 0 6px 22px;max-width:56ch}
 .magie__quote p{font-size:clamp(18px,1.7vw,24px);font-style:italic;color:var(--donker-paars);line-height:1.4}
 .magie__quote cite{display:block;margin-top:.6em;font-style:normal;font-weight:600;font-size:15px;opacity:.7}
 /* Two-worlds contrast: a quiet "probleem" block beside a vibrant "magie" block.
