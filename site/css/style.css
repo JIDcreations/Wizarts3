@@ -589,6 +589,8 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
 .boost__card .section-title{margin:0}
 .boost__card p{color:rgba(255,255,255,.86);margin:1.1em 0 1.9em;max-width:42ch;font-size:clamp(16px,1.35vw,19px)}
 .boost__statement{position:relative;z-index:1;margin:clamp(26px,3.4vw,44px) 0 0;max-width:30ch;color:var(--wit);font-family:var(--font-display);font-weight:500;line-height:1.2;font-size:clamp(19px,2.1vw,28px);text-shadow:0 2px 18px rgba(0,0,51,.55)}
+/* On the dark boost section, keep the mint CTA text white on hover (the global ghost-hover would turn it dark, unreadable here) */
+.boost__card .btn--mint:hover{color:var(--wit)}
 @keyframes boostfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 
 /* ═══════════════════════════════════════════════════════════
