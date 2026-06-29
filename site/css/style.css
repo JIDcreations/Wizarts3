@@ -671,34 +671,61 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
 /* ═══════════════════════════════════════════════════════════
    TEAM (roze)
    ═══════════════════════════════════════════════════════════ */
-.team{background:var(--roze);padding:clamp(90px,12vw,160px) 0}
-.team__intro{font-size:clamp(26px,3.4vw,48px);max-width:20ch}
-.team__grid{--tg-col:clamp(24px,2.6vw,44px);display:flex;flex-wrap:wrap;justify-content:flex-start;column-gap:var(--tg-col);row-gap:clamp(40px,4.5vw,64px);margin-top:clamp(30px,4vw,60px)}
-.member{flex:0 1 calc((100% - 3*var(--tg-col)) / 4);max-width:240px;text-align:center}
-.member__photo{position:relative;width:100%;max-width:172px;aspect-ratio:1;margin:0 auto 1.1em;border-radius:50%;overflow:hidden;background:var(--m,var(--donker-paars));display:grid;place-items:center;border:4px solid var(--wit);box-shadow:0 16px 38px -18px rgba(0,0,51,.45);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
-.member:hover .member__photo{transform:translateY(-8px);box-shadow:0 26px 48px -18px rgba(0,0,51,.55)}
-.member__photo span{font-family:var(--font-display);font-size:clamp(34px,4vw,52px);font-weight:600;color:var(--wit)}
-.member__photo--img{background:var(--wit)}
-.member__photo--img img{width:100%;height:100%;object-fit:cover}
-.member__name{font-family:var(--font-display);font-size:clamp(18px,1.6vw,23px);font-weight:500;margin-bottom:.18em}
-.member__role{color:var(--paars);font-weight:600;font-size:15px}
-.member__hobby{color:var(--donker-paars);opacity:.6;font-size:14px;margin-top:.25em}
+.team{position:relative;overflow:hidden;background:var(--roze);padding:clamp(90px,12vw,160px) 0 0}
+.team__intro{font-size:clamp(26px,3.4vw,48px);max-width:22ch}
 
-/* ═══════════════════════════════════════════════════════════
-   JOBS (oranje)
-   ═══════════════════════════════════════════════════════════ */
-.jobs{background:var(--oranje);padding:clamp(90px,12vw,160px) 0}
-.jobs__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,5vw,80px);align-items:center}
-.jobs__inner{max-width:34ch}
-.jobs .section-title{font-size:clamp(36px,5vw,72px);text-wrap:balance}
-.jobs__body{margin:1.2em 0 2em;max-width:46ch;font-size:clamp(16px,1.4vw,20px)}
-.jobs__actions{display:flex;gap:16px;flex-wrap:wrap}
-.jobs__media{position:relative;aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;background:var(--donker-paars);box-shadow:0 30px 70px -30px rgba(0,0,51,.45)}
-.jobs__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-@media (max-width:860px){
-  .jobs__grid{grid-template-columns:1fr;gap:clamp(32px,6vw,48px)}
-  .jobs__inner{max-width:none;order:2}
-  .jobs__media{order:1;aspect-ratio:16/10;max-height:60vh}
+/* Full-bleed cover: the dimmed "Wij zijn Wizarts" wordmark SVG backdrop
+   (licht-paars tint), with the member discs composed over it. */
+.team__cover{position:relative;margin-top:clamp(40px,6vw,90px);padding:clamp(40px,6vw,90px) 0 clamp(80px,10vw,150px)}
+.team__cover::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(170,167,244,.5),rgba(170,167,244,.5)),url(../assets/wij-zijn-wizarts.svg);
+  background-repeat:no-repeat,no-repeat;background-position:center,top center;background-size:cover,112% auto}
+
+.team__rows{position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter);display:flex;flex-direction:column;gap:clamp(20px,2.5vw,40px)}
+.team__row{display:flex;align-items:flex-start;justify-content:space-between;gap:clamp(16px,2.4vw,40px)}
+.team__row--cta{align-items:center}
+
+/* Round member discs (colour baked into the cutout PNGs; tint = fallback) */
+.member{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;position:relative}
+.member--spacer{visibility:hidden}
+.member--lg{--ms:300px}
+.member--md{--ms:250px}
+.member--sm{--ms:210px}
+.member--down{margin-top:clamp(40px,11vw,200px)}
+/* Photo members: raw cutout PNG, no CSS frame (disc is baked into the image) */
+.member__photo{position:relative;width:100%;max-width:var(--ms,240px);aspect-ratio:1;margin:0 auto}
+.member__photo img{width:100%;height:100%;object-fit:contain;display:block}
+/* Amber: CSS colored initial disc (not a photo) keeps its disc styling */
+.member__photo--initial{border-radius:50%;overflow:hidden;background:var(--tint,var(--licht-paars));display:grid;place-items:center;border:6px solid var(--wit);box-shadow:0 24px 56px -26px rgba(0,0,51,.5)}
+.member__photo--initial span{font-family:var(--font-display);font-weight:700;font-size:clamp(56px,7vw,120px);color:var(--donker-paars)}
+
+/* Orange name/role/hobby label — hidden, revealed on hover (kept for a11y) */
+.member__about{position:absolute;top:calc(100% - 2.6rem);left:54%;transform:translateX(-50%) translateY(8px);z-index:3;background:var(--oranje);color:var(--paars);border-radius:1.4rem;padding:1rem 1.3rem;text-align:center;width:max-content;max-width:15em;box-shadow:0 20px 44px -22px rgba(0,0,51,.5);opacity:0;visibility:hidden;transition:opacity .2s var(--ease-soft),transform .2s var(--ease-soft)}
+.member:hover .member__about,.member:focus-within .member__about{opacity:1;visibility:visible;transform:translateX(-50%)}
+.member__name{font-family:var(--font-display);font-size:18px;font-weight:600;color:var(--paars);line-height:1.15;margin-bottom:.15em}
+.member__role{color:var(--paars);font-weight:600;font-size:14px}
+.member__hobby{color:var(--paars);opacity:.8;font-size:14px;margin-top:.1em}
+
+/* Recruitment CTA card — purple, green/mint buttons, no image. In the
+   last row beside Eva & Stijn De Mulder, as on wizarts.be. */
+.team__cta{flex:1.7 1 0;background:var(--paars);color:var(--wit);border-radius:var(--radius);padding:clamp(30px,3.2vw,52px)}
+.team__cta .eyebrow{color:var(--groen)}
+.team__cta-title{font-family:var(--font-display);font-weight:500;font-size:clamp(28px,3vw,46px);line-height:1.05;margin:.3em 0 .55em;text-wrap:balance}
+.team__cta-body{color:rgba(255,254,253,.85);font-size:clamp(15px,1.3vw,18px);max-width:44ch;margin-bottom:1.6em}
+.team__cta-actions{display:flex;gap:14px;flex-wrap:wrap}
+
+/* Mobile / small tablet: clean stacked column (no offsets, labels shown) */
+@media(max-width:760px){
+  .team__cover{padding:clamp(28px,7vw,56px) 0 clamp(56px,10vw,90px)}
+  .team__cover::before{background-size:cover,150% auto}
+  .team__rows{gap:clamp(34px,8vw,56px)}
+  .team__row{flex-direction:column;align-items:center;gap:clamp(34px,8vw,56px)}
+  .member--down{margin-top:0}
+  .member--spacer{display:none}
+  .member__photo{max-width:min(64vw,300px)}
+  .member__about{position:static;transform:none;opacity:1;visibility:visible;margin-top:1rem;max-width:none}
+  .member:hover .member__about{transform:none}
+  .team__cta{width:100%}
 }
 
 /* ═══════════════════════════════════════════════════════════
