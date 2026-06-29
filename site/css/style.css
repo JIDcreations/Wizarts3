@@ -324,8 +324,8 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
 .hero__visual{position:relative;z-index:2;min-width:0}
 .hero__media{
   position:relative;
-  /* Wider video: break past the right margin out to the viewport edge */
-  margin-right:calc(-1 * (var(--gutter) + max(0px,(100vw - var(--maxw)) / 2)));
+  /* Wider video, but it stops a gutter short of the viewport edge (never touches the screen) */
+  margin-right:calc(-1 * max(0px,(100vw - var(--maxw)) / 2));
   height:clamp(440px,76svh,780px);
   /* No corner radius */
   border-radius:0;
