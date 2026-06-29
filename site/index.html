@@ -540,18 +540,29 @@
 <section class="contact curve-top" id="contact">
   <div class="container">
     <div class="contact__grid">
-      <div class="contact__intro" data-reveal>
-        <p class="eyebrow eyebrow--invert">Boek je gesprek</p>
-        <h2 class="section-title section-title--invert">Klaar om jouw omzet te verhogen?</h2>
-        <p class="contact__lead">Wij contacteren je zo snel mogelijk en luisteren vrijblijvend hoe we jou kunnen helpen. Boek dan snel je gesprek met Stijn via onderstaand formulier.</p>
-        <ul class="contact__details">
-          <li><span>Adres</span>Antwerpse Stwg 144 bus 101, 9080 Lochristi</li>
-          <li><span>Telefoon</span><a href="tel:+32476707943">+32 476 70 79 43</a></li>
-          <li><span>Mail</span><a href="mailto:info@wizarts.be">info@wizarts.be</a></li>
-        </ul>
-      </div>
+      <aside class="contact__aside" data-reveal>
+        <div class="contact__photo">
+          <img src="assets/team-stijn.png" alt="Stijn, jouw aanspreekpunt bij Wizarts" width="460" height="460" loading="lazy" />
+        </div>
+        <p class="contact__photo-cap">
+          <strong>Stijn</strong>
+          <span>Jouw aanspreekpunt</span>
+        </p>
+      </aside>
 
-      <form class="contact__form" data-reveal novalidate>
+      <div class="contact__main">
+        <div class="contact__intro" data-reveal>
+          <p class="eyebrow eyebrow--invert">Boek je gesprek</p>
+          <h2 class="section-title section-title--invert">Klaar om jouw omzet te verhogen?</h2>
+          <p class="contact__lead">Wij contacteren je zo snel mogelijk en luisteren vrijblijvend hoe we jou kunnen helpen. Boek dan snel je gesprek met Stijn via onderstaand formulier.</p>
+          <ul class="contact__details">
+            <li><span>Adres</span>Antwerpse Stwg 144 bus 101, 9080 Lochristi</li>
+            <li><span>Telefoon</span><a href="tel:+32476707943">+32 476 70 79 43</a></li>
+            <li><span>Mail</span><a href="mailto:info@wizarts.be">info@wizarts.be</a></li>
+          </ul>
+        </div>
+
+        <form class="contact__form" data-reveal novalidate>
         <div class="field-row">
           <div class="field">
             <label for="voornaam">Voornaam</label>
@@ -578,7 +589,8 @@
         </div>
         <button type="submit" class="btn btn--mint btn--block">Ik wil een gesprek inplannen <span aria-hidden="true">→</span></button>
         <p class="contact__note" role="status" id="formNote" aria-live="polite"></p>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
 </section>
