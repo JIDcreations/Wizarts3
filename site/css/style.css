@@ -513,10 +513,18 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
    JOBS (oranje)
    ═══════════════════════════════════════════════════════════ */
 .jobs{background:var(--oranje);padding:clamp(90px,12vw,160px) 0}
-.jobs__inner{max-width:30ch}
-.jobs .section-title{font-size:clamp(36px,6vw,84px)}
-.jobs__body{margin:1.4em 0 2.2em;max-width:48ch;font-size:clamp(16px,1.4vw,20px)}
+.jobs__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,5vw,80px);align-items:center}
+.jobs__inner{max-width:34ch}
+.jobs .section-title{font-size:clamp(36px,5vw,72px);text-wrap:balance}
+.jobs__body{margin:1.2em 0 2em;max-width:46ch;font-size:clamp(16px,1.4vw,20px)}
 .jobs__actions{display:flex;gap:16px;flex-wrap:wrap}
+.jobs__media{position:relative;aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;background:var(--donker-paars);box-shadow:0 30px 70px -30px rgba(0,0,51,.45)}
+.jobs__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+@media (max-width:860px){
+  .jobs__grid{grid-template-columns:1fr;gap:clamp(32px,6vw,48px)}
+  .jobs__inner{max-width:none;order:2}
+  .jobs__media{order:1;aspect-ratio:16/10;max-height:60vh}
+}
 
 /* ═══════════════════════════════════════════════════════════
    WIZARTS PRO
