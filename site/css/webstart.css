@@ -164,10 +164,23 @@
    AANPAK — mint, the steps
    ═══════════════════════════════════════════════════════════ */
 .ws-aanpak{scroll-margin-top:var(--nav-clear);padding:clamp(80px,10vw,140px) 0;background:var(--groen);border-radius:0 var(--radius-lg) 0 var(--radius-lg)}
-.ws-aanpak__head{margin-bottom:clamp(40px,5vw,64px);max-width:30ch}
-.ws-aanpak__head .eyebrow{color:var(--donker-paars)}
+/* two-column: process intro (left) + wand timeline (right) — home "probleem → magie" section type */
+.ws-aanpak__grid{display:grid;grid-template-columns:1fr 1.04fr;gap:clamp(40px,5.5vw,90px);align-items:start}
+
+/* LEFT — process intro */
+.ws-aanpak__intro .eyebrow{color:var(--donker-paars)}
+.ws-aanpak__title{font-family:var(--font-display);font-weight:500;font-size:clamp(34px,4.6vw,60px);line-height:1.04;letter-spacing:-.015em;max-width:14ch;margin:.55em 0 0;color:var(--zwart)}
+.ws-aanpak__lead{margin:clamp(18px,2vw,26px) 0 0;font-size:clamp(16px,1.25vw,18px);line-height:1.55;color:var(--donker-paars);max-width:42ch}
+.ws-aanpak__quote{display:flex;flex-direction:row;align-items:center;gap:clamp(20px,2.4vw,32px);margin:clamp(28px,3.4vw,44px) 0 0;padding:0;border:0;max-width:100%}
+.ws-aanpak__portrait{flex:none;display:block;width:clamp(150px,16vw,196px);max-width:100%;height:auto}
+.ws-aanpak__quote-body{min-width:0}
+.ws-aanpak__quote blockquote{margin:0;font-style:italic;font-size:clamp(16px,1.45vw,20px);line-height:1.42;color:var(--donker-paars)}
+.ws-aanpak__quote figcaption{margin-top:.6em;font-style:normal;font-weight:600;font-size:14px;color:var(--donker-paars);opacity:.75}
+.ws-aanpak__cta-link{display:inline-flex;margin-top:clamp(22px,2.6vw,34px)}
+
+/* RIGHT — vertical process timeline */
 .ws-steps{
-  position:relative;list-style:none;margin:0;padding:0;max-width:760px;
+  position:relative;list-style:none;margin:0;padding:0;width:100%;max-width:560px;
   --rail:54px;--g:clamp(16px,2.4vw,26px);
   display:flex;flex-direction:column;gap:var(--g);
 }
@@ -311,9 +324,12 @@
   .ws-opties__grid{grid-template-columns:1fr;gap:clamp(28px,6vw,44px)}
   .ws-bento{grid-template-columns:1fr}
   .ws-bento__wide{grid-column:auto}
+  .ws-aanpak__grid{grid-template-columns:1fr;gap:clamp(38px,7vw,58px)}
+  .ws-steps{max-width:none}
 }
 @media(max-width:560px){
   .ws-who__grid{grid-template-columns:1fr}
   .ws-reviews__grid{grid-template-columns:1fr}
   .ws-extras{grid-template-columns:1fr}
+  .ws-aanpak__quote{flex-direction:column;align-items:flex-start}
 }
