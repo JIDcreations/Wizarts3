@@ -141,7 +141,13 @@
   const navLinks = document.querySelectorAll('.nav-links a');
   const sectionMap = {};
   navLinks.forEach((a) => {
-    const el = document.querySelector(a.getAttribute('href'));
+    // Only spy on in-page anchors. Cross-page links (cases.html, index.html#x)
+    // — which Netlify rewrites to /cases, /#x — are NOT valid CSS selectors and
+    // would throw a SyntaxError here, aborting the whole script. Guard both ways.
+    const href = a.getAttribute('href') || '';
+    if (href.charAt(0) !== '#' || href.length < 2) return;
+    let el = null;
+    try { el = document.querySelector(href); } catch (e) { return; }
     if (el) sectionMap[el.id] = a;
   });
   const spy = new IntersectionObserver((entries) => {
