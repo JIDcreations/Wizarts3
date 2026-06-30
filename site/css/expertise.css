@@ -274,7 +274,7 @@
    image-right & content-right → top-right; image-left → top-left */
 #print{border-radius:0 var(--radius-lg) 0 0}                      /* full-bg, top-right */
 #branding{border-radius:0 var(--radius-lg) 0 0}                  /* panel, image right */
-#marketing{border-radius:0 var(--radius-lg) 0 var(--radius-lg)}   /* full-bg mint */
+#marketing{border-radius:var(--radius-lg) 0 0 0}                  /* full-bg mint: curve up under Branding's BEIGE content (left), not its photo (right) */
 #ai{border-radius:var(--radius-lg) 0 0 0}                         /* panel, image left → top-left */
 /* .contact keeps its .curve-top (top-right) corner */
 
