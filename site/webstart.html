@@ -337,12 +337,25 @@
 <!-- ░░ AANPAK ░░ -->
 <section class="ws-aanpak" id="aanpak">
   <div class="container">
-    <header class="ws-aanpak__head" data-reveal>
-      <p class="eyebrow eyebrow--dark"><span class="dot"></span>Zo gaan we te werk</p>
-      <h2 class="ws-h2">Van formulier tot livegang — simpel</h2>
-    </header>
-    <div data-reveal>
-      <ol class="ws-steps" data-ws-steps>
+    <div class="ws-aanpak__grid">
+
+      <!-- LEFT: process intro (home "probleem → magie" section type, adapted to the proces) -->
+      <div class="ws-aanpak__intro" data-reveal>
+        <p class="eyebrow eyebrow--dark"><span class="dot" aria-hidden="true"></span>Zo gaan we te werk</p>
+        <h2 class="ws-aanpak__title">Van formulier tot livegang — simpel.</h2>
+        <p class="ws-aanpak__lead">Geen eindeloos heen en weer. Samen doorlopen we zeven heldere stappen: jij vult het formulier in, wij toveren de rest. Live in dagen, niet maanden.</p>
+        <figure class="ws-aanpak__quote">
+          <img class="ws-aanpak__portrait" src="assets/team-eva.png" alt="Eva van Wizarts" width="180" height="180" loading="lazy" decoding="async">
+          <div class="ws-aanpak__quote-body">
+            <blockquote>"Jij vult één formulier in — elke volgende stap nemen wij voor onze rekening."</blockquote>
+            <figcaption>— Eva, Wizarts</figcaption>
+            <a href="#contact" class="link-arrow link-arrow--purple ws-aanpak__cta-link">Start je webstart <span aria-hidden="true">→</span></a>
+          </div>
+        </figure>
+      </div>
+
+      <!-- RIGHT: process timeline — toverstaf rides down, lighting each step (webstart.js, scoped) -->
+      <ol class="ws-steps" data-reveal data-ws-steps>
         <span class="ws-steps__fill" aria-hidden="true"></span>
         <span class="ws-steps__wand" aria-hidden="true" data-ws-wand>
           <svg viewBox="0 0 24 24" fill="none"><path d="M3.5 20.5l11-11" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M17.5 3.2l.9 2.5 2.5.9-2.5.9-.9 2.5-.9-2.5-2.5-.9 2.5-.9.9-2.5zM7.6 4.2l.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6.6-1.7z" fill="currentColor"/></svg>

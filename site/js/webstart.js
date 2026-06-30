@@ -24,10 +24,16 @@
   var hit = steps.map(function () { return false; });
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  // Vertical centre of each number circle, measured within the list.
+  // Vertical centre of each number circle, measured from the list's top.
+  // (offsetTop is unreliable here: each number's offsetParent is its own
+  // .ws-step, so it reports ~0 — we measure against the timeline root instead,
+  // mirroring how home.js maps node offsets onto the wand's travel.)
   function centre(i) {
     var n = nums[i];
-    return n ? n.offsetTop + n.offsetHeight / 2 : 0;
+    if (!n) return 0;
+    var rb = root.getBoundingClientRect();
+    var nb = n.getBoundingClientRect();
+    return (nb.top - rb.top) + nb.height / 2;
   }
   function maxTravel() { return centre(steps.length - 1) - centre(0); }
 
