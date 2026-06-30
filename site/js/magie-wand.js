@@ -30,6 +30,8 @@
   // and fire no per-node pulses — all motion is skipped.
   if (reduce.matches) {
     place(1);
+    // every point is already "reached": show its check in the final state
+    nodes.forEach(function (n) { if (n) n.classList.add('is-checked'); });
     timeline.classList.add('is-wand-done');
     return;
   }
@@ -58,7 +60,8 @@
       var reached = wandY >= nodeOffset(i) - 3;
       if (reached && !hit[i]) {
         hit[i] = true;
-        nodes[i].classList.remove('is-hit'); // restart the CSS animation
+        nodes[i].classList.add('is-checked'); // persistent: sparkle → check, stays
+        nodes[i].classList.remove('is-hit');  // restart the pop/ring CSS animation
         void nodes[i].offsetWidth;            // reflow so the re-add re-triggers
         nodes[i].classList.add('is-hit');
       } else if (!reached && hit[i]) {
