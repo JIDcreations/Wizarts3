@@ -174,51 +174,9 @@
 
 <main id="main">
 
-<!-- ░░ HERO — discipline hub ░░ -->
-<section class="exp-hero" id="hero">
-  <div class="exp-hero__bg" aria-hidden="true">
-    <div class="exp-hero__dots"></div>
-    <div class="exp-hero__glow exp-hero__glow--1"></div>
-    <div class="exp-hero__glow exp-hero__glow--2"></div>
-  </div>
-  <div class="container exp-hero__inner">
-    <div class="exp-hero__grid">
-      <div class="exp-hero__text">
-        <h1 class="exp-hero__title">Eén studio.<br><span>Elke discipline.</span></h1>
-        <p class="exp-hero__sub">Van razendsnelle AI-websites tot tastbaar drukwerk, van branding tot marketing — Wizarts bundelt elke discipline die je merk laat groeien. Kies hieronder je vertrekpunt.</p>
-        <div class="exp-hero__actions">
-          <a href="#contact" class="btn btn--primary">Boek je gesprek <span aria-hidden="true">→</span></a>
-          <a href="webstart.html" class="btn btn--ghost">Ontdek Webstart</a>
-        </div>
-      </div>
-      <div class="exp-hero__visual">
-        <div class="exp-hero__media" aria-hidden="true">
-          <video autoplay muted loop playsinline preload="metadata">
-            <source src="assets/wizarts-magic.mp4" type="video/mp4" />
-          </video>
-        </div>
-      </div>
-    </div>
-    <div class="exp-hero__jump" data-reveal>
-      <span class="exp-hero__jump-label">Spring naar</span>
-      <a href="#websites" class="exp-chip">Websites</a>
-      <a href="#print" class="exp-chip">Print</a>
-      <a href="#branding" class="exp-chip">Branding</a>
-      <a href="#marketing" class="exp-chip">Marketing</a>
-      <a href="#ai" class="exp-chip">AI op maat</a>
-    </div>
-  </div>
-</section>
-
-<!-- ░░ MARQUEE ░░ -->
-<section class="marquee-band" aria-hidden="true">
-  <div class="marquee" data-marquee>
-    <div class="marquee__track">
-      <span>expertise</span><img class="marquee__mark" src="assets/icon-tovenaar.svg" alt=""><span>webdesign</span><img class="marquee__mark" src="assets/icon-tovenaar.svg" alt=""><span>print</span><img class="marquee__mark" src="assets/icon-tovenaar.svg" alt=""><span>branding</span><img class="marquee__mark" src="assets/icon-tovenaar.svg" alt=""><span>marketing</span><img class="marquee__mark" src="assets/icon-tovenaar.svg" alt=""><span>ai</span><img class="marquee__mark" src="assets/icon-tovenaar.svg" alt="">
-      <span>expertise</span><img class="marquee__mark" src="assets/icon-tovenaar.svg" alt=""><span>webdesign</span><img class="marquee__mark" src="assets/icon-tovenaar.svg" alt=""><span>print</span><img class="marquee__mark" src="assets/icon-tovenaar.svg" alt=""><span>branding</span><img class="marquee__mark" src="assets/icon-tovenaar.svg" alt=""><span>marketing</span><img class="marquee__mark" src="assets/icon-tovenaar.svg" alt=""><span>ai</span><img class="marquee__mark" src="assets/icon-tovenaar.svg" alt="">
-    </div>
-  </div>
-</section>
+<!-- Top sentinel: keeps the #hero anchor (nav "Expertise overzicht") and the
+     base.js sticky-badge IntersectionObserver working now the hero is gone. -->
+<span id="hero" class="exp-top-anchor" aria-hidden="true"></span>
 
 <!-- ░░ 01 — WEBSITES ░░ -->
 <section class="exp-disc exp-disc--media exp-disc--first" id="websites">
@@ -243,12 +201,12 @@
 </section>
 
 <!-- ░░ 02 — PRINT ░░ -->
-<section class="exp-disc exp-disc--photo exp-disc--rev" id="print">
-  <div class="exp-disc__bg" aria-hidden="true">
-    <img src="assets/case-pro-honda.png" alt="" loading="lazy" />
-  </div>
-  <div class="container">
-    <div class="exp-disc__inner" data-reveal>
+<section class="exp-disc exp-disc--media exp-disc--rev" id="print">
+  <div class="exp-disc__inner" data-reveal>
+    <div class="exp-disc__media" aria-hidden="true">
+      <img src="assets/case-pro-honda.png" alt="" loading="lazy" />
+    </div>
+    <div class="exp-disc__content">
       <div class="exp-disc__intro">
         <h2 class="exp-disc__title">Print &amp; grootformaat</h2>
         <p class="exp-disc__body">In een scherm-vermoeide wereld is tastbaarheid het ultieme luxeproduct. Wij vertalen je merk naar drukwerk dat je voelt — van naamkaartje tot gevel.</p>
@@ -265,7 +223,7 @@
 </section>
 
 <!-- ░░ 03 — BRANDING ░░ -->
-<section class="exp-disc exp-disc--media exp-disc--rev" id="branding">
+<section class="exp-disc exp-disc--media" id="branding">
   <div class="exp-disc__inner" data-reveal>
     <div class="exp-disc__media" aria-hidden="true">
       <img src="assets/Expertise-IMG3.webp" alt="" loading="lazy" />
@@ -289,12 +247,12 @@
 </section>
 
 <!-- ░░ 04 — MARKETING ░░ -->
-<section class="exp-disc exp-disc--photo exp-disc--photo-mint" id="marketing">
-  <div class="exp-disc__bg" aria-hidden="true">
-    <img src="assets/Expertise-IMG2.webp" alt="" loading="lazy" />
-  </div>
-  <div class="container">
-    <div class="exp-disc__inner" data-reveal>
+<section class="exp-disc exp-disc--media exp-disc--rev" id="marketing">
+  <div class="exp-disc__inner" data-reveal>
+    <div class="exp-disc__media" aria-hidden="true">
+      <img src="assets/Expertise-IMG2.webp" alt="" loading="lazy" />
+    </div>
+    <div class="exp-disc__content">
       <div class="exp-disc__intro">
         <h2 class="exp-disc__title">Marketing &amp; digitale groei</h2>
         <p class="exp-disc__body">Gevonden worden én groeien. Strategie, SEO, advertenties en glasheldere rapportage die rendeert — met concrete doelen en een logische structuur.</p>

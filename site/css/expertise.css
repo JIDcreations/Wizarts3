@@ -7,56 +7,13 @@
    ═══════════════════════════════════════════════════════════ */
 
 /* ═══════════════════════════════════════════════════════════
-   HERO — the discipline hub
+   TOP ANCHOR (#hero sentinel)
+   The hero is gone, but base.js still wants #hero for the sticky-badge
+   IntersectionObserver and the nav "Expertise overzicht" link targets it.
+   This invisible, zero-layout marker at the top of the page satisfies both:
+   the badge stays hidden near the top and reveals once you scroll past it.
    ═══════════════════════════════════════════════════════════ */
-.exp-hero{
-  position:relative;overflow:hidden;
-  padding:calc(var(--header-h) + clamp(24px,6vh,70px)) 0 clamp(48px,8vh,90px);
-  background:linear-gradient(180deg,var(--wit) 0%,var(--beige) 100%);
-}
-.exp-hero__bg{position:absolute;inset:0;z-index:0;pointer-events:none}
-.exp-hero__dots{
-  position:absolute;inset:0;
-  background-image:radial-gradient(rgba(108,76,223,.12) 1px,transparent 1.5px);
-  background-size:26px 26px;
-  -webkit-mask-image:radial-gradient(ellipse 85% 75% at 50% 42%,#000 38%,transparent 100%);
-  mask-image:radial-gradient(ellipse 85% 75% at 50% 42%,#000 38%,transparent 100%);
-  opacity:.5;
-}
-.exp-hero__glow{position:absolute;border-radius:50%;filter:blur(90px)}
-.exp-hero__glow--1{width:42vw;height:42vw;max-width:560px;max-height:560px;background:radial-gradient(circle,var(--roze),transparent 70%);top:-14vw;left:-10vw;opacity:.5}
-.exp-hero__glow--2{width:40vw;height:40vw;max-width:520px;max-height:520px;background:radial-gradient(circle,var(--groen),transparent 70%);bottom:-16vw;right:-8vw;opacity:.3}
-
-.exp-hero__inner{position:relative;z-index:2}
-.exp-hero__grid{display:grid;grid-template-columns:minmax(0,48fr) minmax(0,52fr);gap:clamp(32px,5vw,72px);align-items:center}
-.exp-hero__title{
-  font-family:var(--font-display);font-weight:600;
-  font-size:clamp(2.5rem,5.2vw,4.2rem);line-height:1;letter-spacing:-.03em;
-  color:var(--zwart);margin-bottom:.45em;text-wrap:balance;
-}
-.exp-hero__title span{color:var(--paars)}
-.exp-hero__sub{max-width:48ch;font-size:clamp(16px,1.25vw,19px);line-height:1.6;color:#3a3a5c;margin-bottom:2em}
-.exp-hero__actions{display:flex;gap:14px;flex-wrap:wrap}
-
-.exp-hero__media{
-  position:relative;height:clamp(360px,52svh,560px);overflow:hidden;
-  background:linear-gradient(135deg,var(--paars),var(--licht-paars));
-  box-shadow:0 42px 90px -38px rgba(48,33,101,.45),0 16px 40px -24px rgba(0,0,51,.25);
-  border-radius:0 clamp(40px,8vw,120px) 0 clamp(40px,8vw,120px);
-}
-.exp-hero__media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-
-/* jump-to chips */
-.exp-hero__jump{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(36px,5vw,60px)}
-.exp-hero__jump-label{font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--paars);align-self:center;margin-right:6px}
-.exp-chip{padding:9px 16px;border-radius:999px;border:1px solid rgba(108,76,223,.3);background:rgba(108,76,223,.07);color:var(--paars);font-weight:600;font-size:14px;transition:background .25s,color .25s}
-.exp-chip:hover{background:var(--paars);color:var(--wit)}
-
-@media(max-width:860px){
-  .exp-hero__grid{grid-template-columns:1fr;gap:clamp(28px,7vw,44px)}
-  .exp-hero__visual{order:-1}
-  .exp-hero__media{height:auto;aspect-ratio:4/3}
-}
+.exp-top-anchor{position:absolute;top:0;left:0;width:1px;height:70vh;pointer-events:none;opacity:0}
 
 /* ═══════════════════════════════════════════════════════════
    DISCIPLINE BLOCKS (numbered)
@@ -120,10 +77,11 @@
 
 /* ═══════════════════════════════════════════════════════════
    DISCIPLINE IMAGERY
-   Websites / Branding / Marketing / AI: a full-bleed photo SIDE
-   PANEL — the image column bleeds to the section's outer edge at
-   full section height, text + cards live in the other half. Sides
-   alternate via --rev. Print stays a full image-background.
+   All five disciplines use the same full-bleed photo SIDE PANEL —
+   the image column bleeds to the section's outer edge at full section
+   height, text + cards live in the other half. Sides alternate down
+   the stack via --rev (websites L · print R · branding L · marketing
+   R · ai L).
    ═══════════════════════════════════════════════════════════ */
 .exp-disc--media{padding:0;overflow:hidden;position:relative}
 .exp-disc--media .exp-disc__inner{
@@ -160,34 +118,6 @@
   .exp-disc--media .exp-disc__media--wide{aspect-ratio:2/1}
   .exp-disc--media .exp-disc__content,
   .exp-disc--media.exp-disc--rev .exp-disc__content{order:0;padding:clamp(40px,9vw,64px) var(--gutter)}
-}
-
-/* full image-background block (print) — darker, moodier scrim */
-.exp-disc--photo{
-  position:relative;overflow:hidden;color:var(--wit);
-  background:var(--donker-paars);border-radius:0 var(--radius-lg) 0 0;
-  --acc:var(--groen);--body-color:rgba(255,254,253,.94);
-  --card-bd:rgba(255,255,255,.55);
-  --card-hover:var(--oranje);--card-hover-fg:var(--zwart);--card-hover-shadow:rgba(253,172,108,.6);
-}
-.exp-disc__bg{position:absolute;inset:0;z-index:0;pointer-events:none}
-.exp-disc__bg img{width:100%;height:100%;object-fit:cover;display:block}
-.exp-disc__bg::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(115deg,rgba(0,0,51,.92) 0%,rgba(48,33,101,.92) 52%,rgba(48,33,101,.84) 100%)}
-.exp-disc--photo .exp-disc__inner{position:relative;z-index:1}
-.exp-disc--photo .exp-disc__title{color:var(--wit)}
-.exp-disc--photo .exp-disc__link{--acc-line:var(--groen);color:var(--groen)}
-
-/* mint identity variant (marketing) — mirror Print, mint accents,
-   opposite radius corner + a subtle mint glow in the far corner */
-.exp-disc--photo-mint{
-  border-radius:0 var(--radius-lg) 0 var(--radius-lg);
-  --card-hover:var(--groen);--card-hover-fg:var(--zwart);--card-hover-shadow:rgba(113,255,208,.55);
-}
-.exp-disc--photo-mint .exp-disc__bg::after{
-  background:
-    radial-gradient(85% 95% at 100% 100%,rgba(113,255,208,.18),transparent 58%),
-    linear-gradient(115deg,rgba(0,0,51,.92) 0%,rgba(48,33,101,.92) 52%,rgba(48,33,101,.84) 100%);
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -247,13 +177,13 @@
 
 /* ═══════════════════════════════════════════════════════════
    CONTINUOUS SECTION FLOW (matches home's curve-top rhythm)
-   Each colour-change section pulls up by the big corner radius and
-   stacks on top of the one above, so its rounded top corner reveals
-   the previous section's background — the full-bg images flow up
-   under the corner. Purely vertical (margin/padding/z-index): no
-   horizontal overflow. Rising sections curve on their image / empty
-   side and add matching top room so no text or cards hide under the
-   curve; the section above adds bottom room so nothing is covered.
+   Every discipline is now an image side-panel. Each rising section
+   pulls up by the big corner radius and stacks on top of the one
+   above; its rounded top corner sits on its IMAGE side so the curve
+   only ever clips the photo (never text/cards) and reveals the calm
+   strip of the section above. Purely vertical (margin/padding/
+   z-index) → no horizontal overflow. The section above adds matching
+   bottom room so the rise covers empty space, not content.
    ═══════════════════════════════════════════════════════════ */
 .exp-disc,.exp-webstart,.exp-pro,.contact{position:relative}
 
@@ -267,21 +197,21 @@
 .exp-pro{z-index:7}
 .contact{z-index:8}
 
+/* first panel: clear the fixed floating header */
+#websites{padding-top:var(--nav-clear)}
+
 /* rising sections tuck up under the previous section's corner */
 #print,#branding,#marketing,#ai,.contact{margin-top:calc(var(--radius-lg) * -1)}
 
-/* rounded top corner on the image / safe side so content never clips.
-   image-right & content-right → top-right; image-left → top-left */
-#print{border-radius:0 var(--radius-lg) 0 0}                      /* full-bg, top-right */
-#branding{border-radius:0 var(--radius-lg) 0 0}                  /* panel, image right */
-#marketing{border-radius:var(--radius-lg) 0 0 0}                  /* full-bg mint: curve up under Branding's BEIGE content (left), not its photo (right) */
-#ai{border-radius:var(--radius-lg) 0 0 0}                         /* panel, image left → top-left */
+/* rounded top corner on the IMAGE side so the curve clips photo, not copy.
+   image-right (--rev) → top-right · image-left → top-left */
+#print{border-radius:0 var(--radius-lg) 0 0}      /* image right → top-right */
+#branding{border-radius:var(--radius-lg) 0 0 0}   /* image left  → top-left  */
+#marketing{border-radius:0 var(--radius-lg) 0 0}  /* image right → top-right */
+#ai{border-radius:var(--radius-lg) 0 0 0}         /* image left  → top-left  */
 /* .contact keeps its .curve-top (top-right) corner */
 
-/* full-bg rising sections: extra top padding so content clears the curve */
-#print,#marketing{padding-top:calc(clamp(80px,10vw,140px) + var(--radius-lg))}
-
-/* sections ABOVE a rising one: extra bottom room, covered by the rise */
-#websites,#branding{padding-bottom:var(--radius-lg)}             /* panels: strip covered by next */
-#print,#marketing{padding-bottom:calc(clamp(80px,10vw,140px) + var(--radius-lg))}
+/* sections ABOVE a rising one: extra bottom room, covered by the rise.
+   (#ai sits above the non-rising Webstart card, so it needs none.) */
+#websites,#print,#branding,#marketing{padding-bottom:var(--radius-lg)}
 .exp-pro{padding-bottom:calc(clamp(72px,9vw,120px) + var(--radius-lg))}
