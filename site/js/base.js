@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   WIZARTS — main.js
+   WIZARTS — base.js (shared chrome for every page)
    Lenis smooth scroll + GSAP ScrollTrigger + parallax/reveals
    ═══════════════════════════════════════════════════════════ */
 (function () {
@@ -93,8 +93,8 @@
     dropdown.addEventListener('mouseenter', openDD);
     dropdown.addEventListener('mouseleave', () => { hoverTimer = setTimeout(closeDD, 120); });
 
-    // Click toggles
-    trigger.addEventListener('click', (e) => { e.preventDefault(); isOpen() ? closeDD() : openDD(); });
+    // Click navigates (trigger is a link to the expertise overview).
+    // Hover/focus still open the dropdown; we do not hijack the click here.
 
     // Keyboard: focus opens, ArrowDown moves into the menu, Esc closes + returns focus
     dropdown.addEventListener('focusin', openDD);

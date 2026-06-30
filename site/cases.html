@@ -19,7 +19,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/cases.css" />
 <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -34,52 +35,71 @@
     </a>
     <nav class="nav-links" aria-label="Hoofdnavigatie">
       <div class="nav-dropdown" data-dropdown>
-        <button type="button" class="nav-dropdown__trigger" id="expertiseTrigger"
+        <a href="expertise.html" class="nav-dropdown__trigger" id="expertiseTrigger" role="button"
                 aria-haspopup="true" aria-expanded="false" aria-controls="expertiseMenu">
           Expertise
           <svg class="nav-dropdown__caret" viewBox="0 0 12 8" width="12" height="8" aria-hidden="true">
             <path d="M1 1.5 6 6.5 11 1.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </button>
+        </a>
         <div class="nav-dropdown__panel" id="expertiseMenu" role="menu" aria-labelledby="expertiseTrigger">
-          <div class="mega-featured" role="group" aria-label="Uitgelicht">
-            <span class="mega-featured__label" aria-hidden="true">Uitgelicht</span>
-            <a href="index.html#expertise" class="mega-row mega-row--featured" role="menuitem">
-              <span class="mega-row__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="13" rx="2"/><path d="M3 8h18M6 6h.01M9 6h.01M8 21h8M12 17v4"/>
-                </svg>
-              </span>
-              <span class="mega-row__text">
-                <span class="mega-row__title">Webstart</span>
-                <span class="mega-row__sub">AI-gedreven sites, e-commerce &amp; hosting</span>
-              </span>
-            </a>
-            <a href="index.html#pro" class="mega-row mega-row--featured" role="menuitem">
-              <span class="mega-row__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 16l9 5 9-5"/>
-                </svg>
-              </span>
-              <span class="mega-row__text">
-                <span class="mega-row__title">Wizarts Pro</span>
-                <span class="mega-row__sub">White-label partner voor agencies</span>
-              </span>
-            </a>
-          </div>
-          <div class="mega-divider" role="separator"></div>
-          <a href="index.html#expertise" class="mega-row" role="menuitem">
+          <a href="expertise.html" class="mega-row mega-row--featured" role="menuitem">
             <span class="mega-row__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 9V3h12v6"/><path d="M6 18H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-1"/><rect x="6" y="14" width="12" height="7" rx="1"/><path d="M17 12h.01"/>
+                <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>
               </svg>
             </span>
             <span class="mega-row__text">
-              <span class="mega-row__title">Print experts</span>
-              <span class="mega-row__sub">Drukwerk, grootformaat &amp; buitenreclame</span>
+              <span class="mega-row__title">Expertise overzicht</span>
+              <span class="mega-row__sub">Alle disciplines in één overzicht</span>
             </span>
           </a>
-          <a href="index.html#expertise" class="mega-row" role="menuitem">
+          <div class="mega-divider" role="separator"></div>
+          <a href="expertise.html#websites" class="mega-row" role="menuitem">
+            <span class="mega-row__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="13" rx="2"/><path d="M3 8h18M6 6h.01M9 6h.01M8 21h8M12 17v4"/>
+              </svg>
+            </span>
+            <span class="mega-row__text">
+              <span class="mega-row__title">Websites &amp; development</span>
+              <span class="mega-row__sub">AI-gedreven sites, e-commerce &amp; hosting</span>
+            </span>
+          </a>
+          <a href="expertise.html#print" class="mega-row" role="menuitem">
+            <span class="mega-row__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 9V3h12v6"/><path d="M6 18H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-1"/><rect x="6" y="14" width="12" height="7" rx="1"/>
+              </svg>
+            </span>
+            <span class="mega-row__text">
+              <span class="mega-row__title">Print &amp; grootformaat</span>
+              <span class="mega-row__sub">Drukwerk, verpakkingen &amp; buitenreclame</span>
+            </span>
+          </a>
+          <a href="expertise.html#branding" class="mega-row" role="menuitem">
+            <span class="mega-row__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="13.5" cy="6.5" r="2.5"/><circle cx="6.5" cy="11.5" r="2.5"/><circle cx="17" cy="14" r="2.5"/><path d="M3 21c0-3 2-5 5-5"/>
+              </svg>
+            </span>
+            <span class="mega-row__text">
+              <span class="mega-row__title">Branding</span>
+              <span class="mega-row__sub">Identiteit, vormgeving, foto &amp; video</span>
+            </span>
+          </a>
+          <a href="expertise.html#marketing" class="mega-row" role="menuitem">
+            <span class="mega-row__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 17l5-5 4 4 8-8"/><path d="M16 8h4v4"/>
+              </svg>
+            </span>
+            <span class="mega-row__text">
+              <span class="mega-row__title">Marketing &amp; groei</span>
+              <span class="mega-row__sub">Strategie, SEO, advertising &amp; rapportage</span>
+            </span>
+          </a>
+          <a href="expertise.html#ai" class="mega-row" role="menuitem">
             <span class="mega-row__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M11 3l1.6 4.4L17 9l-4.4 1.6L11 15l-1.6-4.4L5 9l4.4-1.6z"/><path d="M18 14l.8 2.2L21 17l-2.2.8L18 20l-.8-2.2L15 17l2.2-.8z"/>
@@ -90,15 +110,27 @@
               <span class="mega-row__sub">Automatisaties, tools &amp; AI-sites</span>
             </span>
           </a>
-          <a href="index.html#expertise" class="mega-row" role="menuitem">
+          <div class="mega-divider" role="separator"></div>
+          <a href="webstart.html" class="mega-row" role="menuitem">
             <span class="mega-row__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 17l5-5 4 4 8-8"/><path d="M16 8h4v4"/>
+                <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/>
               </svg>
             </span>
             <span class="mega-row__text">
-              <span class="mega-row__title">Digitale groei</span>
-              <span class="mega-row__sub">Strategie, SEO, advertising &amp; rapportage</span>
+              <span class="mega-row__title">Webstart</span>
+              <span class="mega-row__sub">Snel online met een AI-startsite</span>
+            </span>
+          </a>
+          <a href="expertise.html#pro" class="mega-row" role="menuitem">
+            <span class="mega-row__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 16l9 5 9-5"/>
+              </svg>
+            </span>
+            <span class="mega-row__text">
+              <span class="mega-row__title">Wizarts Pro</span>
+              <span class="mega-row__sub">White-label partner voor agencies</span>
             </span>
           </a>
         </div>
@@ -120,13 +152,16 @@
     <details class="mobile-menu__group">
       <summary>Expertise</summary>
       <div class="mobile-menu__sub">
-        <span class="mobile-menu__sublabel" aria-hidden="true">Uitgelicht</span>
-        <a href="index.html#expertise" data-mm class="mm-featured">Webstart</a>
-        <a href="index.html#pro" data-mm class="mm-featured">Wizarts Pro</a>
+        <a href="expertise.html" data-mm>Expertise overzicht</a>
         <span class="mobile-menu__subdiv" role="separator"></span>
-        <a href="index.html#expertise" data-mm>Print experts</a>
-        <a href="index.html#expertise" data-mm>AI op maat</a>
-        <a href="index.html#expertise" data-mm>Digitale groei</a>
+        <a href="expertise.html#websites" data-mm>Websites</a>
+        <a href="expertise.html#print" data-mm>Print</a>
+        <a href="expertise.html#branding" data-mm>Branding</a>
+        <a href="expertise.html#marketing" data-mm>Marketing</a>
+        <a href="expertise.html#ai" data-mm>AI op maat</a>
+        <span class="mobile-menu__subdiv" role="separator"></span>
+        <a href="webstart.html" data-mm>Webstart</a>
+        <a href="expertise.html#pro" data-mm>Wizarts Pro</a>
       </div>
     </details>
     <a href="index.html#visie" data-mm>Onze visie</a>
@@ -153,7 +188,6 @@
       <a href="index.html#contact" class="case__link">
         <div class="case__media">
           <img src="assets/case-pro-honda.png" alt="Pro Honda Oil — premium drukwerk en folder ontwerp door Wizarts" loading="lazy" data-parallax-img />
-          <span class="case__index" aria-hidden="true">01</span>
           <span class="case__badge">Bekijk dit project <i aria-hidden="true">→</i></span>
           <div class="case__meta">
             <h3>Pro Honda Oil</h3>
@@ -167,7 +201,6 @@
       <a href="index.html#contact" class="case__link">
         <div class="case__media">
           <img src="assets/case-juntas.jpg" alt="Juntas — visitekaartje en huisstijl door Wizarts" loading="lazy" data-parallax-img />
-          <span class="case__index" aria-hidden="true">02</span>
           <span class="case__badge">Bekijk dit project <i aria-hidden="true">→</i></span>
           <div class="case__meta">
             <h3>Juntas</h3>
@@ -181,7 +214,6 @@
       <a href="index.html#contact" class="case__link">
         <div class="case__media">
           <img src="assets/case-normocare.jpg" alt="Normocare — drukwerk en visitekaartje door Wizarts" loading="lazy" data-parallax-img />
-          <span class="case__index" aria-hidden="true">03</span>
           <span class="case__badge">Bekijk dit project <i aria-hidden="true">→</i></span>
           <div class="case__meta">
             <h3>Normocare</h3>
@@ -195,7 +227,6 @@
       <a href="index.html#contact" class="case__link">
         <div class="case__media">
           <img src="assets/case-certis.jpg" alt="Certis Benelux — branding en webdesign door Wizarts" loading="lazy" data-parallax-img />
-          <span class="case__index" aria-hidden="true">04</span>
           <span class="case__badge">Bekijk dit project <i aria-hidden="true">→</i></span>
           <div class="case__meta">
             <h3>Certis Benelux</h3>
@@ -286,6 +317,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-<script src="js/main.js"></script>
+<script src="js/base.js"></script>
 </body>
 </html>
