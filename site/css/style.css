@@ -868,3 +868,34 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
 .cases-page__cta .btn{margin-top:.5em}
 /* keep the mint CTA legible on the purple card: stay filled (dark text on mint) on hover */
 .cases-page__cta .btn--mint:hover{background:var(--groen);color:var(--zwart);box-shadow:0 16px 36px -14px rgba(0,0,51,.5)}
+
+/* ═══════════════════════════════════════════════════════════
+   CURVE-TOP SEAMS — each rounded section overlaps the section
+   above it, so the upper section's background/photo flows UNDER
+   the rounded top-right corner (no hard cut, no page-beige sliver
+   peeking through the notch).
+
+   Mechanism: pull every .curve-top section up by the corner radius
+   (--radius-lg) and give the section above it the SAME extra bottom
+   room. Net layout is visually unchanged, but the upper section's
+   box now extends down behind the curve, so the notch is filled by
+   that section's own background instead of the beige page:
+     1. .magie (beige)  → .proces  : also cancels the old beige gap
+     2. .clients (beige)→ .testi
+     3. .boost  (PHOTO) → .team    : the boost photo flows under the
+        lavender team corner (was a hard cut)  ← the key win
+     4. .pro    (beige) → .contact
+   Vertical-only — no horizontal change, no overflow.
+   ═══════════════════════════════════════════════════════════ */
+.proces.curve-top,
+.testi.curve-top,
+.team.curve-top,
+.contact.curve-top{margin-top:calc(var(--radius-lg) * -1)}
+
+/* matching bottom room on the section above so its background reaches
+   down behind the curve and its content keeps its original breathing
+   space (these override only padding-bottom of each section's shorthand) */
+.magie{padding-bottom:calc(clamp(70px,9vw,130px) + var(--radius-lg))}
+.clients{padding-bottom:calc(clamp(70px,9vw,120px) + var(--radius-lg))}
+.boost{padding-bottom:calc(clamp(64px,8vw,110px) + var(--radius-lg))}
+.pro{padding-bottom:calc(clamp(80px,11vw,150px) + var(--radius-lg))}
