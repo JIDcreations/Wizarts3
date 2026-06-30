@@ -1,0 +1,289 @@
+/* ═══════════════════════════════════════════════════════════
+   WIZARTS PRO — page-specific styles
+   Uses ONLY base.css tokens. Shared chrome (header, nav, mobile
+   menu, contact, footer, sticky badge) is styled by base.css.
+   ═══════════════════════════════════════════════════════════ */
+
+/* Float used by the hero X and the flowing cube */
+@keyframes proFloat{
+  0%,100%{transform:translateY(0) rotate(-2deg)}
+  50%{transform:translateY(-18px) rotate(2deg)}
+}
+
+/* Default: animated video shown, static poster hidden */
+.pro-x__poster,.pro-cube__poster{display:none}
+
+/* ═══════════════════════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════════════════════ */
+.pro-hero{
+  position:relative;overflow:hidden;
+  padding:calc(var(--nav-clear) + clamp(10px,4vh,40px)) 0 clamp(56px,8vw,110px);
+  background:linear-gradient(180deg,var(--wit) 0%,var(--beige) 100%);
+}
+.pro-hero__bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.pro-hero__dots{
+  position:absolute;inset:0;
+  background-image:radial-gradient(rgba(108,76,223,.10) 1px,transparent 1.5px);
+  background-size:26px 26px;
+  -webkit-mask-image:radial-gradient(ellipse 85% 75% at 58% 42%,#000 38%,transparent 100%);
+  mask-image:radial-gradient(ellipse 85% 75% at 58% 42%,#000 38%,transparent 100%);
+  opacity:.55;
+}
+.pro-hero__glow{position:absolute;border-radius:50%;filter:blur(95px)}
+.pro-hero__glow--1{width:42vw;height:42vw;max-width:560px;max-height:560px;background:radial-gradient(circle,var(--roze),transparent 70%);top:-16vw;right:-8vw;opacity:.55}
+.pro-hero__glow--2{width:36vw;height:36vw;max-width:460px;max-height:460px;background:radial-gradient(circle,var(--groen),transparent 70%);bottom:-14vw;left:-8vw;opacity:.3}
+.pro-hero__inner{position:relative;z-index:2}
+.pro-hero__grid{display:grid;grid-template-columns:minmax(0,53fr) minmax(0,47fr);gap:clamp(32px,5vw,72px);align-items:center}
+.pro-hero__title{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(2.3rem,4.7vw,3.9rem);line-height:1.02;letter-spacing:-.03em;
+  color:var(--zwart);margin:.35em 0 .5em;text-wrap:balance;
+}
+.pro-hero__title span{color:var(--paars)}
+.pro-hero__sub{max-width:46ch;font-size:clamp(16px,1.25vw,19px);line-height:1.6;color:#3a3a5c;margin-bottom:2em}
+.pro-hero__actions{display:flex;gap:14px;flex-wrap:wrap}
+
+/* Floating X visual */
+.pro-hero__visual{position:relative;min-height:clamp(300px,42svh,480px);display:grid;place-items:center}
+.pro-x{position:relative;width:min(100%,420px);aspect-ratio:1/1}
+.pro-x__video,.pro-x__poster{
+  width:100%;height:100%;object-fit:contain;
+  filter:drop-shadow(0 38px 62px rgba(48,33,101,.34));
+  animation:proFloat 8s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   WAAROM — text + photo split, then supporting cards
+   ═══════════════════════════════════════════════════════════ */
+.pro-waarom{position:relative;background:var(--beige);padding:clamp(72px,10vw,130px) 0}
+.pro-waarom__top{
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  gap:clamp(32px,5vw,72px);align-items:center;margin-bottom:clamp(40px,5vw,64px);
+}
+.pro-waarom__lead{color:#3a3a5c;font-size:clamp(16px,1.2vw,18px);line-height:1.65;max-width:60ch;margin-top:1.2em}
+.pro-waarom__photo{position:relative;border-radius:6px var(--radius) var(--radius) var(--radius);overflow:hidden;box-shadow:0 30px 70px -36px rgba(48,33,101,.6)}
+.pro-waarom__photo img{display:block;width:100%;height:auto;object-fit:cover}
+.pro-waarom__photo figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:clamp(18px,2.4vw,28px);
+  display:flex;flex-direction:column;gap:2px;color:var(--wit);
+  background:linear-gradient(180deg,transparent,rgba(48,33,101,.82));
+}
+.pro-waarom__photo figcaption strong{font-family:var(--font-display);font-weight:600;font-size:clamp(18px,1.8vw,22px)}
+.pro-waarom__photo figcaption span{font-size:13.5px;color:rgba(255,254,253,.85)}
+
+.pro-waarom__cards{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2vw,22px)}
+.pro-card{
+  display:flex;flex-direction:column;gap:12px;
+  background:var(--wit);border:1px solid rgba(108,76,223,.14);
+  border-radius:6px 26px 26px 26px;padding:clamp(24px,2.8vw,36px);
+  box-shadow:0 16px 42px -28px rgba(48,33,101,.5);
+  transition:transform .4s var(--ease),box-shadow .4s,border-color .4s;
+}
+.pro-card:hover{transform:translateY(-5px);box-shadow:0 28px 54px -28px rgba(48,33,101,.55);border-color:var(--paars)}
+.pro-card__icon{width:48px;height:48px;border-radius:14px;background:rgba(108,76,223,.10);color:var(--paars);display:grid;place-items:center}
+.pro-card h3{font-family:var(--font-display);font-weight:500;font-size:clamp(19px,1.6vw,23px);color:var(--zwart)}
+.pro-card p{font-size:15px;line-height:1.55;color:#3a3a5c}
+.pro-waarom__cta{margin-top:clamp(30px,4vw,48px)}
+
+/* ═══════════════════════════════════════════════════════════
+   EXPERTISE — premium horizontal panels
+   ═══════════════════════════════════════════════════════════ */
+.pro-exp{position:relative;overflow:hidden;background:var(--roze);padding:clamp(72px,10vw,130px) 0}
+.pro-exp__pin{position:relative}
+.pro-exp__head{max-width:52ch;margin-bottom:clamp(32px,4vw,52px)}
+.pro-exp__lead{color:var(--donker-paars);font-size:clamp(16px,1.2vw,18px);line-height:1.55;max-width:54ch;margin-top:1em}
+/* Native fallback: horizontal scroll-snap. The scroller is the scroll
+   viewport; the track holds the panels. When JS pins the section it
+   adds .is-pinned, which clips the track (overflow:hidden) so the
+   GSAP horizontal translate never causes page overflow. */
+.pro-exp__scroller{
+  position:relative;
+  padding-block:6px clamp(14px,2vw,24px);
+  overflow-x:auto;scroll-snap-type:x mandatory;
+  scrollbar-width:thin;scrollbar-color:rgba(48,33,101,.4) transparent;
+  -webkit-overflow-scrolling:touch;
+}
+.pro-exp__scroller::-webkit-scrollbar{height:8px}
+.pro-exp__scroller::-webkit-scrollbar-thumb{background:rgba(48,33,101,.3);border-radius:999px}
+.pro-exp__track{display:flex;gap:clamp(16px,2vw,24px);padding-inline:var(--gutter);width:max-content;will-change:transform}
+.pro-exp.is-pinned .pro-exp__scroller{overflow:hidden;scroll-snap-type:none;scrollbar-width:none}
+.pro-exp.is-pinned .pro-exp__scroller::-webkit-scrollbar{display:none}
+.pro-panel{
+  flex:0 0 clamp(280px,32vw,400px);scroll-snap-align:center;
+  display:flex;flex-direction:column;gap:14px;
+  background:var(--wit);border:1px solid rgba(108,76,223,.14);
+  border-radius:6px 28px 28px 28px;padding:clamp(28px,3vw,40px);
+  box-shadow:0 22px 50px -30px rgba(48,33,101,.55);
+  transition:transform .4s var(--ease),box-shadow .4s;
+}
+.pro-panel:hover{transform:translateY(-6px);box-shadow:0 34px 64px -30px rgba(48,33,101,.6)}
+.pro-panel__num{font-family:var(--font-display);font-weight:600;font-size:14px;letter-spacing:.16em;color:var(--paars)}
+.pro-panel__icon{width:54px;height:54px;border-radius:16px;background:rgba(108,76,223,.10);color:var(--paars);display:grid;place-items:center;margin-top:auto}
+.pro-panel h3{font-family:var(--font-display);font-weight:500;font-size:clamp(20px,1.8vw,25px);line-height:1.1;color:var(--zwart)}
+.pro-panel p{font-size:15px;line-height:1.55;color:#3a3a5c}
+.pro-panel--accent{background:linear-gradient(150deg,var(--donker-paars),var(--paars));border-color:transparent}
+.pro-panel--accent .pro-panel__num{color:var(--groen)}
+.pro-panel--accent .pro-panel__icon{background:rgba(113,255,208,.18);color:var(--groen)}
+.pro-panel--accent h3{color:var(--wit)}
+.pro-panel--accent p{color:rgba(255,254,253,.84)}
+
+/* ═══════════════════════════════════════════════════════════
+   AANPAK — big flowing cube + vertical steps
+   ═══════════════════════════════════════════════════════════ */
+.pro-aanpak{position:relative;overflow:hidden;background:var(--groen);padding:clamp(72px,10vw,130px) 0}
+.pro-aanpak__inner{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(36px,5vw,80px);align-items:start}
+/* Cube travels through the section via a ScrollTrigger scrub (set in
+   wizarts-pro.js). It sits near the top of its column and drifts down
+   as the section scrolls; without JS / under reduced motion it simply
+   stays put at the top (poster shown). */
+.pro-aanpak__media{position:relative;align-self:start}
+.pro-aanpak__cube{position:relative;width:min(100%,440px);margin-inline:auto;aspect-ratio:1/1;will-change:transform}
+.pro-aanpak__cube .pro-cube__video,
+.pro-aanpak__cube .pro-cube__poster{
+  width:100%;height:100%;object-fit:contain;
+  filter:drop-shadow(0 44px 70px rgba(48,33,101,.4));
+  animation:proFloat 9s ease-in-out infinite;
+}
+.pro-aanpak__head{margin-bottom:clamp(28px,3.4vw,44px)}
+.pro-steps{display:flex;flex-direction:column;gap:clamp(14px,2vw,20px);counter-reset:none}
+.pro-step{
+  display:flex;gap:18px;align-items:flex-start;
+  background:var(--wit);border-radius:6px 24px 24px 24px;
+  padding:clamp(22px,2.4vw,30px);box-shadow:0 18px 44px -32px rgba(48,33,101,.5);
+}
+.pro-step__num{
+  flex:none;display:grid;place-items:center;width:48px;height:48px;border-radius:50%;
+  background:var(--paars);color:var(--wit);
+  font-family:var(--font-display);font-weight:600;font-size:22px;
+}
+.pro-step__num--accent{background:var(--oranje);color:var(--zwart)}
+.pro-step h3{font-family:var(--font-display);font-weight:600;font-size:clamp(18px,1.5vw,22px);color:var(--zwart);margin-bottom:.3em}
+.pro-step p{font-size:15px;line-height:1.55;color:#3a3a5c}
+
+/* ═══════════════════════════════════════════════════════════
+   JOUW ROL — three cards
+   ═══════════════════════════════════════════════════════════ */
+.pro-rol{position:relative;background:var(--beige);padding:clamp(72px,10vw,130px) 0}
+.pro-rol__head{max-width:54ch;margin-bottom:clamp(36px,4.5vw,56px)}
+.pro-rol__lead{color:#3a3a5c;font-size:clamp(16px,1.2vw,18px);line-height:1.6;max-width:60ch;margin-top:1em}
+.pro-rol__cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,24px)}
+.pro-rol__card{
+  display:flex;flex-direction:column;gap:14px;
+  background:var(--wit);border:1px solid rgba(108,76,223,.14);
+  border-radius:6px 28px 28px 28px;padding:clamp(26px,2.6vw,34px);
+  box-shadow:0 16px 42px -28px rgba(48,33,101,.5);
+}
+.pro-rol__tag{
+  align-self:flex-start;display:inline-flex;align-items:center;
+  font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--paars);background:rgba(108,76,223,.1);border-radius:999px;padding:7px 14px;
+}
+.pro-rol__card p{font-size:15px;line-height:1.55;color:#3a3a5c}
+.pro-rol__card--accent{background:var(--donker-paars);border-color:transparent;box-shadow:0 22px 50px -28px rgba(48,33,101,.7)}
+.pro-rol__card--accent p{color:rgba(255,254,253,.86)}
+.pro-rol__tag--mint{color:var(--zwart);background:var(--groen)}
+
+/* ═══════════════════════════════════════════════════════════
+   STILLE MOTOR — credits, dark + stats
+   ═══════════════════════════════════════════════════════════ */
+/* The credits section is a LIGHT (beige) section holding a dark premium
+   card — the same proven pattern as expertise.html's .exp-pro. This is
+   what fixes the seam: the deep-navy .contact below now curves over the
+   section's beige bottom (exactly like home, where .contact rises over a
+   light section), instead of the old invisible purple-on-purple overlap. */
+/* Full-screen section: the dark card is vertically centred and fills the
+   viewport, with a beige overlap zone at the bottom for the contact curve.
+   align-content:center keeps the card centred; the big bottom padding is
+   the beige area .contact curves over (see CURVE FIX below). */
+.pro-credits{
+  position:relative;background:var(--beige);
+  min-height:100vh;display:grid;align-content:center;
+  padding:clamp(64px,8vw,110px) 0 calc(var(--radius-lg) + clamp(20px,3vw,40px));
+}
+/* CURVE FIX: .pro-credits is position:relative; base .contact is static,
+   so the positioned credits painted OVER the static contact and erased
+   the curve in the overlap zone (flat-line bug). Lift contact above it
+   (page-scoped) so its curve-top corner renders over the beige below —
+   the sweeping curve now matches home. */
+.contact{position:relative;z-index:1}
+/* Compact card: text + portrait on the top row, stats as a full-width
+   strip beneath, so the whole card fits one screen. */
+.pro-credits__card{
+  position:relative;overflow:hidden;
+  border-radius:clamp(34px,4vw,48px);
+  padding:clamp(34px,4.4vw,60px);
+  background:linear-gradient(135deg,var(--donker-paars) 0%,var(--paars) 135%);
+  color:var(--wit);box-shadow:0 40px 90px -44px rgba(48,33,101,.8);
+  display:grid;
+  grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);
+  grid-template-areas:"text portrait" "stats stats";
+  gap:clamp(26px,3vw,44px) clamp(30px,4.5vw,64px);align-items:center;
+}
+.pro-credits__text{grid-area:text}
+.pro-credits__lead{margin:1.2em 0 1.6em;max-width:50ch;font-size:clamp(15px,1.2vw,18px);line-height:1.6;color:rgba(255,254,253,.86)}
+.eyebrow--mint{color:var(--groen)}
+.dot--mint{background:var(--groen)!important}
+.pro-credits__portrait{grid-area:portrait;margin:0;display:flex;flex-direction:column;align-items:center;width:100%}
+.pro-credits__portrait img{width:min(100%,250px);height:auto}
+.pro-credits__portrait figcaption{margin-top:.3em;text-align:center;display:flex;flex-direction:column;gap:2px}
+.pro-credits__portrait figcaption strong{font-family:var(--font-display);font-weight:600;font-size:clamp(18px,1.6vw,22px);color:var(--wit)}
+.pro-credits__portrait figcaption span{font-size:12.5px;text-transform:uppercase;letter-spacing:.14em;color:var(--groen)}
+.pro-credits__stats{grid-area:stats;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.4vw,18px);width:100%}
+.pro-credits__stats li{
+  display:flex;flex-direction:column;gap:4px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+  border-radius:18px;padding:clamp(16px,1.8vw,22px);
+}
+.pro-credits__stats strong{font-family:var(--font-display);font-weight:600;font-size:clamp(28px,3.2vw,42px);line-height:1;color:var(--groen);text-transform:lowercase}
+.pro-credits__stats strong span{font-size:.5em;color:rgba(255,254,253,.8);margin-left:.15em}
+.pro-stat__label{font-size:12.5px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,254,253,.78)}
+
+/* ═══════════════════════════════════════════════════════════
+   CURVE-TOP SEAMS — sections overlap like the home page so each
+   rounded corner flows over the section above it.
+   ═══════════════════════════════════════════════════════════ */
+.pro-exp.curve-top,
+.pro-aanpak.curve-top,
+.pro-rol.curve-top,
+.pro-credits.curve-top,
+.contact.curve-top{margin-top:calc(var(--radius-lg) * -1)}
+.pro-waarom{padding-bottom:calc(clamp(72px,10vw,130px) + var(--radius-lg))}
+.pro-exp{padding-bottom:calc(clamp(72px,10vw,130px) + var(--radius-lg))}
+.pro-aanpak{padding-bottom:calc(clamp(72px,10vw,130px) + var(--radius-lg))}
+.pro-rol{padding-bottom:calc(clamp(72px,10vw,130px) + var(--radius-lg))}
+/* .pro-credits keeps the bottom overlap padding from its own full-screen
+   rule above (radius-lg + buffer), so no extra override here. */
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+@media(max-width:980px){
+  .pro-hero__grid{grid-template-columns:1fr;gap:clamp(28px,6vw,48px)}
+  .pro-hero__visual{order:-1;min-height:0}
+  .pro-x{width:min(72%,320px)}
+  .pro-waarom__top{grid-template-columns:1fr}
+  .pro-waarom__photo{max-width:520px}
+  .pro-aanpak__inner{grid-template-columns:1fr}
+  .pro-aanpak__media{position:static;margin-bottom:clamp(8px,3vw,20px)}
+  .pro-aanpak__cube{width:min(64%,300px)}
+  .pro-rol__cards{grid-template-columns:1fr}
+  .pro-credits{min-height:0}
+  .pro-credits__card{grid-template-columns:1fr;grid-template-areas:"text" "portrait" "stats"}
+}
+@media(max-width:560px){
+  .pro-waarom__cards{grid-template-columns:1fr}
+  .pro-hero__actions .btn{flex:1 1 auto;justify-content:center}
+  .pro-panel{flex-basis:78vw}
+  .pro-credits__stats{grid-template-columns:1fr}
+}
+
+/* ═══════════════════════════════════════════════════════════
+   REDUCED MOTION — swap looping video for the static poster
+   (base.css already neutralises CSS animations/transitions)
+   ═══════════════════════════════════════════════════════════ */
+@media(prefers-reduced-motion:reduce){
+  .pro-x__video,.pro-cube__video{display:none}
+  .pro-x__poster,.pro-cube__poster{display:block}
+  .pro-exp__scroller{scroll-snap-type:none}
+}
