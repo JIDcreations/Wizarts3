@@ -7,7 +7,9 @@
 ## What this is
 Wizarts is a Belgian (Dutch-language) creative studio: "Gedreven door AI, gemaakt
 door mensen" (driven by AI, made by humans). Static, no-build site served from
-`site/`. Three pages: `index.html` (home), `cases.html`, `expertise.html`. Voice:
+`site/`. Pages: `index.html` (home), `cases.html`, `expertise.html`, `webstart.html`,
+and `wizarts-pro.html` (⚠ still a raw Claude "Bundled Page" artifact — escaped HTML
+string; do NOT edit unless your unit is explicitly that page). Voice:
 confident, warm, a little magical ("toveren", "magie", "krachten"), never gimmicky.
 Copy is **Dutch** — keep it Dutch, keep real copy unless a brief says to change it.
 
