@@ -462,7 +462,8 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
 .magie__step{position:relative;padding:0 0 clamp(26px,3vw,40px) clamp(54px,4vw,68px)}
 .magie__step:last-child{padding-bottom:0}
 .magie__node{position:absolute;left:0;top:0;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--paars);color:var(--groen);box-shadow:0 0 0 6px var(--beige)}
-.magie__node svg{width:22px;height:22px}
+/* sparkle + check share one grid cell so they cross-fade in place */
+.magie__node svg{width:22px;height:22px;grid-area:1/1}
 /* per-node effect: as the wand passes a point, JS adds .is-hit → a quick pop + an
    expanding orange ring (tasteful; matches the bottom burst's accent). */
 .magie__node::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:2px solid var(--oranje);opacity:0;pointer-events:none}
@@ -470,6 +471,15 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
 .magie__node.is-hit::after{animation:nodeRing .6s var(--ease) forwards}
 @keyframes nodePop{0%{transform:scale(1)}38%{transform:scale(1.16)}100%{transform:scale(1)}}
 @keyframes nodeRing{0%{opacity:.85;transform:scale(.95)}100%{opacity:0;transform:scale(1.9)}}
+/* sparkle → check: when the wand reaches a node, JS adds .is-checked (persistent).
+   The mint sparkle scales up + dissolves while the mint check strokes itself in. */
+.magie__sparkle{transition:transform .45s var(--ease),opacity .35s var(--ease)}
+.magie__check{opacity:0}
+.magie__check path{stroke-dasharray:100;stroke-dashoffset:100}
+.magie__node.is-checked .magie__sparkle{opacity:0;transform:scale(1.65) rotate(40deg)}
+.magie__node.is-checked .magie__check{opacity:1;transition:opacity .12s var(--ease)}
+.magie__node.is-checked .magie__check path{animation:checkDraw .5s var(--ease) .12s forwards}
+@keyframes checkDraw{to{stroke-dashoffset:0}}
 /* problem: struck through but kept at full --donker-paars on --beige (≈12:1, AAA) so the
    "before" stays legible even with the line-through. */
 .magie__problem{margin:0 0 .2em;font-size:clamp(15px,1.4vw,18px);line-height:1.35;color:var(--donker-paars)}
@@ -495,6 +505,10 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
   .magie__timeline.is-wand-done .magie__wand::before{animation:none;opacity:0}
   .magie__node.is-hit,
   .magie__node.is-hit::after{animation:none;opacity:0}
+  /* checks appear in their final state — no dissolve, no stroke draw */
+  .magie__node.is-checked .magie__sparkle{opacity:0;transition:none;transform:none}
+  .magie__node.is-checked .magie__check{opacity:1;transition:none}
+  .magie__node.is-checked .magie__check path{animation:none;stroke-dashoffset:0}
 }
 
 /* ═══════════════════════════════════════════════════════════
