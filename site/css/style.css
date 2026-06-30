@@ -739,7 +739,7 @@ body.is-ready .hero__title .line:nth-child(2) .word:nth-child(3){animation-delay
 /* ═══════════════════════════════════════════════════════════
    CONTACT
    ═══════════════════════════════════════════════════════════ */
-.contact{background:linear-gradient(160deg,var(--donker-paars),var(--paars));color:var(--wit);padding:clamp(90px,12vw,170px) 0}
+.contact{background:var(--donker-paars);color:var(--wit);padding:clamp(90px,12vw,170px) 0}
 .contact__grid{display:grid;grid-template-columns:minmax(300px,460px) 1fr;gap:clamp(40px,6vw,90px);align-items:start}
 .contact__aside{position:sticky;top:var(--nav-clear);display:flex;flex-direction:column;align-items:center}
 .contact__photo{width:min(100%,460px)}
