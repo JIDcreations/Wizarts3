@@ -119,6 +119,83 @@
 }
 
 /* ═══════════════════════════════════════════════════════════
+   DISCIPLINE IMAGERY
+   Websites / Branding / Marketing / AI: a full-bleed photo SIDE
+   PANEL — the image column bleeds to the section's outer edge at
+   full section height, text + cards live in the other half. Sides
+   alternate via --rev. Print stays a full image-background.
+   ═══════════════════════════════════════════════════════════ */
+.exp-disc--media{padding:0;overflow:hidden;position:relative}
+.exp-disc--media .exp-disc__inner{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  align-items:stretch;gap:0;min-height:clamp(440px,60vh,660px);
+}
+/* the bleeding image half */
+.exp-disc__media{position:relative;overflow:hidden;background:var(--donker-paars)}
+.exp-disc__media img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center;display:block;
+  transition:transform .9s var(--ease);
+}
+.exp-disc__media:hover img{transform:scale(1.05)}
+
+/* the text + cards half — outer edge aligns with the site container */
+.exp-disc--media .exp-disc__content{
+  --edge:max(var(--gutter),calc((100vw - var(--maxw)) / 2 + var(--gutter)));
+  display:flex;flex-direction:column;justify-content:center;
+  gap:clamp(28px,3.4vw,44px);
+  padding-block:clamp(56px,8vw,120px);
+  padding-inline:clamp(26px,4vw,56px) var(--edge);
+}
+.exp-disc--media .exp-disc__intro{order:0}
+/* reversed: image on the right, content on the left */
+.exp-disc--media.exp-disc--rev .exp-disc__media{order:2}
+.exp-disc--media.exp-disc--rev .exp-disc__content{order:1;padding-inline:var(--edge) clamp(26px,4vw,56px)}
+
+@media(max-width:860px){
+  .exp-disc--media{padding:0}
+  .exp-disc--media .exp-disc__inner{grid-template-columns:1fr;min-height:0}
+  .exp-disc--media .exp-disc__media,
+  .exp-disc--media.exp-disc--rev .exp-disc__media{order:-1;aspect-ratio:16/10}
+  .exp-disc--media .exp-disc__media--wide{aspect-ratio:2/1}
+  .exp-disc--media .exp-disc__content,
+  .exp-disc--media.exp-disc--rev .exp-disc__content{order:0;padding:clamp(40px,9vw,64px) var(--gutter)}
+}
+
+/* full image-background block (print) — darker, moodier scrim */
+.exp-disc--photo{
+  position:relative;overflow:hidden;color:var(--wit);
+  background:var(--donker-paars);border-radius:0 var(--radius-lg) 0 0;
+  --acc:var(--groen);--body-color:rgba(255,254,253,.94);
+  --card-bd:rgba(255,255,255,.55);
+  --card-hover:var(--oranje);--card-hover-fg:var(--zwart);--card-hover-shadow:rgba(253,172,108,.6);
+}
+.exp-disc__bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.exp-disc__bg img{width:100%;height:100%;object-fit:cover;display:block}
+.exp-disc__bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(115deg,rgba(0,0,51,.92) 0%,rgba(48,33,101,.92) 52%,rgba(48,33,101,.84) 100%)}
+.exp-disc--photo .exp-disc__inner{position:relative;z-index:1}
+.exp-disc--photo .exp-disc__title{color:var(--wit)}
+.exp-disc--photo .exp-disc__link{--acc-line:var(--groen);color:var(--groen)}
+
+/* mint identity variant (marketing) — mirror Print, mint accents,
+   opposite radius corner + a subtle mint glow in the far corner */
+.exp-disc--photo-mint{
+  border-radius:0 var(--radius-lg) 0 var(--radius-lg);
+  --card-hover:var(--groen);--card-hover-fg:var(--zwart);--card-hover-shadow:rgba(113,255,208,.55);
+}
+.exp-disc--photo-mint .exp-disc__bg::after{
+  background:
+    radial-gradient(85% 95% at 100% 100%,rgba(113,255,208,.18),transparent 58%),
+    linear-gradient(115deg,rgba(0,0,51,.92) 0%,rgba(48,33,101,.92) 52%,rgba(48,33,101,.84) 100%);
+}
+
+@media(prefers-reduced-motion:reduce){
+  .exp-disc__media img{transition:none}
+  .exp-disc__media:hover img{transform:none}
+}
+
+/* ═══════════════════════════════════════════════════════════
    WEBSTART
    ═══════════════════════════════════════════════════════════ */
 .exp-webstart{scroll-margin-top:var(--nav-clear);padding:clamp(40px,7vw,90px) 0 clamp(72px,9vw,120px);background:var(--beige)}
@@ -167,3 +244,44 @@
 @media(max-width:860px){
   .exp-pro__grid{grid-template-columns:1fr}
 }
+
+/* ═══════════════════════════════════════════════════════════
+   CONTINUOUS SECTION FLOW (matches home's curve-top rhythm)
+   Each colour-change section pulls up by the big corner radius and
+   stacks on top of the one above, so its rounded top corner reveals
+   the previous section's background — the full-bg images flow up
+   under the corner. Purely vertical (margin/padding/z-index): no
+   horizontal overflow. Rising sections curve on their image / empty
+   side and add matching top room so no text or cards hide under the
+   curve; the section above adds bottom room so nothing is covered.
+   ═══════════════════════════════════════════════════════════ */
+.exp-disc,.exp-webstart,.exp-pro,.contact{position:relative}
+
+/* z-stack: each later section paints above the previous at the seam */
+#websites{z-index:1}
+#print{z-index:2}
+#branding{z-index:3}
+#marketing{z-index:4}
+#ai{z-index:5}
+.exp-webstart{z-index:6}
+.exp-pro{z-index:7}
+.contact{z-index:8}
+
+/* rising sections tuck up under the previous section's corner */
+#print,#branding,#marketing,#ai,.contact{margin-top:calc(var(--radius-lg) * -1)}
+
+/* rounded top corner on the image / safe side so content never clips.
+   image-right & content-right → top-right; image-left → top-left */
+#print{border-radius:0 var(--radius-lg) 0 0}                      /* full-bg, top-right */
+#branding{border-radius:0 var(--radius-lg) 0 0}                  /* panel, image right */
+#marketing{border-radius:0 var(--radius-lg) 0 var(--radius-lg)}   /* full-bg mint */
+#ai{border-radius:var(--radius-lg) 0 0 0}                         /* panel, image left → top-left */
+/* .contact keeps its .curve-top (top-right) corner */
+
+/* full-bg rising sections: extra top padding so content clears the curve */
+#print,#marketing{padding-top:calc(clamp(80px,10vw,140px) + var(--radius-lg))}
+
+/* sections ABOVE a rising one: extra bottom room, covered by the rise */
+#websites,#branding{padding-bottom:var(--radius-lg)}             /* panels: strip covered by next */
+#print,#marketing{padding-bottom:calc(clamp(80px,10vw,140px) + var(--radius-lg))}
+.exp-pro{padding-bottom:calc(clamp(72px,9vw,120px) + var(--radius-lg))}
